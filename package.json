@@ -12,7 +12,8 @@
     "typecheck": "tsc --noEmit",
     "ds:catalog": "node scripts/ds-catalog.mjs",
     "db:seed": "node --env-file-if-exists=.env.local scripts/seed.mjs",
-    "test": "tsx --test \"lib/**/*.test.ts\""
+    "test": "tsx --test \"lib/**/*.test.ts\"",
+    "db:verify": "tsx scripts/verify-migrations.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -31,6 +32,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.5",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
