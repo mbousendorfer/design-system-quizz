@@ -10,9 +10,11 @@
  */
 import { z } from 'zod'
 
-import { isKnownComponent } from '@/lib/catalog'
+import { hasLivingStory, isKnownComponent } from '@/lib/catalog'
+import { copy } from '@/lib/copy'
 import {
   DIFFICULTIES,
+  DIFFICULTY_RULES,
   MODES,
   QUESTIONS_PER_RUN,
   isComponentAnswerMode,
@@ -314,27 +316,51 @@ export function toPlayerQuestion(
 // ---------------------------------------------------------------------------
 
 /**
+ * The subset a lint needs. Loose enough that both a published `Question` and an
+ * unfinished admin draft satisfy it, so a draft gets the same advice.
+ */
+export type LintableQuestion = {
+  mode: Mode
+  difficulty: Difficulty
+  component: string
+  docUrl: string | null
+  correctOptionId: string | null
+  options: readonly StoredOption[]
+}
+
+/**
  * Things worth telling the author about but not worth refusing to save over.
  * The option count per level is a default, not a rule — the brief says so.
  */
-export function lintQuestion(question: Question): string[] {
+export function lintQuestion(question: LintableQuestion): string[] {
   const warnings: string[] = []
-  const expected = { easy: 4, medium: 5, hard: 6 }[question.difficulty]
+  const advice = copy.questions.warnings
+  const expected = DIFFICULTY_RULES[question.difficulty].optionCount
 
   if (question.mode !== 'spot-the-drift' && question.options.length !== expected) {
-    warnings.push(
-      `A ${question.difficulty} question usually offers ${expected} options; this one offers ${question.options.length}.`,
-    )
+    warnings.push(advice.optionCount(question.difficulty, expected, question.options.length))
   }
   if (!question.docUrl) {
-    warnings.push('No documentation link — players cannot go read more after answering.')
+    warnings.push(advice.noDocLink)
   }
+
+  // Thirteen catalog entries have a spec but no story; ten of those the design
+  // guidelines have already retired. Writing about one is usually a mistake, but
+  // several existing questions name them, so this warns rather than blocks.
+  const named = [
+    question.component,
+    ...question.options.map((option) => option.component).filter(Boolean),
+  ] as string[]
+  for (const name of [...new Set(named)]) {
+    if (name && isKnownComponent(name) && !hasLivingStory(name)) {
+      warnings.push(advice.noStory(name))
+    }
+  }
+
   if (isComponentAnswerMode(question.mode)) {
     const answer = question.options.find((option) => option.id === question.correctOptionId)
-    if (answer && 'component' in answer && answer.component !== question.component) {
-      warnings.push(
-        `The correct option names "${answer.component}" but the question is filed under "${question.component}", so the stats will aggregate under the wrong component.`,
-      )
+    if (answer?.component && answer.component !== question.component) {
+      warnings.push(advice.filedUnderWrongComponent(answer.component, question.component))
     }
   }
   return warnings

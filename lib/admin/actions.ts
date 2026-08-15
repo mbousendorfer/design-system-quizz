@@ -15,7 +15,7 @@ import {
 import { adminQuestionInputSchema, publishBlockers } from '@/lib/admin/validation'
 import { isSignedIn } from '@/lib/auth/admin-session'
 import { copy } from '@/lib/copy'
-import type { Status } from '@/lib/schema/question'
+import { lintQuestion, type Status } from '@/lib/schema/question'
 
 /**
  * Every write in the admin.
@@ -33,7 +33,9 @@ function failure(error: unknown): { ok: false; errors: string[] } {
   return { ok: false, errors: [error instanceof Error ? error.message : 'Something went wrong.'] }
 }
 
-export async function saveQuestionAction(raw: unknown): Promise<ActionResult<SaveResult>> {
+export async function saveQuestionAction(
+  raw: unknown,
+): Promise<ActionResult<SaveResult & { warnings: string[] }>> {
   try {
     await requireAdmin()
 
@@ -51,7 +53,9 @@ export async function saveQuestionAction(raw: unknown): Promise<ActionResult<Sav
     const result = await saveQuestion(parsed.data)
 
     revalidatePath('/admin/questions')
-    return { ok: true, data: result }
+    // Advice, not refusal: the save already happened. Carried back so the form can
+    // show it — a lint nobody ever sees is the same as no lint at all.
+    return { ok: true, data: { ...result, warnings: lintQuestion(parsed.data) } }
   } catch (error) {
     return failure(error)
   }

@@ -182,6 +182,18 @@ export const copy = {
     unpublished: 'Back to draft.',
     archived: 'Archived.',
     publishRefused: 'This question cannot be published yet',
+    warningsTitle: 'Worth a look before this goes live',
+
+    /** Advice, never a refusal. Shown after a successful save. */
+    warnings: {
+      optionCount: (difficulty: string, expected: number, actual: number) =>
+        `A ${difficulty} question usually offers ${expected} options; this one offers ${actual}.`,
+      noDocLink: 'No documentation link — players cannot go read more after answering.',
+      noStory: (name: string) =>
+        `“${name}” is in the design specs but has no Storybook story. Check it still exists before publishing.`,
+      filedUnderWrongComponent: (answer: string, filed: string) =>
+        `The correct option names “${answer}” but the question is filed under “${filed}”, so the stats will aggregate under the wrong component.`,
+    },
     versionCut: (version: number) =>
       `Saved as version ${version}. The previous one was archived so past statistics stay honest.`,
     savedInPlace: 'Saved.',

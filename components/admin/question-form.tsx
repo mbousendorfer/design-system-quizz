@@ -25,7 +25,12 @@ import { Textarea } from '@/components/ui/textarea'
 import { toast } from '@/components/ui/toast'
 import { saveQuestionAction } from '@/lib/admin/actions'
 import type { AdminQuestionInput } from '@/lib/admin/validation'
-import { distractorsAvailableInCategory, getComponent, suggestDistractors } from '@/lib/catalog'
+import {
+  distractorsAvailableInCategory,
+  docUrlFor,
+  getComponent,
+  suggestDistractors,
+} from '@/lib/catalog'
 import { copy } from '@/lib/copy'
 import {
   DIFFICULTIES,
@@ -64,10 +69,23 @@ export function QuestionForm({
   const router = useRouter()
   const [draft, setDraft] = useState<AdminQuestionInput>(initial)
   const [errors, setErrors] = useState<string[]>([])
+  const [warnings, setWarnings] = useState<string[]>([])
   const [pending, startTransition] = useTransition()
 
   const patch = (changes: Partial<AdminQuestionInput>) =>
     setDraft((current) => ({ ...current, ...changes }))
+
+  /**
+   * Picking a component fills the documentation link, unless the author typed their
+   * own. Comparing against the previous component's derived URL is what tells a
+   * stale auto-fill apart from a deliberate one, so a hand-typed link is never
+   * clobbered by changing the component.
+   */
+  function changeComponent(component: string) {
+    const derived = docUrlFor(component)
+    const wasAutoFilled = !draft.docUrl || draft.docUrl === docUrlFor(draft.component)
+    patch({ component, ...(wasAutoFilled ? { docUrl: derived } : {}) })
+  }
 
   const images = hasImageOptions(draft.mode)
 
@@ -138,6 +156,7 @@ export function QuestionForm({
 
   function save(status: 'draft' | 'published') {
     setErrors([])
+    setWarnings([])
     startTransition(async () => {
       const result = await saveQuestionAction({ ...draft, status })
 
@@ -145,6 +164,8 @@ export function QuestionForm({
         setErrors(result.errors)
         return
       }
+
+      setWarnings(result.data.warnings)
 
       toast.add({
         title: result.data.createdNewVersion
@@ -207,6 +228,21 @@ export function QuestionForm({
           </Alert>
         ) : null}
 
+        {/* Advice on a save that already succeeded, so the default variant rather
+            than destructive — nothing here needs fixing before moving on. */}
+        {warnings.length > 0 ? (
+          <Alert>
+            <AlertTitle>{copy.questions.warningsTitle}</AlertTitle>
+            <AlertDescription>
+              <ul className="flex flex-col gap-1">
+                {warnings.map((warning) => (
+                  <li key={warning}>{warning}</li>
+                ))}
+              </ul>
+            </AlertDescription>
+          </Alert>
+        ) : null}
+
         <Card>
           <CardHeader>
             <CardTitle>{draft.id ? copy.questions.form.editTitle : copy.questions.form.newTitle}</CardTitle>
@@ -231,7 +267,7 @@ export function QuestionForm({
                 <ComponentCombobox
                   id="component"
                   value={draft.component}
-                  onChange={(component) => patch({ component })}
+                  onChange={changeComponent}
                 />
                 <FieldDescription>{copy.questions.form.componentHint}</FieldDescription>
               </Field>

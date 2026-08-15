@@ -18,6 +18,47 @@ const SPECS_DIR =
   process.env.DS_SPECS_DIR ?? join(homedir(), 'code', 'design-system', 'design-specs')
 const OUT_FILE = resolve(import.meta.dirname, '..', 'content', 'ds-catalog.json')
 
+const STORYBOOK_ORIGIN = 'https://design.agorapulse.com'
+/** A URL or a local path. Override for CI and offline work. */
+const STORYBOOK_INDEX = process.env.DS_STORYBOOK_INDEX ?? `${STORYBOOK_ORIGIN}/index.json`
+
+/**
+ * Components whose story is published under a different title than the specs claim.
+ *
+ * The specs only emit a `Storybook:` line when their generator matched a story, and
+ * it matches by name — so a component the design system renamed on one side and not
+ * the other silently loses its documentation link. Every title here is checked
+ * against the live index below, so this map cannot rot in silence either.
+ */
+const STORYBOOK_ALIASES = {
+  Popmenu: 'Display/PopMenu',
+  'Snackbars Thread': 'Feedback/Snackbar',
+  Paginator: 'Navigation/Pagination',
+  'Media Display Overlay': 'Display/MediaOverlay',
+  Datepicker: 'Utils/Datepicker',
+  Labels: 'Display/Label',
+}
+
+/**
+ * Components the Storybook documents but `design-specs/` does not. They are real,
+ * living and quizzable — the specs generator simply never covered them.
+ *
+ * Only the seven that also carry a design-guidelines file are listed: a component
+ * with a story but no written guidance has nothing to write a question about.
+ * `CSS UI/*` is deliberately excluded — those are the same components again in CSS
+ * form, and adding them would create duplicate names that poison distractor
+ * suggestion.
+ */
+const STORY_ONLY_COMPONENTS = [
+  { name: 'Link', category: 'actions', storybookTitle: 'Actions/Link' },
+  { name: 'Input', category: 'forms', storybookTitle: 'Forms/Input' },
+  { name: 'Textarea', category: 'forms', storybookTitle: 'Forms/Textarea' },
+  { name: 'Table', category: 'display', storybookTitle: 'Display/Table' },
+  { name: 'Ellipsis', category: 'display', storybookTitle: 'Display/Ellipsis' },
+  { name: 'Menu', category: 'display', storybookTitle: 'Display/Menu' },
+  { name: 'Loader', category: 'feedback', storybookTitle: 'Feedback/Loader' },
+]
+
 /**
  * Components that are genuinely easy to confuse with one another, across
  * categories. The distractor suggester falls back to these when the answer's own
@@ -104,9 +145,11 @@ function parseComponent(path) {
   const category = metaField(source, 'Category')
   if (!category) fail(`no Category in ${path}`)
 
-  // "Display/Badge — https://design.agorapulse.com" — the URL is the same for every
-  // component, only the story title varies, so both are kept separately.
-  const [storyTitle, storyUrl] = (metaField(source, 'Storybook') ?? '').split('—').map((s) => s?.trim())
+  // "Display/Badge — https://design.agorapulse.com". Only the title is worth keeping:
+  // the URL is the same bare root for every component, which is exactly why every
+  // documentation link used to land on the homepage. The real link is resolved from
+  // the live story index further down.
+  const [storyTitle] = (metaField(source, 'Storybook') ?? '').split('—').map((s) => s?.trim())
 
   const anatomy = section(source, 'Anatomy')
   const cssClasses = [
@@ -117,15 +160,55 @@ function parseComponent(path) {
     name,
     slug: path.split('/').pop().replace(/\.md$/, ''),
     category,
+    source: 'specs',
     selectors: backtickedTags(metaField(source, 'Selectors')),
     cssClasses,
     modifiers: modifiersFrom(section(source, 'States')),
     specPath: relative(SPECS_DIR, path),
+    // Resolved into the `storybook` object once the live index is in hand.
     storybookTitle: storyTitle ?? null,
-    storybookUrl: storyUrl ?? null,
     intents: [],
     confusableWith: [],
   }
+}
+
+/**
+ * The live Storybook's own story index, which is the only authority on what is
+ * actually published and under which id. Runs in Node, so the CDN's browser CORS
+ * policy does not apply.
+ */
+async function readStorybookIndex() {
+  let raw
+  try {
+    if (/^https?:/.test(STORYBOOK_INDEX)) {
+      const response = await fetch(STORYBOOK_INDEX)
+      if (!response.ok) throw new Error(`HTTP ${response.status}`)
+      raw = await response.text()
+    } else {
+      raw = readFileSync(STORYBOOK_INDEX, 'utf8')
+    }
+  } catch (error) {
+    fail(
+      `cannot read the Storybook index at ${STORYBOOK_INDEX} (${error.message}).\n` +
+        `Set DS_STORYBOOK_INDEX to a URL or a saved copy. Failing rather than nulling\n` +
+        `every documentation link because the network blipped.`,
+    )
+  }
+
+  const { entries } = JSON.parse(raw)
+  // One `docs` entry per title, which is what makes the resolution unambiguous.
+  return new Map(
+    Object.values(entries)
+      .filter((entry) => entry.type === 'docs')
+      .map((entry) => [entry.title, entry.id]),
+  )
+}
+
+function storybookFor(title, docsByTitle) {
+  if (!title) return null
+  const docsId = docsByTitle.get(title)
+  if (!docsId) return null
+  return { title, docsId, url: `${STORYBOOK_ORIGIN}/?path=/docs/${docsId}` }
 }
 
 /** `| callout | [Infobox](components/feedback/infobox.md) |` → { Infobox: ['callout'] } */
@@ -184,10 +267,66 @@ for (const group of CONFUSABLE_GROUPS) {
 }
 for (const component of components) component.confusableWith.sort()
 
+// --- resolve the documentation links against the live Storybook ---------------
+
+const docsByTitle = await readStorybookIndex()
+
+for (const [name, title] of Object.entries(STORYBOOK_ALIASES)) {
+  if (!byName.has(name)) {
+    fail(`STORYBOOK_ALIASES names "${name}", which is not in the design specs.`)
+  }
+  if (!docsByTitle.has(title)) {
+    fail(
+      `STORYBOOK_ALIASES maps "${name}" to "${title}", which the Storybook no longer\n` +
+        `publishes. Check the current title and update the map in scripts/ds-catalog.mjs.`,
+    )
+  }
+  byName.get(name).storybookTitle = title
+}
+
+for (const spec of STORY_ONLY_COMPONENTS) {
+  if (byName.has(spec.name)) {
+    fail(`STORY_ONLY_COMPONENTS lists "${spec.name}", which the specs already cover.`)
+  }
+  if (!docsByTitle.has(spec.storybookTitle)) {
+    fail(`STORY_ONLY_COMPONENTS maps "${spec.name}" to a title the Storybook no longer has.`)
+  }
+  const component = {
+    ...spec,
+    slug: spec.name.toLowerCase().replace(/\s+/g, '-'),
+    source: 'storybook',
+    selectors: [],
+    cssClasses: [],
+    modifiers: [],
+    specPath: null,
+    intents: [],
+    confusableWith: [],
+  }
+  components.push(component)
+  byName.set(component.name, component)
+}
+
+// `storybook: null` is itself the "not in the living Storybook" flag — no separate
+// boolean to keep in step with it.
+for (const component of components) {
+  component.storybook = storybookFor(component.storybookTitle, docsByTitle)
+  if (component.storybook && component.source === 'specs') component.source = 'both'
+  delete component.storybookTitle
+}
+
+components.sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name))
+
 // A checksum instead of a timestamp: re-running the script on an unchanged design
 // system produces a byte-identical file, so git only shows a diff when the DS moved.
+// The story ids are folded in, so a Storybook rename shows up as a diff too.
 const checksum = createHash('sha256')
   .update(specFiles.map((f) => readFileSync(f, 'utf8')).join('\0'))
+  .update(
+    [...docsByTitle.entries()]
+      .sort()
+      .map(([title, id]) => `${title}=${id}`)
+      .join('\0'),
+  )
   .digest('hex')
   .slice(0, 16)
 
@@ -202,8 +341,22 @@ writeFileSync(
 const perCategory = categories
   .map((c) => `${c} ${components.filter((x) => x.category === c).length}`)
   .join(', ')
+const storyless = components.filter((c) => !c.storybook)
+
 console.log(
   `ds:catalog — ${components.length} components (${perCategory})\n` +
+    `             ${components.length - storyless.length} have a Storybook story, ` +
+    `${components.filter((c) => c.source === 'storybook').length} come from it alone\n` +
     `             ${intents.size} components carry intents, checksum ${checksum}\n` +
     `             written to ${relative(process.cwd(), OUT_FILE)}`,
 )
+
+if (storyless.length > 0) {
+  // Kept in the catalog on purpose: existing questions name several of them, and
+  // dropping them would make those questions unvalidatable. Flagged so the admin can
+  // warn when one is picked.
+  console.log(
+    `\n             no Storybook story (${storyless.length}), questions naming these get a warning:\n` +
+      storyless.map((c) => `               ${c.name}`).join('\n'),
+  )
+}

@@ -25,7 +25,9 @@ const TEMPLATE = [
     'Infobox',
     '"A plan limit needs explaining, with a heading and an Upgrade button."',
     '"Infobox takes a title, an action button and a closable flag; Notification only exposes a type."',
-    'https://design.agorapulse.com',
+    // A real deep link, so the template teaches the right shape rather than the
+    // homepage every seeded question used to point at.
+    'https://design.agorapulse.com/?path=/docs/feedback-infobox--docs',
     '',
     '',
     'Snackbars Thread',

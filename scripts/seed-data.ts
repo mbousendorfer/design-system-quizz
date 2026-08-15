@@ -10,8 +10,6 @@
  */
 import type { Difficulty, Mode } from '@/lib/difficulty'
 
-const STORYBOOK = 'https://design.agorapulse.com'
-
 export type SeedOption = {
   id: string
   /** Component-naming modes: the component this option offers. */
@@ -29,6 +27,7 @@ export type SeedQuestion = {
   component: string
   prompt: string
   explanation: string
+  /** Left null to be derived from the component's Storybook page at build time. */
   docUrl: string | null
   /** `name-that-component` only: the screenshot being identified. */
   shot?: string
@@ -49,7 +48,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
     shot: 'An ap-badge: a small blue dot sitting on the top-right corner of an inbox icon',
     explanation:
       'A Badge is the small dot or count that attaches to another element to flag activity. It is read, never clicked. Modal, Paginator and Datepicker are all interactive surfaces in their own right — none of them can sit on the corner of an icon.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       { id: 'a', component: 'Badge' },
       { id: 'b', component: 'Modal' },
@@ -67,7 +66,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
     shot: 'Three joined pill buttons inside one rounded container, the middle one filled: Day / Week / Month',
     explanation:
       'A Segmented Control holds a small set of mutually exclusive choices in one joined control, and switches a view in place. Tabs also switch views, but they sit above a panel and can scroll. A Paginator moves through pages of the same list rather than between views. A Stepper walks a sequence that has a beginning and an end.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       { id: 'a', component: 'Tabs' },
       { id: 'b', component: 'Segmented Control' },
@@ -86,7 +85,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
     shot: 'A green pill with a filled dot on its left and the word Published',
     explanation:
       'This is a Status: a pill whose dot and colour carry a state the system decided. Badge is the bare dot or count attached to something else, with no label of its own. Tag is a token the user put there and can take away. Counter is a number pill. Labels are user-assigned to a conversation. Filter Chips List shows which filters are currently applied. The giveaway is the dot: Status ships with it by default and has a `no-dot` modifier to remove it.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       { id: 'a', component: 'Badge' },
       { id: 'b', component: 'Tag' },
@@ -110,7 +109,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
       'The composer is ready and "Schedule post" is the single most important action on the screen. Which button variant belongs here?',
     explanation:
       'The primary variant carries the one action you most want taken on a screen, and the design system picks colour families by meaning rather than hue: `main` / orange is for primary CTAs. Secondary, ghost and transparent deliberately step back so the primary stays the only obvious target. Two primaries on one screen is what makes a page feel undecided.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       { id: 'a', shot: 'ap-button primary orange — solid orange fill, white label "Schedule post"' },
       { id: 'b', shot: 'ap-button secondary — grey fill, dark label "Schedule post"' },
@@ -127,7 +126,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
     prompt: 'This button opens the AI caption generator. Which variant belongs here?',
     explanation:
       'The `mermaid` gradient is reserved for AI surfaces, and the conventions say so in as many words: never decoratively. The rule is not about taste. Use it on an ordinary button and you teach people it means nothing, and then it cannot mean "AI" on the screen where that actually matters.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       { id: 'a', shot: 'ap-button primary orange — solid orange fill, label "Generate caption"' },
       { id: 'b', shot: 'ap-button mermaid — gradient fill, label "Generate caption"' },
@@ -145,7 +144,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
       'The Advocacy report is not included in this workspace’s plan. The button should invite an upgrade rather than simply fail. Which variant belongs here?',
     explanation:
       'The `locked` variant, drawn from the feature-lock purple family, says "available on another plan" while staying interactive and leading somewhere. A greyed-out disabled button says "not now, and there is nothing you can do about it" — a different message and a dead end. Red is reserved for destructive actions, so it would read as a warning about deleting something.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       { id: 'a', shot: 'ap-button grey disabled — flat grey fill, dimmed label "Open report"' },
       {
@@ -169,7 +168,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
     prompt: 'Both render an orange Save button. Which one follows the design system?',
     explanation:
       'Two drifts in one on the wrong side. BEM double-dash modifiers do not exist in this design system — modifiers are plain words chained onto the base class, as in `ap-button primary orange`. And the colour is hardcoded instead of coming from `--comp-button-*`, which is exactly what turns a future theme change into a search-and-replace across the whole codebase.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       {
         id: 'a',
@@ -187,7 +186,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
     prompt: 'Which markup respects the component anatomy?',
     explanation:
       'Components in this design system style their direct children — `> input`, `> i`, `> span`. Slipping an extra wrapper in between breaks that selector chain, the input silently loses its styling, and somebody patches it back with custom CSS a week later. There is already a documented wrapper for this: `ap-input-group`. Inventing `input-wrapper` is how a codebase grows a second, undocumented design system.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       {
         id: 'a',
@@ -208,7 +207,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
     prompt: 'Both render a green "Published" pill. Which one follows the design system?',
     explanation:
       'The wrong one is a Status pill rebuilt by hand: correct today, wrong the moment the green shifts or the radius scale moves, and invisible to anyone auditing the design system. Searching the codebase for "pill" and finding nothing is not proof the component is missing — search by intent instead. Both "state pill" and "status label" lead straight to Status in the component index.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       {
         id: 'a',
@@ -231,7 +230,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
       'A post has just been scheduled. You want to confirm it briefly, without interrupting what the user is doing, and let the message disappear on its own.',
     explanation:
       'Snackbars Thread is the transient confirmation: it appears, it is read, it leaves. A Modal demands a decision before anything else can happen, which is far too much ceremony for a success message. An Infobox is a banner that stays on the page. A Tooltip only exists while you hover, so nobody would ever see it. If you reach for the word "toast", this design system calls it Snackbars Thread.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       { id: 'a', component: 'Modal' },
       { id: 'b', component: 'Snackbars Thread' },
@@ -249,7 +248,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
       'This workspace has hit its monthly publishing limit. The message has to stay on the page, carry a heading, and offer an "Upgrade plan" button.',
     explanation:
       'Infobox is the one that can do all three: it takes a `title`, an action button with its own click output, and a `closable` flag — and its `type` even includes `feature-lock` for exactly this situation. Notification looks similar but only exposes a `type`: no heading, no button, so it cannot carry the call to action. A snackbar would vanish before the sentence is finished, and a Confirm Modal blocks the work to ask a question nobody asked.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       { id: 'a', component: 'Snackbars Thread' },
       { id: 'b', component: 'Notification' },
@@ -268,7 +267,7 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
       'The inbox is currently filtered by three criteria. You want to show them above the list, each one removable in a single click.',
     explanation:
       'Filter Chips List is the row of filters currently applied — both "active filters" and "filter chips" map onto it in the component index, and it exposes the items and a change output for removal. Tag is the generic removable token underneath, but the list is the documented component and rebuilding it from Tags is drift. Filter Dropdown is where you choose the filters, not where you see them. Labels and Labels Selector are about labels a user assigns to a conversation, which is a different concept that merely looks alike.',
-    docUrl: STORYBOOK,
+    docUrl: null,
     options: [
       { id: 'a', component: 'Tag' },
       { id: 'b', component: 'Filter Chips List' },

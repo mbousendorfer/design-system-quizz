@@ -8,7 +8,7 @@
  */
 import { createHash } from 'node:crypto'
 
-import { getComponent } from '@/lib/catalog'
+import { docUrlFor, getComponent } from '@/lib/catalog'
 import { questionSchema, type Question } from '@/lib/schema/question'
 import { SEED_QUESTIONS, type SeedQuestion } from './seed-data'
 
@@ -121,7 +121,10 @@ function build(seed: SeedQuestion): BuiltQuestion {
     component: seed.component,
     prompt: seed.prompt,
     explanation: seed.explanation,
-    docUrl: seed.docUrl,
+    // Derived rather than hardcoded: every seed used to point at the Storybook
+    // homepage, so "Read the component docs" never took anyone anywhere useful.
+    // Null when the component has no story — no link beats a wrong one.
+    docUrl: seed.docUrl ?? docUrlFor(seed.component),
     timerSeconds: null,
     imageKey: mainImageKey,
     options,
