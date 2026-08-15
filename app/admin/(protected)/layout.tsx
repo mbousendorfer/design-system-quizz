@@ -32,8 +32,9 @@ export default async function ProtectedAdminLayout({ children }: { children: Rea
           <Button variant="ghost" size="sm" nativeButton={false} render={<Link href="/admin/questions/import" />}>
             {copy.admin.navImport}
           </Button>
-          {/* The stats link arrives with the stats page, in the next phase. A nav
-              item that 404s is worse than one that is not there yet. */}
+          <Button variant="ghost" size="sm" nativeButton={false} render={<Link href="/admin/stats" />}>
+            {copy.admin.navStats}
+          </Button>
         </nav>
         <form action={leave} className="ml-auto">
           <Button variant="ghost" size="sm" type="submit">

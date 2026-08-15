@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { CheckCircle2Icon, RotateCcwIcon, SparklesIcon, XCircleIcon } from 'lucide-react'
+import { CheckCircle2Icon, RotateCcwIcon, SparklesIcon, TrophyIcon, XCircleIcon } from 'lucide-react'
 
 import { optionLetter } from '@/components/game/question-view'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -59,6 +59,16 @@ export function Results({ summary }: { summary: FinishRunResponse }) {
           <Button nativeButton={false} render={<Link href="/" />}>
             <RotateCcwIcon data-icon="inline-start" />
             {copy.results.playAgain}
+          </Button>
+          {/* Straight to the board for the level just played, rather than a
+              default one where this run does not appear. */}
+          <Button
+            variant="outline"
+            nativeButton={false}
+            render={<Link href={`/leaderboard?difficulty=${summary.difficulty}`} />}
+          >
+            <TrophyIcon data-icon="inline-start" />
+            {copy.home.seeLeaderboard}
           </Button>
         </CardFooter>
       </Card>

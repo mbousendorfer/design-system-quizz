@@ -360,12 +360,43 @@ for (const view of [
   'mode_stats',
   'team_stats',
   'run_stats',
+  'daily_stats',
+  'overview_stats',
   'calibration_candidates',
   'leaderboard_by_difficulty',
 ]) {
   await db.query(`select * from ${view}`)
   pass(`${view} runs`)
 }
+
+// A player who ran twice is one player. Summing per-day counts would say two,
+// which is the whole reason overview_stats exists.
+const { rows: secondRun } = await db.query<{ id: string }>(
+  `insert into runs (player_id, mode, difficulty, score, finished_at)
+   values ($1, 'mixed', 'easy', 400, now()) returning id`,
+  [playerId],
+)
+await db.query(`update runs set score = 250, finished_at = now() where id = $1`, [runId])
+
+const { rows: overview } = await db.query<{
+  runs_played: number
+  players: number
+  average_score: string
+}>(`select * from overview_stats`)
+assert.equal(overview[0].runs_played, 2)
+assert.equal(overview[0].players, 1)
+assert.equal(Number(overview[0].average_score), 325)
+pass('overview_stats counts one player across two runs, not two')
+
+const { rows: daily } = await db.query<{ runs_played: number; players: number }>(
+  `select * from daily_stats`,
+)
+assert.equal(daily.length, 1)
+assert.equal(daily[0].runs_played, 2)
+assert.equal(daily[0].players, 1)
+pass('daily_stats groups both runs onto one day')
+
+await db.query(`delete from runs where id = $1`, [secondRun[0].id])
 
 // --- calibration threshold -------------------------------------------------
 

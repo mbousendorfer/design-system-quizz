@@ -72,11 +72,23 @@ const run = await startRun({
 })
 pass(`started a run of ${run.totalQuestions} questions`)
 
-assert.deepEqual(
-  run.draw.items.map((item) => item.difficulty),
-  ['easy', 'easy', 'medium', 'medium', 'hard'],
+// The ladder is easy, easy, medium, medium, hard — unless the pool cannot supply
+// an unseen question at that level, in which case the draw substitutes and says
+// so. Asserting the ladder outright would fail on the second run of this script,
+// for the right reason, which makes it a bad assertion rather than a bug.
+const LADDER = ['easy', 'easy', 'medium', 'medium', 'hard'] as const
+run.draw.items.forEach((item, index) => {
+  const expected = LADDER[index]
+  assert.ok(
+    item.difficulty === expected || run.draw.substitutedFrom.includes(expected),
+    `position ${index + 1} came out ${item.difficulty}, expected ${expected} or a reported substitution`,
+  )
+})
+pass(
+  run.draw.substitutedFrom.length === 0
+    ? 'the progressive ladder came out easy, easy, medium, medium, hard'
+    : `the ladder substituted for ${run.draw.substitutedFrom.join(', ')} and reported it`,
 )
-pass('the progressive ladder came out easy, easy, medium, medium, hard')
 
 // --- play it ----------------------------------------------------------------
 

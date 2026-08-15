@@ -1,4 +1,8 @@
+import Link from 'next/link'
+import { TrophyIcon } from 'lucide-react'
+
 import { StartForm } from '@/components/game/start-form'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { copy } from '@/lib/copy'
 
@@ -14,6 +18,16 @@ export default function HomePage() {
           <StartForm />
         </CardContent>
       </Card>
+
+      <Button
+        variant="ghost"
+        className="self-center"
+        nativeButton={false}
+        render={<Link href="/leaderboard" />}
+      >
+        <TrophyIcon data-icon="inline-start" />
+        {copy.home.seeLeaderboard}
+      </Button>
     </main>
   )
 }
