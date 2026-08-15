@@ -8,7 +8,10 @@
 -- thirty separate transactions. A plpgsql function is one, so any exception
 -- anywhere in the loop rolls the whole thing back.
 
-create function public.save_question_versions(payloads jsonb)
+-- `or replace` because these migrations are pasted into the SQL editor by hand:
+-- re-running a block that is already applied should be a no-op, not an error that
+-- stops the statements after it from running.
+create or replace function public.save_question_versions(payloads jsonb)
 returns table (
   saved_id uuid,
   saved_version integer,
