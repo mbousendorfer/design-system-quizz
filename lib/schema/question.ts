@@ -216,36 +216,79 @@ function shuffled<T>(items: readonly T[], seed: string): T[] {
   return result
 }
 
+export type PlayerQuestionContext = {
+  runId: string
+  position: number
+  totalQuestions?: number
+}
+
+/** The subset of a question that is allowed to be rendered. */
+export type PlayableFields = {
+  mode: Mode
+  difficulty: Difficulty
+  prompt: string
+  imageKey: string | null
+  component: string | null
+  options: readonly QuestionOption[]
+  timerSeconds: number
+}
+
 /**
- * The only place a stored question becomes a payload.
+ * The only place a question becomes a payload.
  *
- * Strips `correctOptionId`, `explanation`, `docUrl` and `status` — and also
- * `component` on the two modes where the component name is the answer. An
- * explanation reading "Badge is for counts…" gives the game away just as plainly
- * as the answer id does.
+ * Whatever it is handed, it emits `component` as null on the two modes where the
+ * component name is the answer, and it never copies anything else across — so a
+ * caller that passes a full row cannot leak the answer or the explanation by
+ * forgetting to strip them.
+ *
+ * Two callers: the game, reading the `questions_public` view, and the admin
+ * preview, holding a full question.
  */
-export function toPlayerQuestion(
-  question: Question,
-  context: { runId: string; position: number; totalQuestions?: number },
+export function buildPlayerQuestion(
+  fields: PlayableFields,
+  context: PlayerQuestionContext,
 ): PlayerQuestion {
-  const options: PlayerOption[] = question.options.map((option) =>
+  const options: PlayerOption[] = fields.options.map((option) =>
     'component' in option
       ? { id: option.id, component: option.component }
-      : { id: option.id, imageKey: option.imageKey, ...(option.label ? { label: option.label } : {}) },
+      : {
+          id: option.id,
+          imageKey: option.imageKey,
+          ...(option.label ? { label: option.label } : {}),
+        },
   )
 
   return {
     runId: context.runId,
     position: context.position,
-    mode: question.mode,
-    difficulty: question.difficulty,
-    timerSeconds: timerSecondsFor(question.difficulty, question.timerSeconds),
-    prompt: question.prompt,
-    imageKey: question.imageKey ?? null,
-    component: isComponentAnswerMode(question.mode) ? null : question.component,
+    mode: fields.mode,
+    difficulty: fields.difficulty,
+    timerSeconds: fields.timerSeconds,
+    prompt: fields.prompt,
+    imageKey: fields.imageKey,
+    component: isComponentAnswerMode(fields.mode) ? null : fields.component,
     options: shuffled(options, `${context.runId}:${context.position}`),
     totalQuestions: context.totalQuestions ?? QUESTIONS_PER_RUN,
   }
+}
+
+/** Same thing, from a full stored question. */
+export function toPlayerQuestion(
+  question: Question,
+  context: PlayerQuestionContext,
+): PlayerQuestion {
+  return buildPlayerQuestion(
+    {
+      mode: question.mode,
+      difficulty: question.difficulty,
+      prompt: question.prompt,
+      imageKey: question.imageKey ?? null,
+      component: question.component,
+      options: question.options,
+      timerSeconds: timerSecondsFor(question.difficulty, question.timerSeconds),
+    },
+    context,
+  )
 }
 
 // ---------------------------------------------------------------------------

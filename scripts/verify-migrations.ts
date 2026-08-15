@@ -84,6 +84,25 @@ await expectFailure(
   /players_pseudo_key|duplicate key/i,
 )
 
+const { rows: lookup } = await db.query<{ id: string }>(
+  `select id from players where pseudo_key = $1`,
+  ['sam'],
+)
+assert.equal(lookup[0]?.id, playerId)
+pass('pseudo_key is queryable as a plain column, wildcards and all')
+
+const { rows: wildcard } = await db.query<{ pseudo_key: string }>(
+  `insert into players (pseudo) values ('Sam_') returning pseudo_key`,
+)
+assert.equal(wildcard[0].pseudo_key, 'sam_')
+const { rows: noWildcardMatch } = await db.query(`select id from players where pseudo_key = $1`, [
+  'sam1',
+])
+// An `ilike` lookup would have matched `sam_` here, and handed one player another
+// player's identity.
+assert.equal(noWildcardMatch.length, 0)
+pass('an underscore in a pseudo is a character, not a wildcard')
+
 const options = JSON.stringify([
   { id: 'a', component: 'Badge' },
   { id: 'b', component: 'Tag' },

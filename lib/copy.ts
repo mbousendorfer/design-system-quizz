@@ -91,8 +91,10 @@ export const copy = {
     next: 'Next',
     finish: 'See results',
     keyboardHint: 'Press 1–6 to answer, Enter to continue.',
-    optionA: 'A',
-    optionB: 'B',
+    optionsLabel: 'Answer options',
+    /** Accessible name for an option: a screenshot on its own has none. */
+    optionName: (position: number, label: string) => `Option ${position}: ${label}`,
+    optionScreenshot: (label: string) => `Screenshot for option ${label}`,
     readTheDocs: 'Read the component docs',
     answerWas: (label: string) => `The answer was ${label}.`,
     streak: (count: number) => `${count} in a row`,
