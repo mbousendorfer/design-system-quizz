@@ -14,24 +14,32 @@ export const SHOTS_BUCKET = 'shots'
 
 export type SupabaseEnv = {
   url: string
-  serviceRoleKey: string
+  secretKey: string
 }
 
 export function readSupabaseEnv(): SupabaseEnv {
   const url = process.env.SUPABASE_URL
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  const secretKey = process.env.SUPABASE_SECRET_KEY
 
-  const missing = [
-    !url && 'SUPABASE_URL',
-    !serviceRoleKey && 'SUPABASE_SERVICE_ROLE_KEY',
-  ].filter(Boolean)
+  const missing = [!url && 'SUPABASE_URL', !secretKey && 'SUPABASE_SECRET_KEY'].filter(Boolean)
 
   if (missing.length > 0) {
     throw new Error(
-      `Missing ${missing.join(' and ')}. Copy .env.example to .env.local and fill in the ` +
-        `values from your Supabase project settings (Project settings → API).`,
+      `Missing ${missing.join(' and ')}. Copy .env.example to .env.local and fill it in from ` +
+        `Project settings → API keys in the Supabase dashboard.`,
     )
   }
 
-  return { url: url as string, serviceRoleKey: serviceRoleKey as string }
+  // The publishable key cannot bypass row level security, and every table here
+  // denies it everything, so it would fail later with a confusing empty result
+  // rather than an error. Say so now instead.
+  if (secretKey!.startsWith('sb_publishable_')) {
+    throw new Error(
+      'SUPABASE_SECRET_KEY holds a publishable key. That one is meant for browsers and ' +
+        'cannot bypass row level security, so it can read and write nothing here. Use the ' +
+        'secret key (sb_secret_…) from Project settings → API keys.',
+    )
+  }
+
+  return { url: url as string, secretKey: secretKey as string }
 }

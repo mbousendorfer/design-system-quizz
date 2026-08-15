@@ -80,8 +80,8 @@ if (DRY_RUN) {
 
 // --- upload and upsert ------------------------------------------------------
 
-const { url, serviceRoleKey } = readSupabaseEnv()
-const supabase = createClient(url, serviceRoleKey, {
+const { url, secretKey } = readSupabaseEnv()
+const supabase = createClient(url, secretKey, {
   auth: { persistSession: false, autoRefreshToken: false },
 })
 

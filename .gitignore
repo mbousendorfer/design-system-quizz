@@ -38,3 +38,6 @@ next-env.d.ts
 
 # generated placeholder screenshots (npm run db:seed -- --dry-run)
 /public/seed-shots
+
+# generated SQL bundle (npm run db:sql)
+/supabase/bundle.sql
