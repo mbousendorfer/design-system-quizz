@@ -33,6 +33,16 @@ const cssUiRenderSchema = z.object({
    * costs nothing on a 15-second timer.
    */
   compiled: z.string().max(4000),
+  /**
+   * The stylesheet the markup above was compiled against.
+   *
+   * `ds:css` salts every class name, so regenerating it reassigns all 600 of them
+   * and markup compiled against the old sheet renders as unstyled HTML — correct
+   * structure, no design system, and nothing anywhere would say why. Stamping the
+   * checksum makes that detectable: `npm run ds:recompile` finds the stale rows and
+   * rebuilds them from the recipe, which is exactly why the recipe is kept.
+   */
+  cssChecksum: z.string().max(32).default(''),
 })
 
 const shotRenderSchema = z.object({

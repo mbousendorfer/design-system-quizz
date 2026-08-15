@@ -89,6 +89,12 @@ function fnv1a(value) {
  */
 const renameClass = (name) => (name.startsWith('ap-icon-') ? `i${fnv1a(SALT + name)}` : `c${fnv1a(SALT + name)}`)
 const renameProperty = (name) => `--v${fnv1a(SALT + name)}`
+const renameKeyframe = (name) => `k${fnv1a(SALT + name)}`
+const renameTag = (name) => `t${fnv1a(SALT + name)}`
+
+const escape = (name) => name.replace(/[-]/g, '\\-')
+/** Longest first, so a short name is never rewritten inside a longer one. */
+const longestFirst = (map) => [...map.entries()].sort((a, b) => b[0].length - a[0].length)
 
 /**
  * Comments are stripped before anything else, and never reach the output.
@@ -116,12 +122,57 @@ function collectProperties(css) {
   return names
 }
 
-function applyRenames(css, classMap, propertyMap) {
+/**
+ * Animation names, which the class pass never sees because they carry no dot.
+ *
+ * They are as loud as any class: `ap-snackbar-slide-in`, `ap-tooltip-fade-in` and
+ * `ap-loader-16` each name their component in a declaration the player can read.
+ */
+function collectKeyframes(css) {
+  const names = new Set()
+  for (const match of css.matchAll(/@keyframes\s+([\w-]+)/g)) names.add(match[1])
+  return names
+}
+
+/**
+ * Custom-element type selectors — `ap-symbol`, `ap-button`.
+ *
+ * Renaming them is safe because no template emits a custom element: the CSS-UI
+ * layer is the class-based one, and the extracted templates are pure HTML. The
+ * check for that lives in the verifier, so this stops being safe loudly rather
+ * than silently if a template ever gains one.
+ */
+function collectTagSelectors(css) {
+  const names = new Set()
+  const selectorsOnly = css.replace(/\{[^{}]*\}/g, '{}')
+  for (const match of selectorsOnly.matchAll(/(?<![\w.#\-"'])(ap-[a-z][\w-]*)(?![\w-]*["'])/g))
+    names.add(match[1])
+  return names
+}
+
+function applyRenames(css, classMap, propertyMap, keyframeMap = new Map(), tagMap = new Map()) {
   let out = css
 
   // Properties first: a class rename could otherwise land inside a var() name.
-  for (const [from, to] of propertyMap) {
-    out = out.replaceAll(from, to)
+  // Longest first, for the same reason as the classes below — without it
+  // `--sys-color-background` rewrites the head of
+  // `--sys-color-background-feature-lock-hover` and leaves the tail spelling out
+  // the variant. Consistent on both sides, so it still renders; it just tells the
+  // player which button they are looking at.
+  for (const [from, to] of longestFirst(propertyMap)) {
+    out = out.replace(new RegExp(`${escape(from)}(?![\\w-])`, 'g'), to)
+  }
+
+  // Animation names: the @keyframes rule and every reference to it. `animation` is
+  // a shorthand, so the name sits among durations and easings — match the word.
+  for (const [from, to] of longestFirst(keyframeMap)) {
+    out = out.replace(new RegExp(`(?<![\\w-])${escape(from)}(?![\\w-])`, 'g'), to)
+  }
+
+  // Custom-element selectors, never preceded by a dot or a hash (that would be a
+  // class or an id, handled elsewhere).
+  for (const [from, to] of longestFirst(tagMap)) {
+    out = out.replace(new RegExp(`(?<![\\w.#\\-"'])${escape(from)}(?![\\w-]*["'])(?![\\w-])`, 'g'), to)
   }
 
   // Classes, longest first, so `.ap-button-icon` is not half-rewritten by `.ap-button`.
@@ -129,7 +180,7 @@ function applyRenames(css, classMap, propertyMap) {
   for (const [from, to] of ordered) {
     // Only in selector position: a bare `.`-prefixed token, not inside a string or
     // a url().
-    out = out.replace(new RegExp(`\\.${from.replace(/[-]/g, '\\-')}(?![\\w-])`, 'g'), `.${to}`)
+    out = out.replace(new RegExp(`\\.${escape(from)}(?![\\w-])`, 'g'), `.${to}`)
   }
 
   return out
@@ -172,17 +223,25 @@ const propertyNames = new Set([
   ...collectProperties(iconsCss),
 ])
 
+const keyframeNames = new Set([...collectKeyframes(uiCss), ...collectKeyframes(iconsCss)])
+const tagNames = new Set([...collectTagSelectors(uiCss), ...collectTagSelectors(iconsCss)])
+
 const classMap = new Map([...classNames].map((name) => [name, renameClass(name)]))
 const propertyMap = new Map([...propertyNames].map((name) => [name, renameProperty(name)]))
+const keyframeMap = new Map([...keyframeNames].map((name) => [name, renameKeyframe(name)]))
+const tagMap = new Map([...tagNames].map((name) => [name, renameTag(name)]))
 
 const collisions = new Set(classMap.values()).size !== classMap.size
 if (collisions) fail('two class names hashed to the same value — change SALT.')
 
-console.log(`  ok  ${classMap.size} classes and ${propertyMap.size} custom properties renamed`)
+console.log(
+  `  ok  ${classMap.size} classes, ${propertyMap.size} properties, ` +
+    `${keyframeMap.size} animations and ${tagMap.size} element selectors renamed`,
+)
 
 // --- tokens: :root -> :host, plus a reset for what crosses the shadow boundary ---
 
-let tokens = applyRenames(tokensCss, classMap, propertyMap).replace(/^\s*:root\s*\{/, ':host {')
+let tokens = applyRenames(tokensCss, classMap, propertyMap, keyframeMap, tagMap).replace(/^\s*:root\s*\{/, ':host {')
 
 // Shadow DOM isolates rules, not inheritance. Font, colour and line-height cross the
 // boundary from the host, so a component would otherwise inherit the quiz's own
@@ -209,11 +268,11 @@ tokens += `
 
 // --- ui ---------------------------------------------------------------------
 
-const ui = applyRenames(uiCss, classMap, propertyMap)
+const ui = applyRenames(uiCss, classMap, propertyMap, keyframeMap, tagMap)
 
 // --- icons: rewrite the two prefix selectors to match the renamed icons ---------
 
-let icons = applyRenames(iconsCss, classMap, propertyMap)
+let icons = applyRenames(iconsCss, classMap, propertyMap, keyframeMap, tagMap)
 const beforePrefixFix = icons
 icons = icons
   .replaceAll('[class^="ap-icon-"]', '[class^="i"]')

@@ -1,7 +1,9 @@
 import 'server-only'
 
 import { getComponent } from '@/lib/catalog'
-import { isKnownClass, renamedClass } from '@/lib/render/classmap'
+import { isKnownClass, renamedClass,
+  DS_CSS_CHECKSUM,
+} from '@/lib/render/classmap'
 import type { CssUiRender, RenderRecipe } from '@/lib/schema/render'
 
 /**
@@ -81,6 +83,7 @@ export function compileCssUi(recipe: RenderRecipe): CssUiRender {
     modifiers: recipe.modifiers,
     label: recipe.label,
     compiled,
+    cssChecksum: DS_CSS_CHECKSUM,
   }
 }
 

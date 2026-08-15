@@ -32,6 +32,7 @@ import {
   docUrlFor,
   getComponent,
   suggestDistractors,
+  type DsVariant,
 } from '@/lib/catalog'
 import { copy } from '@/lib/copy'
 import {
@@ -118,10 +119,10 @@ export function QuestionForm({
    * set for a `which-variant` question, and half-old-half-new options would differ
    * structurally, which is a tell.
    */
-  function fanOut(modifiers: string[]) {
-    const options = modifiers.map((modifier, index) => ({
+  function fanOut(variants: DsVariant[]) {
+    const options = variants.map((variant, index) => ({
       id: OPTION_IDS[index] ?? `x${index}`,
-      recipe: { component: draft.component, modifiers: [modifier], label: draft.component },
+      recipe: { component: draft.component, modifiers: variant.modifiers, label: draft.component },
     }))
     setErrors([])
     patch({ options, correctOptionId: null })
@@ -244,7 +245,13 @@ export function QuestionForm({
                 return rest
               }
               const { recipe, ...rest } = option
-              return { ...rest, render: { kind: 'css-ui', ...recipe, compiled: markup } }
+              // The checksum is empty on purpose: this render is built to feed the
+              // on-screen preview and is never saved. The value that gets stored is
+              // stamped server-side, by the compile that produces the real markup.
+              return {
+                ...rest,
+                render: { kind: 'css-ui', ...recipe, compiled: markup, cssChecksum: '' },
+              }
             })
             .filter((option) => option.component || option.imageKey || option.render),
           timerSeconds: timerSecondsFor(draft.difficulty, draft.timerSeconds),

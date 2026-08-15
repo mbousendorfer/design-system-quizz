@@ -7,7 +7,7 @@ import { Alert, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { FieldDescription } from '@/components/ui/field'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
-import { getComponent } from '@/lib/catalog'
+import { getComponent, variantsFor, type DsVariant } from '@/lib/catalog'
 import { copy } from '@/lib/copy'
 
 /**
@@ -15,20 +15,22 @@ import { copy } from '@/lib/copy'
  *
  * This is what makes a `which-variant` question four clicks instead of four
  * screenshots: pick the component, tick the variants worth comparing, done. The
- * modifiers come from the catalog, so an option can only ever name a modifier the
- * design system actually ships — and every option shares the same template, which
- * is also what stops the markup from differing structurally between options.
+ * What it offers is `variantsFor`, not the raw modifier list: a colour that only
+ * exists as half of a compound would otherwise produce options that render
+ * identically. Everything on offer comes from the catalog, so an option can only
+ * name something the design system actually ships — and every option shares the same
+ * template, which is what stops the markup differing structurally between options.
  */
 export function ModifierFanout({
   component,
   onGenerate,
 }: {
   component: string
-  onGenerate: (modifiers: string[]) => void
+  onGenerate: (variants: DsVariant[]) => void
 }) {
   const [picked, setPicked] = useState<string[]>([])
   const spec = component ? getComponent(component) : null
-  const modifiers = spec?.modifiers ?? []
+  const variants = component ? variantsFor(component) : []
 
   if (!component) {
     return <FieldDescription>{copy.questions.form.pickComponentFirst}</FieldDescription>
@@ -42,7 +44,7 @@ export function ModifierFanout({
     )
   }
 
-  if (modifiers.length === 0) {
+  if (variants.length === 0) {
     return <FieldDescription>{copy.questions.form.noModifiers(component)}</FieldDescription>
   }
 
@@ -56,9 +58,9 @@ export function ModifierFanout({
         variant="outline"
         className="flex-wrap"
       >
-        {modifiers.map((modifier) => (
-          <ToggleGroupItem key={modifier} value={modifier}>
-            {modifier}
+        {variants.map((variant) => (
+          <ToggleGroupItem key={variant.label} value={variant.label}>
+            {variant.label}
           </ToggleGroupItem>
         ))}
       </ToggleGroup>
@@ -70,7 +72,7 @@ export function ModifierFanout({
           size="sm"
           disabled={picked.length < 2}
           onClick={() => {
-            onGenerate(picked)
+            onGenerate(picked.map((label) => variants.find((v) => v.label === label)!))
             setPicked([])
           }}
         >

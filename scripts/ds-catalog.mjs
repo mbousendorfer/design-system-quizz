@@ -137,6 +137,23 @@ function modifiersFrom(statesSection) {
 }
 
 /**
+ * The combinations that only work as a pair.
+ *
+ * Five specs carry a "Compound (style + color) — both parts required together" line,
+ * and ignoring it produces silently broken questions rather than an error: `blue`
+ * alone on a Button renders the plain grey button, identical to `green` alone and
+ * `orange` alone, so a "which variant" question would show three indistinguishable
+ * options and one arbitrary right answer.
+ *
+ * The parts are kept in `modifiers` too — a compound is a way of combining them, not
+ * a replacement for the list.
+ */
+function compoundModifiersFrom(statesSection) {
+  const line = statesSection.split('\n').find((l) => l.trim().startsWith('Compound'))
+  return line ? [...line.matchAll(/`([^`]+)`/g)].map((m) => m[1].split(/\s+/)) : []
+}
+
+/**
  * The CSS-UI example each spec ships, turned into a render template.
  *
  * The example is a demo, not a usable snippet: it chains every modifier at once
@@ -201,7 +218,18 @@ function parseComponent(path) {
     ...(anatomy.match(/^- CSS-UI classes: (.+)$/m)?.[1] ?? '').matchAll(/`([^`]+)`/g),
   ].map((m) => m[1])
 
-  const modifiers = modifiersFrom(section(source, 'States'))
+  const states = section(source, 'States')
+  const modifiers = modifiersFrom(states)
+  const compoundModifiers = compoundModifiersFrom(states)
+
+  // A compound naming a part the States line never listed means the two lines have
+  // drifted apart, and the fanout would emit a class that styles nothing.
+  for (const pair of compoundModifiers) {
+    for (const part of pair) {
+      if (!modifiers.includes(part))
+        fail(`${name}: compound modifier "${pair.join(' ')}" uses "${part}", which is not in its modifier list`)
+    }
+  }
 
   return {
     name,
@@ -211,6 +239,8 @@ function parseComponent(path) {
     selectors: backtickedTags(metaField(source, 'Selectors')),
     cssClasses,
     modifiers,
+    /** Pairs that only work together, e.g. `['primary', 'orange']`. See above. */
+    compoundModifiers,
     /** Markup for a live render, or null when the component has no CSS-UI layer. */
     cssUiTemplate: cssUiTemplateFrom(source, modifiers),
     specPath: relative(SPECS_DIR, path),
@@ -347,6 +377,7 @@ for (const spec of STORY_ONLY_COMPONENTS) {
     selectors: [],
     cssClasses: [],
     modifiers: [],
+    compoundModifiers: [],
     cssUiTemplate: null,
     specPath: null,
     intents: [],

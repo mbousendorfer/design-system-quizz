@@ -116,6 +116,7 @@ every image request without waking a function.
 | `npm run ds:catalog` | Regenerates `content/ds-catalog.json` from the design system and the live Storybook |
 | `npm run ds:css` | Vendors the design system stylesheets, with every class renamed |
 | `npm run ds:descriptions` | Extracts redacted component descriptions from the design guidelines |
+| `npm run ds:recompile` | Rebuilds live renders after `ds:css` reassigns the class names |
 | `npm run db:drafts` | Generates a draft question per usable description |
 | `npm run db:verify` | Migrations against an in-memory Postgres |
 | `npm run db:sql` | Bundles the migrations for the SQL editor |
@@ -143,6 +144,13 @@ rather than a wrong one.
 `DS_SYMBOL_VERSION`, both pinned in the script — never `@latest`, because a silent
 upgrade would change what a published question renders and quietly invalidate its
 answer.
+
+**Always follow `ds:css` with `npm run ds:recompile`.** The salt reassigns every
+class name, so markup compiled against the previous sheet renders as unstyled HTML —
+right structure, no design system, and nothing anywhere to say why. Each render
+stores the checksum it was built against and its recipe, so `ds:recompile` finds the
+stale ones and rebuilds them in place, without cutting versions: the question did not
+change, only the stylesheet did, so the statistics stay attached.
 
 `npm run ds:descriptions` reads the design-guidelines plugin, defaulting to
 `~/sources/claude-marketplace/plugins/design/design-guidelines/references/components`

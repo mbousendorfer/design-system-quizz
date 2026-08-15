@@ -23,6 +23,8 @@ export type DsComponent = {
   selectors: string[]
   cssClasses: string[]
   modifiers: string[]
+  /** Pairs that only work together, e.g. `['primary', 'orange']`. */
+  compoundModifiers: string[][]
   /** Markup for a live render, or null when the component has no CSS-UI layer. */
   cssUiTemplate: string | null
   specPath: string | null
@@ -73,6 +75,41 @@ export function docUrlFor(name: string): string | null {
  * system. Writing a question about one of those is probably a mistake, so the admin
  * warns — without blocking, because existing questions name several of them.
  */
+export type DsVariant = {
+  /** What the author reads, e.g. `primary orange`. */
+  label: string
+  modifiers: string[]
+}
+
+/**
+ * The variants of a component that are actually distinguishable on screen.
+ *
+ * Not the same thing as its modifier list, and the difference matters: `blue` alone
+ * on a Button renders the plain grey button, byte-identical to `green` alone and
+ * `orange` alone. Offering the raw list would let an author build a four-option
+ * question where three options look the same and the right answer is arbitrary — and
+ * nothing downstream would complain, because every class is real.
+ *
+ * So a modifier that the specs only ever pair as the second half of a compound (the
+ * colour) is offered only inside its pairs. The first halves stay on their own:
+ * `ghost` is a button you can point at.
+ */
+export function variantsFor(name: string): DsVariant[] {
+  const component = getComponent(name)
+  if (!component) return []
+
+  const compounds = component.compoundModifiers ?? []
+  const colourOnly = new Set(compounds.map((pair) => pair[pair.length - 1]))
+  for (const pair of compounds) for (const part of pair.slice(0, -1)) colourOnly.delete(part)
+
+  return [
+    ...component.modifiers
+      .filter((modifier) => !colourOnly.has(modifier))
+      .map((modifier) => ({ label: modifier, modifiers: [modifier] })),
+    ...compounds.map((pair) => ({ label: pair.join(' '), modifiers: pair })),
+  ]
+}
+
 export function hasLivingStory(name: string): boolean {
   return getComponent(name)?.storybook != null
 }
