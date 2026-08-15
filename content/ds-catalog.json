@@ -1,0 +1,1445 @@
+{
+  "checksum": "743f40b63e3b7548",
+  "categories": [
+    "actions",
+    "display",
+    "feedback",
+    "forms",
+    "navigation"
+  ],
+  "components": [
+    {
+      "name": "Button",
+      "slug": "button",
+      "category": "actions",
+      "selectors": [
+        "ap-button"
+      ],
+      "cssClasses": [
+        "ap-button",
+        "ap-button-icon",
+        "ap-icon-button",
+        "ap-loading-bar",
+        "ap-locked-symbol"
+      ],
+      "modifiers": [
+        "blue",
+        "ghost",
+        "green",
+        "grey",
+        "loading",
+        "locked",
+        "mermaid",
+        "orange",
+        "primary",
+        "red",
+        "secondary",
+        "stroked",
+        "transparent"
+      ],
+      "specPath": "components/actions/button.md",
+      "storybookTitle": "Actions/Button",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "button",
+        "cta",
+        "primary action",
+        "submit"
+      ],
+      "confusableWith": [
+        "Close Button",
+        "Icon Button",
+        "Social Button",
+        "Split Button"
+      ]
+    },
+    {
+      "name": "Close Button",
+      "slug": "close-button",
+      "category": "actions",
+      "selectors": [
+        "ap-close-button"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/actions/close-button.md",
+      "storybookTitle": "Actions/CloseButton",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "close button",
+        "dismiss",
+        "x button"
+      ],
+      "confusableWith": [
+        "Button",
+        "Icon Button",
+        "Social Button",
+        "Split Button"
+      ]
+    },
+    {
+      "name": "Icon Button",
+      "slug": "icon-button",
+      "category": "actions",
+      "selectors": [
+        "ap-icon-button"
+      ],
+      "cssClasses": [
+        "ap-icon-button",
+        "ap-locked-symbol"
+      ],
+      "modifiers": [
+        "blue",
+        "green",
+        "loading",
+        "locked",
+        "red",
+        "stroked",
+        "transparent"
+      ],
+      "specPath": "components/actions/icon-button.md",
+      "storybookTitle": "Actions/IconButton",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "icon button",
+        "square icon action"
+      ],
+      "confusableWith": [
+        "Button",
+        "Close Button",
+        "Social Button",
+        "Split Button"
+      ]
+    },
+    {
+      "name": "Social Button",
+      "slug": "social-button",
+      "category": "actions",
+      "selectors": [
+        "ap-social-button"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/actions/social-button.md",
+      "storybookTitle": "Actions/SocialButton",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "oauth button",
+        "sign in with",
+        "social login button"
+      ],
+      "confusableWith": [
+        "Button",
+        "Close Button",
+        "Icon Button",
+        "Split Button"
+      ]
+    },
+    {
+      "name": "Split Button",
+      "slug": "split-button",
+      "category": "actions",
+      "selectors": [
+        "ap-split-button"
+      ],
+      "cssClasses": [
+        "ap-split-button"
+      ],
+      "modifiers": [
+        "blue",
+        "open",
+        "orange",
+        "primary"
+      ],
+      "specPath": "components/actions/split-button.md",
+      "storybookTitle": "Actions/SplitButton",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "button menu",
+        "button with dropdown",
+        "split button"
+      ],
+      "confusableWith": [
+        "Button",
+        "Close Button",
+        "Icon Button",
+        "Social Button"
+      ]
+    },
+    {
+      "name": "Action Dropdown",
+      "slug": "action-dropdown",
+      "category": "display",
+      "selectors": [
+        "ap-action-dropdown"
+      ],
+      "cssClasses": [
+        "ap-action-dropdown",
+        "ap-action-dropdown-divider",
+        "ap-action-dropdown-item",
+        "ap-action-dropdown-item-description",
+        "ap-action-dropdown-item-label",
+        "ap-action-dropdown-item-label-container",
+        "ap-action-dropdown-item-text",
+        "ap-badge"
+      ],
+      "modifiers": [
+        "bold",
+        "feature-lock",
+        "focused",
+        "has-description",
+        "large",
+        "red-mode"
+      ],
+      "specPath": "components/display/action-dropdown.md",
+      "storybookTitle": "Display/ActionDropdown",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "actions menu",
+        "kebab menu",
+        "menu",
+        "overflow menu",
+        "three dots menu"
+      ],
+      "confusableWith": [
+        "Autocomplete",
+        "Filter Dropdown",
+        "Popmenu",
+        "Select",
+        "Selection Dropdown"
+      ]
+    },
+    {
+      "name": "Avatar Group",
+      "slug": "avatar-group",
+      "category": "display",
+      "selectors": [
+        "ap-avatar-group"
+      ],
+      "cssClasses": [
+        "ap-avatar",
+        "ap-avatar-group",
+        "ap-avatar-group-overflow"
+      ],
+      "modifiers": [
+        "size-16",
+        "size-32"
+      ],
+      "specPath": "components/display/avatar-group.md",
+      "storybookTitle": "Display/AvatarGroup",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "avatar group",
+        "stacked avatars",
+        "user list avatars"
+      ],
+      "confusableWith": [
+        "Avatar"
+      ]
+    },
+    {
+      "name": "Avatar",
+      "slug": "avatar",
+      "category": "display",
+      "selectors": [
+        "ap-avatar"
+      ],
+      "cssClasses": [
+        "ap-avatar",
+        "ap-avatar-initials",
+        "ap-avatar-network",
+        "ap-icon-facebook",
+        "ap-icon-google",
+        "ap-icon-instagram",
+        "ap-icon-instagram-official",
+        "ap-icon-linkedin",
+        "ap-icon-linkedin-official",
+        "ap-icon-meta",
+        "ap-icon-youtube",
+        "ap-icon-youtube-official"
+      ],
+      "modifiers": [
+        "big",
+        "online",
+        "size-16",
+        "size-24",
+        "size-32",
+        "size-36",
+        "size-40",
+        "size-48",
+        "size-56",
+        "square"
+      ],
+      "specPath": "components/display/avatar.md",
+      "storybookTitle": "Display/Avatar",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "avatar",
+        "profile picture",
+        "user photo"
+      ],
+      "confusableWith": [
+        "Avatar Group"
+      ]
+    },
+    {
+      "name": "Badge",
+      "slug": "badge",
+      "category": "display",
+      "selectors": [
+        "ap-badge"
+      ],
+      "cssClasses": [
+        "ap-badge"
+      ],
+      "modifiers": [
+        "blue",
+        "orange"
+      ],
+      "specPath": "components/display/badge.md",
+      "storybookTitle": "Display/Badge",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "badge",
+        "count badge",
+        "status dot"
+      ],
+      "confusableWith": [
+        "Counter",
+        "Labels",
+        "Status",
+        "Tag"
+      ]
+    },
+    {
+      "name": "Counter",
+      "slug": "counter",
+      "category": "display",
+      "selectors": [
+        "ap-counter"
+      ],
+      "cssClasses": [
+        "ap-counter"
+      ],
+      "modifiers": [
+        "big",
+        "blue",
+        "grey",
+        "no-bg",
+        "normal",
+        "notif",
+        "orange"
+      ],
+      "specPath": "components/display/counter.md",
+      "storybookTitle": "Display/Counter",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "count indicator",
+        "counter",
+        "number pill"
+      ],
+      "confusableWith": [
+        "Badge",
+        "Labels",
+        "Status",
+        "Tag"
+      ]
+    },
+    {
+      "name": "Filter Chips List",
+      "slug": "filter-chips-list",
+      "category": "display",
+      "selectors": [
+        "ap-filter-chips-list",
+        "button[ap-filter-chip]"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/display/filter-chips-list.md",
+      "storybookTitle": "Display/FilterChipsList",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "active filters",
+        "chip list",
+        "filter chips"
+      ],
+      "confusableWith": [
+        "Labels",
+        "Labels Selector"
+      ]
+    },
+    {
+      "name": "Filter Dropdown",
+      "slug": "filter-dropdown",
+      "category": "display",
+      "selectors": [
+        "ap-filter-dropdown",
+        "ap-filter-dropdown-button",
+        "ap-filter-leaf",
+        "ap-filter-leaf-select"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/display/filter-dropdown.md",
+      "storybookTitle": "Display/FilterDropdown",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "filter dropdown",
+        "filter menu"
+      ],
+      "confusableWith": [
+        "Action Dropdown",
+        "Autocomplete",
+        "Popmenu",
+        "Select",
+        "Selection Dropdown"
+      ]
+    },
+    {
+      "name": "Media Display Overlay",
+      "slug": "media-display-overlay",
+      "category": "display",
+      "selectors": [
+        "ap-media-display-overlay"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/display/media-display-overlay.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "image viewer",
+        "lightbox",
+        "media overlay"
+      ],
+      "confusableWith": [
+        "Confirm Modal",
+        "Modal"
+      ]
+    },
+    {
+      "name": "Popmenu",
+      "slug": "popmenu",
+      "category": "display",
+      "selectors": [
+        "ap-popmenu"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/display/popmenu.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "floating menu",
+        "pop menu",
+        "popover"
+      ],
+      "confusableWith": [
+        "Action Dropdown",
+        "Autocomplete",
+        "Filter Dropdown",
+        "Select",
+        "Selection Dropdown"
+      ]
+    },
+    {
+      "name": "Status Card",
+      "slug": "status-card",
+      "category": "display",
+      "selectors": [
+        "ap-status-card"
+      ],
+      "cssClasses": [
+        "ap-status"
+      ],
+      "modifiers": [
+        "blue",
+        "green",
+        "grey",
+        "no-dot",
+        "orange",
+        "red",
+        "tagOrange"
+      ],
+      "specPath": "components/display/status-card.md",
+      "storybookTitle": "Display/StatusCard",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "state card",
+        "status card"
+      ],
+      "confusableWith": [
+        "Radio Button Card"
+      ]
+    },
+    {
+      "name": "Status",
+      "slug": "status",
+      "category": "display",
+      "selectors": [
+        "ap-status"
+      ],
+      "cssClasses": [
+        "ap-status"
+      ],
+      "modifiers": [
+        "blue",
+        "green",
+        "grey",
+        "no-dot",
+        "orange",
+        "red",
+        "tagOrange"
+      ],
+      "specPath": "components/display/status.md",
+      "storybookTitle": "Display/Status",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "state pill",
+        "status",
+        "status label"
+      ],
+      "confusableWith": [
+        "Badge",
+        "Counter",
+        "Labels",
+        "Tag"
+      ]
+    },
+    {
+      "name": "Tag",
+      "slug": "tag",
+      "category": "display",
+      "selectors": [
+        "ap-tag"
+      ],
+      "cssClasses": [
+        "ap-tag",
+        "ap-tag-avatar",
+        "ap-tag-list"
+      ],
+      "modifiers": [
+        "mini",
+        "tagOrange"
+      ],
+      "specPath": "components/display/tag.md",
+      "storybookTitle": "Display/Tag",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "chip",
+        "pill",
+        "tag",
+        "token"
+      ],
+      "confusableWith": [
+        "Badge",
+        "Counter",
+        "Labels",
+        "Status"
+      ]
+    },
+    {
+      "name": "Confirm Modal",
+      "slug": "confirm-modal",
+      "category": "feedback",
+      "selectors": [
+        "ap-confirm-modal"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/feedback/confirm-modal.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "are you sure",
+        "confirm modal",
+        "confirmation dialog"
+      ],
+      "confusableWith": [
+        "Media Display Overlay",
+        "Modal"
+      ]
+    },
+    {
+      "name": "Infobox",
+      "slug": "infobox",
+      "category": "feedback",
+      "selectors": [
+        "ap-infobox"
+      ],
+      "cssClasses": [
+        "ap-button",
+        "ap-infobox",
+        "ap-infobox-close",
+        "ap-infobox-content",
+        "ap-infobox-message",
+        "ap-infobox-texts",
+        "ap-infobox-title"
+      ],
+      "modifiers": [
+        "has-title"
+      ],
+      "specPath": "components/feedback/infobox.md",
+      "storybookTitle": "Feedback/Infobox",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "alert",
+        "banner",
+        "callout",
+        "info box",
+        "notice"
+      ],
+      "confusableWith": [
+        "Form Message",
+        "Notification",
+        "Snackbars Thread",
+        "Tooltip"
+      ]
+    },
+    {
+      "name": "Modal",
+      "slug": "modal",
+      "category": "feedback",
+      "selectors": [
+        "ap-modal"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/feedback/modal.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "dialog",
+        "modal",
+        "overlay window",
+        "popup"
+      ],
+      "confusableWith": [
+        "Confirm Modal",
+        "Media Display Overlay"
+      ]
+    },
+    {
+      "name": "Notification",
+      "slug": "notification",
+      "category": "feedback",
+      "selectors": [
+        "ap-notification"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/feedback/notification.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "inline notification",
+        "notification"
+      ],
+      "confusableWith": [
+        "Form Message",
+        "Infobox",
+        "Snackbars Thread",
+        "Tooltip"
+      ]
+    },
+    {
+      "name": "Snackbars Thread",
+      "slug": "snackbars-thread",
+      "category": "feedback",
+      "selectors": [
+        "ap-snackbars-thread"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/feedback/snackbars-thread.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "snackbar",
+        "toast",
+        "transient message"
+      ],
+      "confusableWith": [
+        "Form Message",
+        "Infobox",
+        "Notification",
+        "Tooltip"
+      ]
+    },
+    {
+      "name": "Tooltip",
+      "slug": "tooltip",
+      "category": "feedback",
+      "selectors": [
+        "ap-tooltip"
+      ],
+      "cssClasses": [
+        "ap-tooltip"
+      ],
+      "modifiers": [
+        "bottom",
+        "bottom-left",
+        "bottom-right",
+        "custom",
+        "left",
+        "right",
+        "top",
+        "top-left",
+        "top-right"
+      ],
+      "specPath": "components/feedback/tooltip.md",
+      "storybookTitle": "Feedback/Tooltip",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "hint",
+        "hover hint",
+        "tooltip"
+      ],
+      "confusableWith": [
+        "Form Message",
+        "Infobox",
+        "Notification",
+        "Snackbars Thread"
+      ]
+    },
+    {
+      "name": "Add Comment",
+      "slug": "add-comment",
+      "category": "forms",
+      "selectors": [
+        "ap-add-comment"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/add-comment.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "add comment",
+        "comment composer",
+        "reply box"
+      ],
+      "confusableWith": []
+    },
+    {
+      "name": "Autocomplete",
+      "slug": "autocomplete",
+      "category": "forms",
+      "selectors": [
+        "ap-autocomplete"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/autocomplete.md",
+      "storybookTitle": "Forms/Autocomplete",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "autocomplete",
+        "suggest input",
+        "typeahead"
+      ],
+      "confusableWith": [
+        "Action Dropdown",
+        "Filter Dropdown",
+        "Popmenu",
+        "Select",
+        "Selection Dropdown"
+      ]
+    },
+    {
+      "name": "Checkbox",
+      "slug": "checkbox",
+      "category": "forms",
+      "selectors": [
+        "ap-checkbox"
+      ],
+      "cssClasses": [
+        "ap-checkbox-container"
+      ],
+      "modifiers": [
+        "bold",
+        "error",
+        "full-width",
+        "indeterminate"
+      ],
+      "specPath": "components/forms/checkbox.md",
+      "storybookTitle": "Forms/Checkbox",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "checkbox",
+        "tickbox"
+      ],
+      "confusableWith": [
+        "Radio",
+        "Slide Toggle",
+        "Toggle"
+      ]
+    },
+    {
+      "name": "Datepicker",
+      "slug": "datepicker",
+      "category": "forms",
+      "selectors": [
+        "ap-datepicker",
+        "ap-datepicker-dropdown",
+        "ap-input-datepicker"
+      ],
+      "cssClasses": [
+        "ap-datepicker",
+        "ap-datepicker-calendar",
+        "ap-datepicker-calendars",
+        "ap-datepicker-footer",
+        "ap-datepicker-header",
+        "ap-datepicker-month-nav",
+        "ap-datepicker-ranges",
+        "ap-datepicker-time",
+        "ap-datepicker-time-label",
+        "ap-datepicker-time-separator"
+      ],
+      "modifiers": [
+        "active",
+        "compact",
+        "in-range",
+        "inline",
+        "off",
+        "range",
+        "range-end",
+        "range-start",
+        "selected",
+        "single",
+        "today"
+      ],
+      "specPath": "components/forms/datepicker.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "calendar",
+        "date field",
+        "date picker"
+      ],
+      "confusableWith": [
+        "Neo Datepicker"
+      ]
+    },
+    {
+      "name": "Form Field",
+      "slug": "form-field",
+      "category": "forms",
+      "selectors": [
+        "ap-form-field"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/form-field.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "form field",
+        "labelled field wrapper"
+      ],
+      "confusableWith": [
+        "Input Group",
+        "Input Search",
+        "Password Input",
+        "Phone Number Input"
+      ]
+    },
+    {
+      "name": "Form Message",
+      "slug": "form-message",
+      "category": "forms",
+      "selectors": [
+        "ap-form-message"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/form-message.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "field error",
+        "form message",
+        "validation message"
+      ],
+      "confusableWith": [
+        "Infobox",
+        "Notification",
+        "Snackbars Thread",
+        "Tooltip"
+      ]
+    },
+    {
+      "name": "Input Group",
+      "slug": "input-group",
+      "category": "forms",
+      "selectors": [
+        "ap-input-group",
+        "ap-input-prefix"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/input-group.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "input group",
+        "input with addon",
+        "prefixed input"
+      ],
+      "confusableWith": [
+        "Form Field",
+        "Input Search",
+        "Password Input",
+        "Phone Number Input"
+      ]
+    },
+    {
+      "name": "Input Search",
+      "slug": "input-search",
+      "category": "forms",
+      "selectors": [
+        "ap-input-search"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/input-search.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "search",
+        "search box",
+        "search field"
+      ],
+      "confusableWith": [
+        "Form Field",
+        "Input Group",
+        "Password Input",
+        "Phone Number Input"
+      ]
+    },
+    {
+      "name": "Labels Selector",
+      "slug": "labels-selector",
+      "category": "forms",
+      "selectors": [
+        "ap-labels-selector"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/labels-selector.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "assign labels",
+        "label picker",
+        "labels selector"
+      ],
+      "confusableWith": [
+        "Filter Chips List",
+        "Labels"
+      ]
+    },
+    {
+      "name": "Labels",
+      "slug": "labels",
+      "category": "forms",
+      "selectors": [
+        "ap-label",
+        "ap-label-list"
+      ],
+      "cssClasses": [
+        "ap-label",
+        "ap-label-list"
+      ],
+      "modifiers": [],
+      "specPath": "components/forms/labels.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "label list",
+        "labels"
+      ],
+      "confusableWith": [
+        "Badge",
+        "Counter",
+        "Filter Chips List",
+        "Labels Selector",
+        "Status",
+        "Tag"
+      ]
+    },
+    {
+      "name": "Neo Datepicker",
+      "slug": "neo-datepicker",
+      "category": "forms",
+      "selectors": [
+        "ap-neo-date-picker"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/neo-datepicker.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "neo datepicker",
+        "new date picker"
+      ],
+      "confusableWith": [
+        "Datepicker"
+      ]
+    },
+    {
+      "name": "Password Input",
+      "slug": "password-input",
+      "category": "forms",
+      "selectors": [
+        "ap-password-input"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/password-input.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "password field",
+        "password input"
+      ],
+      "confusableWith": [
+        "Form Field",
+        "Input Group",
+        "Input Search",
+        "Phone Number Input"
+      ]
+    },
+    {
+      "name": "Phone Number Input",
+      "slug": "phone-number-input",
+      "category": "forms",
+      "selectors": [
+        "ap-phone-number-input"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/phone-number-input.md",
+      "storybookTitle": "Forms/PhoneNumberInput",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "phone input",
+        "phone number field"
+      ],
+      "confusableWith": [
+        "Form Field",
+        "Input Group",
+        "Input Search",
+        "Password Input"
+      ]
+    },
+    {
+      "name": "Radio Button Card",
+      "slug": "radio-button-card",
+      "category": "forms",
+      "selectors": [
+        "ap-radio-button-card"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/radio-button-card.md",
+      "storybookTitle": "Forms/RadioButtonCard",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "choice card",
+        "radio card",
+        "selectable card"
+      ],
+      "confusableWith": [
+        "Status Card"
+      ]
+    },
+    {
+      "name": "Radio",
+      "slug": "radio",
+      "category": "forms",
+      "selectors": [
+        "ap-radio"
+      ],
+      "cssClasses": [
+        "ap-radio-container"
+      ],
+      "modifiers": [
+        "error"
+      ],
+      "specPath": "components/forms/radio.md",
+      "storybookTitle": "Forms/Radio",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "radio",
+        "radio button",
+        "single choice"
+      ],
+      "confusableWith": [
+        "Checkbox",
+        "Slide Toggle",
+        "Toggle"
+      ]
+    },
+    {
+      "name": "Range Slider",
+      "slug": "range-slider",
+      "category": "forms",
+      "selectors": [
+        "ap-range-slider"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/range-slider.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "range input",
+        "range slider",
+        "slider"
+      ],
+      "confusableWith": []
+    },
+    {
+      "name": "Select",
+      "slug": "select",
+      "category": "forms",
+      "selectors": [
+        "ap-dropdown-create-new",
+        "ap-dropdown-group-item",
+        "ap-dropdown-item-multiple-one-line",
+        "ap-dropdown-item-multiple-two-lines",
+        "ap-dropdown-item-single-one-line",
+        "ap-dropdown-item-single-two-lines",
+        "ap-dropdown-search-form",
+        "ap-select-label-multiple",
+        "ap-select-label-single"
+      ],
+      "cssClasses": [
+        "ap-label",
+        "ap-native-select",
+        "ap-select",
+        "ap-select-all",
+        "ap-select-arrow",
+        "ap-select-avatar",
+        "ap-select-clear",
+        "ap-select-create",
+        "ap-select-create-icon",
+        "ap-select-divider",
+        "ap-select-dropdown",
+        "ap-select-footer",
+        "ap-select-group",
+        "ap-select-group-label",
+        "ap-select-inline-icon",
+        "ap-select-inline-label",
+        "ap-select-label-count",
+        "ap-select-labels",
+        "ap-select-loading",
+        "ap-select-loading-text",
+        "ap-select-locked-icon",
+        "ap-select-not-found",
+        "ap-select-option",
+        "ap-select-option-avatar",
+        "ap-select-option-badge",
+        "ap-select-option-caption",
+        "ap-select-option-check",
+        "ap-select-option-checkbox",
+        "ap-select-option-content",
+        "ap-select-option-icon",
+        "ap-select-option-text",
+        "ap-select-option-title",
+        "ap-select-options",
+        "ap-select-placeholder",
+        "ap-select-search",
+        "ap-select-search-icon",
+        "ap-select-search-input",
+        "ap-select-trigger",
+        "ap-select-value",
+        "ap-tag"
+      ],
+      "modifiers": [
+        "disabled",
+        "feature-locked",
+        "invalid",
+        "marked",
+        "open",
+        "selected",
+        "square",
+        "two-lines",
+        "valid"
+      ],
+      "specPath": "components/forms/select.md",
+      "storybookTitle": "Forms/Select",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "combobox",
+        "options list",
+        "picker",
+        "select"
+      ],
+      "confusableWith": [
+        "Action Dropdown",
+        "Autocomplete",
+        "Filter Dropdown",
+        "Popmenu",
+        "Selection Dropdown"
+      ]
+    },
+    {
+      "name": "Selection Dropdown",
+      "slug": "selection-dropdown",
+      "category": "forms",
+      "selectors": [
+        "ap-selection-dropdown"
+      ],
+      "cssClasses": [
+        "ap-badge",
+        "ap-icon-feature-lock",
+        "ap-selection-dropdown",
+        "ap-selection-dropdown-empty",
+        "ap-selection-dropdown-footer",
+        "ap-selection-dropdown-group",
+        "ap-selection-dropdown-header",
+        "ap-selection-dropdown-item",
+        "ap-selection-dropdown-items",
+        "ap-selection-dropdown-search",
+        "ap-selection-dropdown-selected"
+      ],
+      "modifiers": [
+        "locked",
+        "selected"
+      ],
+      "specPath": "components/forms/selection-dropdown.md",
+      "storybookTitle": "Forms/SelectionDropdown",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "multi select dropdown",
+        "selection dropdown"
+      ],
+      "confusableWith": [
+        "Action Dropdown",
+        "Autocomplete",
+        "Filter Dropdown",
+        "Popmenu",
+        "Select"
+      ]
+    },
+    {
+      "name": "Slide Toggle",
+      "slug": "slide-toggle",
+      "category": "forms",
+      "selectors": [
+        "ap-slide-toggle"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/forms/slide-toggle.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "slide toggle",
+        "sliding switch"
+      ],
+      "confusableWith": [
+        "Checkbox",
+        "Radio",
+        "Toggle"
+      ]
+    },
+    {
+      "name": "Toggle",
+      "slug": "toggle",
+      "category": "forms",
+      "selectors": [
+        "ap-toggle"
+      ],
+      "cssClasses": [
+        "ap-toggle-container"
+      ],
+      "modifiers": [],
+      "specPath": "components/forms/toggle.md",
+      "storybookTitle": "Forms/Toggle",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "on off",
+        "switch",
+        "toggle"
+      ],
+      "confusableWith": [
+        "Checkbox",
+        "Radio",
+        "Slide Toggle"
+      ]
+    },
+    {
+      "name": "Dot Stepper",
+      "slug": "dot-stepper",
+      "category": "navigation",
+      "selectors": [
+        "ap-dot-stepper"
+      ],
+      "cssClasses": [
+        "ap-dot-stepper"
+      ],
+      "modifiers": [
+        "active"
+      ],
+      "specPath": "components/navigation/dot-stepper.md",
+      "storybookTitle": "Navigation/DotStepper",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "carousel dots",
+        "dot stepper",
+        "progress dots"
+      ],
+      "confusableWith": [
+        "Paginator",
+        "Stepper"
+      ]
+    },
+    {
+      "name": "Nav Selector",
+      "slug": "nav-selector",
+      "category": "navigation",
+      "selectors": [
+        "ap-nav-selector",
+        "ap-nav-selector-category",
+        "ap-nav-selector-group",
+        "ap-nav-selector-leaf",
+        "ap-nav-selector-leaf-action",
+        "ap-nav-selector-leaf-detail",
+        "ap-nav-selector-leaf-details",
+        "ap-nav-selector-popover",
+        "ap-nav-selector-popover-item"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/navigation/nav-selector.md",
+      "storybookTitle": "Navigation/NavSelector",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "nav selector",
+        "navigation selector",
+        "workspace switcher"
+      ],
+      "confusableWith": [
+        "Segmented Control",
+        "Tabs"
+      ]
+    },
+    {
+      "name": "Paginator",
+      "slug": "paginator",
+      "category": "navigation",
+      "selectors": [
+        "ap-paginator",
+        "ap-paginator-button"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/navigation/paginator.md",
+      "storybookTitle": "",
+      "storybookUrl": null,
+      "intents": [
+        "page navigation",
+        "pager",
+        "pagination"
+      ],
+      "confusableWith": [
+        "Dot Stepper",
+        "Stepper"
+      ]
+    },
+    {
+      "name": "Segmented Control",
+      "slug": "segmented-control",
+      "category": "navigation",
+      "selectors": [
+        "ap-segmented-control"
+      ],
+      "cssClasses": [],
+      "modifiers": [],
+      "specPath": "components/navigation/segmented-control.md",
+      "storybookTitle": "Navigation/SegmentedControl",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "button group",
+        "segmented control",
+        "toggle group"
+      ],
+      "confusableWith": [
+        "Nav Selector",
+        "Tabs"
+      ]
+    },
+    {
+      "name": "Stepper",
+      "slug": "stepper",
+      "category": "navigation",
+      "selectors": [
+        "ap-stepper"
+      ],
+      "cssClasses": [
+        "ap-stepper",
+        "ap-stepper-item",
+        "ap-stepper-separator"
+      ],
+      "modifiers": [
+        "active",
+        "clickable",
+        "completed",
+        "pending",
+        "with-line"
+      ],
+      "specPath": "components/navigation/stepper.md",
+      "storybookTitle": "Navigation/Stepper",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "multi step",
+        "stepper",
+        "wizard"
+      ],
+      "confusableWith": [
+        "Dot Stepper",
+        "Paginator"
+      ]
+    },
+    {
+      "name": "Tabs",
+      "slug": "tabs",
+      "category": "navigation",
+      "selectors": [
+        "ap-tab",
+        "ap-tabs"
+      ],
+      "cssClasses": [
+        "ap-tabs",
+        "ap-tabs-content",
+        "ap-tabs-indicator",
+        "ap-tabs-nav",
+        "ap-tabs-panel",
+        "ap-tabs-tab"
+      ],
+      "modifiers": [
+        "active",
+        "animated",
+        "disabled",
+        "feature-locked",
+        "full-width",
+        "scrollable"
+      ],
+      "specPath": "components/navigation/tabs.md",
+      "storybookTitle": "Navigation/Tabs",
+      "storybookUrl": "https://design.agorapulse.com",
+      "intents": [
+        "tab bar",
+        "tabs"
+      ],
+      "confusableWith": [
+        "Nav Selector",
+        "Segmented Control"
+      ]
+    }
+  ]
+}
