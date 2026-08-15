@@ -16,6 +16,8 @@ import { join } from 'node:path'
 
 import { PGlite } from '@electric-sql/pglite'
 
+import { buildSeedQuestions, rpcPayload } from './seed-build'
+
 const MIGRATIONS_DIR = join(import.meta.dirname, '..', 'supabase', 'migrations')
 /** Needs Supabase's `storage` schema, which PGlite does not have. */
 const SUPABASE_ONLY = ['20260815090400_storage.sql']
@@ -351,6 +353,67 @@ for (const view of [
 const { rows: belowThreshold } = await db.query(`select * from calibration_candidates`)
 assert.equal(belowThreshold.length, 0)
 pass('calibration_candidates stays quiet below ten plays')
+
+// --- the real seed, through the real RPC -----------------------------------
+
+// Replaying the actual seed payloads is what catches the classic mismatch
+// between the camelCase the app speaks and the snake_case the RPC expects.
+const seeded = buildSeedQuestions()
+for (const { question } of seeded) {
+  await db.query(`select * from save_question_version($1::jsonb)`, [
+    JSON.stringify(rpcPayload(question)),
+  ])
+}
+pass(`all ${seeded.length} seed questions go through save_question_version`)
+
+// Scoped to the seed's own ids: the fixtures above also leave published rows
+// behind, and a global count would break every time a fixture is added.
+const { rows: published } = await db.query<{ count: number }>(
+  `select count(*)::int as count
+   from questions
+   where status = 'published' and id = any($1::uuid[])`,
+  [seeded.map(({ question }) => question.id)],
+)
+assert.equal(published[0].count, seeded.length)
+pass('all twelve land as published rows')
+
+const { rows: perMode } = await db.query<{ mode: string; count: number }>(
+  `select mode::text as mode, count(*)::int as count
+   from questions where status = 'published' and id = any($1::uuid[])
+   group by mode order by mode`,
+  [seeded.map(({ question }) => question.id)],
+)
+assert.deepEqual(perMode, [
+  { mode: 'name-that-component', count: 3 },
+  { mode: 'spot-the-drift', count: 3 },
+  { mode: 'which-component', count: 3 },
+  { mode: 'which-variant', count: 3 },
+])
+pass('three questions per mode')
+
+// Re-seeding must update, not duplicate.
+for (const { question } of seeded) {
+  await db.query(`select * from save_question_version($1::jsonb)`, [
+    JSON.stringify(rpcPayload(question)),
+  ])
+}
+const { rows: afterReseed } = await db.query<{ count: number }>(
+  `select count(*)::int as count from questions where id = any($1::uuid[])`,
+  [seeded.map(({ question }) => question.id)],
+)
+assert.equal(afterReseed[0].count, seeded.length)
+pass('re-running the seed updates in place rather than duplicating')
+
+const { rows: seedPool } = await db.query<Record<string, unknown>>(
+  `select * from questions_public where id = any($1::uuid[])`,
+  [seeded.map(({ question }) => question.id)],
+)
+assert.equal(seedPool.length, seeded.length)
+assert.ok(
+  seedPool.every((row) => !('correct_option_id' in row) && !('explanation' in row)),
+  'a seeded question leaks its answer through questions_public',
+)
+pass('every seeded question is drawable from questions_public with no answer attached')
 
 console.log(`\n${checks.length} checks passed.`)
 console.log('Not covered here: the storage bucket and the anon/authenticated grants,')
