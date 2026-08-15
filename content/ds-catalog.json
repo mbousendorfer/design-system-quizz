@@ -38,6 +38,7 @@
         "stroked",
         "transparent"
       ],
+      "cssUiTemplate": "<button class=\"ap-button{{modifiers}}\">  {{label}}\n</button>",
       "specPath": "components/actions/button.md",
       "intents": [
         "button",
@@ -67,6 +68,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/actions/close-button.md",
       "intents": [
         "close button",
@@ -106,6 +108,7 @@
         "stroked",
         "transparent"
       ],
+      "cssUiTemplate": "<button class=\"ap-icon-button{{modifiers}}\">  {{label}}\n</button>",
       "specPath": "components/actions/icon-button.md",
       "intents": [
         "icon button",
@@ -131,6 +134,7 @@
       "selectors": [],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": null,
       "intents": [],
       "confusableWith": [],
@@ -150,6 +154,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/actions/social-button.md",
       "intents": [
         "oauth button",
@@ -185,6 +190,7 @@
         "orange",
         "primary"
       ],
+      "cssUiTemplate": "<button class=\"ap-split-button{{modifiers}}\">  {{label}}\n</button>",
       "specPath": "components/actions/split-button.md",
       "intents": [
         "button menu",
@@ -229,6 +235,7 @@
         "large",
         "red-mode"
       ],
+      "cssUiTemplate": "<span class=\"ap-action-dropdown{{modifiers}}\">  {{label}}\n</span>",
       "specPath": "components/display/action-dropdown.md",
       "intents": [
         "actions menu",
@@ -284,6 +291,7 @@
         "size-56",
         "square"
       ],
+      "cssUiTemplate": "<span class=\"ap-avatar{{modifiers}}\">  {{label}}\n</span>",
       "specPath": "components/display/avatar.md",
       "intents": [
         "avatar",
@@ -316,6 +324,7 @@
         "size-16",
         "size-32"
       ],
+      "cssUiTemplate": "<span class=\"ap-avatar-group{{modifiers}}\"></span>",
       "specPath": "components/display/avatar-group.md",
       "intents": [
         "avatar group",
@@ -346,6 +355,7 @@
         "blue",
         "orange"
       ],
+      "cssUiTemplate": "<span class=\"ap-badge{{modifiers}}\"></span>",
       "specPath": "components/display/badge.md",
       "intents": [
         "badge",
@@ -384,6 +394,7 @@
         "notif",
         "orange"
       ],
+      "cssUiTemplate": "<span class=\"ap-counter{{modifiers}}\"></span>",
       "specPath": "components/display/counter.md",
       "intents": [
         "count indicator",
@@ -410,6 +421,7 @@
       "selectors": [],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": null,
       "intents": [],
       "confusableWith": [],
@@ -430,6 +442,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/display/filter-chips-list.md",
       "intents": [
         "active filters",
@@ -459,6 +472,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/display/filter-dropdown.md",
       "intents": [
         "filter dropdown",
@@ -487,6 +501,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/display/media-display-overlay.md",
       "intents": [
         "image viewer",
@@ -511,6 +526,7 @@
       "selectors": [],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": null,
       "intents": [],
       "confusableWith": [],
@@ -530,6 +546,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/display/popmenu.md",
       "intents": [
         "floating menu",
@@ -569,6 +586,7 @@
         "red",
         "tagOrange"
       ],
+      "cssUiTemplate": "<span class=\"ap-status{{modifiers}}\"></span>",
       "specPath": "components/display/status.md",
       "intents": [
         "state pill",
@@ -607,6 +625,7 @@
         "red",
         "tagOrange"
       ],
+      "cssUiTemplate": "<span class=\"ap-status{{modifiers}}\"></span>",
       "specPath": "components/display/status-card.md",
       "intents": [
         "state card",
@@ -629,6 +648,7 @@
       "selectors": [],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": null,
       "intents": [],
       "confusableWith": [],
@@ -655,6 +675,7 @@
         "mini",
         "tagOrange"
       ],
+      "cssUiTemplate": "<span class=\"ap-tag{{modifiers}}\">  <span>{{label}}</span>\n</span>",
       "specPath": "components/display/tag.md",
       "intents": [
         "chip",
@@ -684,6 +705,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/feedback/confirm-modal.md",
       "intents": [
         "are you sure",
@@ -716,6 +738,7 @@
       "modifiers": [
         "has-title"
       ],
+      "cssUiTemplate": "<span class=\"ap-infobox{{modifiers}}\">  {{label}}\n</span>",
       "specPath": "components/feedback/infobox.md",
       "intents": [
         "alert",
@@ -744,6 +767,7 @@
       "selectors": [],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": null,
       "intents": [],
       "confusableWith": [],
@@ -763,6 +787,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/feedback/modal.md",
       "intents": [
         "dialog",
@@ -786,6 +811,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/feedback/notification.md",
       "intents": [
         "inline notification",
@@ -809,6 +835,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/feedback/snackbars-thread.md",
       "intents": [
         "snackbar",
@@ -849,6 +876,7 @@
         "top-left",
         "top-right"
       ],
+      "cssUiTemplate": "<span class=\"ap-tooltip{{modifiers}}\"></span>",
       "specPath": "components/feedback/tooltip.md",
       "intents": [
         "hint",
@@ -877,6 +905,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/add-comment.md",
       "intents": [
         "add comment",
@@ -896,6 +925,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/autocomplete.md",
       "intents": [
         "autocomplete",
@@ -932,6 +962,7 @@
         "full-width",
         "indeterminate"
       ],
+      "cssUiTemplate": "<input class=\"ap-checkbox-container{{modifiers}}\" />",
       "specPath": "components/forms/checkbox.md",
       "intents": [
         "checkbox",
@@ -983,6 +1014,7 @@
         "single",
         "today"
       ],
+      "cssUiTemplate": "<input class=\"ap-datepicker{{modifiers}}\" />",
       "specPath": "components/forms/datepicker.md",
       "intents": [
         "calendar",
@@ -1008,6 +1040,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/form-field.md",
       "intents": [
         "form field",
@@ -1031,6 +1064,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/form-message.md",
       "intents": [
         "field error",
@@ -1053,6 +1087,7 @@
       "selectors": [],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": null,
       "intents": [],
       "confusableWith": [],
@@ -1073,6 +1108,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/input-group.md",
       "intents": [
         "input group",
@@ -1097,6 +1133,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/input-search.md",
       "intents": [
         "search",
@@ -1125,6 +1162,7 @@
         "ap-label-list"
       ],
       "modifiers": [],
+      "cssUiTemplate": "<span class=\"ap-label{{modifiers}}\">  <span>{{label}}</span>\n</span>",
       "specPath": "components/forms/labels.md",
       "intents": [
         "label list",
@@ -1154,6 +1192,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/labels-selector.md",
       "intents": [
         "assign labels",
@@ -1176,6 +1215,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/neo-datepicker.md",
       "intents": [
         "neo datepicker",
@@ -1196,6 +1236,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/password-input.md",
       "intents": [
         "password field",
@@ -1219,6 +1260,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/phone-number-input.md",
       "intents": [
         "phone input",
@@ -1250,6 +1292,7 @@
       "modifiers": [
         "error"
       ],
+      "cssUiTemplate": "<input class=\"ap-radio-container{{modifiers}}\" />",
       "specPath": "components/forms/radio.md",
       "intents": [
         "radio",
@@ -1277,6 +1320,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/radio-button-card.md",
       "intents": [
         "choice card",
@@ -1302,6 +1346,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/range-slider.md",
       "intents": [
         "range input",
@@ -1380,6 +1425,7 @@
         "two-lines",
         "valid"
       ],
+      "cssUiTemplate": "<span class=\"ap-select{{modifiers}}\"></span>",
       "specPath": "components/forms/select.md",
       "intents": [
         "combobox",
@@ -1425,6 +1471,7 @@
         "locked",
         "selected"
       ],
+      "cssUiTemplate": "<input class=\"ap-selection-dropdown{{modifiers}}\" />",
       "specPath": "components/forms/selection-dropdown.md",
       "intents": [
         "multi select dropdown",
@@ -1453,6 +1500,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/forms/slide-toggle.md",
       "intents": [
         "slide toggle",
@@ -1473,6 +1521,7 @@
       "selectors": [],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": null,
       "intents": [],
       "confusableWith": [],
@@ -1494,6 +1543,7 @@
         "ap-toggle-container"
       ],
       "modifiers": [],
+      "cssUiTemplate": "<input class=\"ap-toggle-container{{modifiers}}\" />",
       "specPath": "components/forms/toggle.md",
       "intents": [
         "on off",
@@ -1525,6 +1575,7 @@
       "modifiers": [
         "active"
       ],
+      "cssUiTemplate": "<span class=\"ap-dot-stepper{{modifiers}}\"></span>",
       "specPath": "components/navigation/dot-stepper.md",
       "intents": [
         "carousel dots",
@@ -1559,6 +1610,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/navigation/nav-selector.md",
       "intents": [
         "nav selector",
@@ -1586,6 +1638,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/navigation/paginator.md",
       "intents": [
         "page navigation",
@@ -1612,6 +1665,7 @@
       ],
       "cssClasses": [],
       "modifiers": [],
+      "cssUiTemplate": null,
       "specPath": "components/navigation/segmented-control.md",
       "intents": [
         "button group",
@@ -1648,6 +1702,7 @@
         "pending",
         "with-line"
       ],
+      "cssUiTemplate": "<span class=\"ap-stepper{{modifiers}}\">  <span>{{label}}</span>\n</span>",
       "specPath": "components/navigation/stepper.md",
       "intents": [
         "multi step",
@@ -1689,6 +1744,7 @@
         "full-width",
         "scrollable"
       ],
+      "cssUiTemplate": "<span class=\"ap-tabs{{modifiers}}\">  {{label}}\n</span>",
       "specPath": "components/navigation/tabs.md",
       "intents": [
         "tab bar",

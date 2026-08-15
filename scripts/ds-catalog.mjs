@@ -136,6 +136,41 @@ function modifiersFrom(statesSection) {
   return line ? [...line.matchAll(/`([^`]+)`/g)].map((m) => m[1]) : []
 }
 
+/**
+ * The CSS-UI example each spec ships, turned into a render template.
+ *
+ * The example is a demo, not a usable snippet: it chains every modifier at once
+ * (`ap-badge blue orange`, which is not a real combination) and writes the icon as
+ * a literal `ap-icon-…`. What survives is the element structure and the base
+ * classes, which is exactly what a template needs — the modifiers become the thing
+ * the author picks per option.
+ *
+ * Extracting beats hand-writing 34 templates: they cannot drift from the design
+ * system, and a component that gains an element gains it here too.
+ */
+function cssUiTemplateFrom(source, modifiers) {
+  const block = source.match(
+    /\*\*CSS-UI \(framework-agnostic classes\)\*\*\s*\n+```html\n([\s\S]*?)\n```/,
+  )?.[1]
+  if (!block) return null
+
+  const demoModifiers = new Set(modifiers)
+  let markup = block
+    // The ellipsis is a placeholder for "any icon", not a class. Dropping the icon
+    // keeps the template renderable; an author who wants one picks it explicitly.
+    .replace(/\s*<i class="ap-icon-…"><\/i>\n?/g, '')
+    // `Label` is where the author's text goes.
+    .replace(/(^|>)(\s*)Label(\s*)(<|$)/g, '$1$2{{label}}$3$4')
+
+  // Strip the demo modifiers from every class attribute, keeping the base classes.
+  markup = markup.replace(/class="([^"]+)"/g, (whole, classes) => {
+    const kept = classes.split(/\s+/).filter((name) => !demoModifiers.has(name))
+    return `class="${kept.join(' ')}{{modifiers}}"`
+  })
+
+  return markup.trim()
+}
+
 function parseComponent(path) {
   const source = readFileSync(path, 'utf8')
 
@@ -156,6 +191,8 @@ function parseComponent(path) {
     ...(anatomy.match(/^- CSS-UI classes: (.+)$/m)?.[1] ?? '').matchAll(/`([^`]+)`/g),
   ].map((m) => m[1])
 
+  const modifiers = modifiersFrom(section(source, 'States'))
+
   return {
     name,
     slug: path.split('/').pop().replace(/\.md$/, ''),
@@ -163,7 +200,9 @@ function parseComponent(path) {
     source: 'specs',
     selectors: backtickedTags(metaField(source, 'Selectors')),
     cssClasses,
-    modifiers: modifiersFrom(section(source, 'States')),
+    modifiers,
+    /** Markup for a live render, or null when the component has no CSS-UI layer. */
+    cssUiTemplate: cssUiTemplateFrom(source, modifiers),
     specPath: relative(SPECS_DIR, path),
     // Resolved into the `storybook` object once the live index is in hand.
     storybookTitle: storyTitle ?? null,
@@ -298,6 +337,7 @@ for (const spec of STORY_ONLY_COMPONENTS) {
     selectors: [],
     cssClasses: [],
     modifiers: [],
+    cssUiTemplate: null,
     specPath: null,
     intents: [],
     confusableWith: [],
