@@ -34,7 +34,7 @@ export default async function LeaderboardPage({
   const rows = await fetchLeaderboard({ difficulty, team, mode, window: timeWindow })
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-6 sm:py-10">
+    <main id="content" className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-6 sm:py-10">
       <div className="flex flex-wrap items-center gap-3">
         <h1 className="text-xl font-semibold">{copy.leaderboard.title}</h1>
         <Button

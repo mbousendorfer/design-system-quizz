@@ -8,11 +8,23 @@ import { Button } from '@/components/ui/button'
 import { copy } from '@/lib/copy'
 import type { SubmitAnswerResponse } from '@/lib/game/contracts'
 
+/** The verdict, spoken by the live region the engine keeps mounted for it. */
+export function verdictAnnouncement(result: SubmitAnswerResponse): string {
+  const verdict = result.timedOut
+    ? copy.game.timeUp
+    : result.correct
+      ? copy.game.correct
+      : copy.game.incorrect
+  return `${verdict}. ${result.explanation}`
+}
+
 /**
  * The verdict and, more importantly, the explanation.
  *
- * `aria-live` matters here: the result appears without a navigation, so a screen
- * reader would otherwise never hear it.
+ * No `aria-live` here on purpose. This panel does not exist until there is a
+ * result, and a live region that appears with its content already inside it is
+ * not reliably announced. The engine keeps an empty one mounted instead, and
+ * fills it when the answer lands.
  */
 export function FeedbackPanel({ result }: { result: SubmitAnswerResponse }) {
   const title = result.timedOut
@@ -22,7 +34,7 @@ export function FeedbackPanel({ result }: { result: SubmitAnswerResponse }) {
       : copy.game.incorrect
 
   return (
-    <div className="flex flex-col gap-3" aria-live="polite">
+    <div className="flex flex-col gap-3">
       <Alert variant={result.correct ? 'default' : 'destructive'}>
         {result.timedOut ? (
           <ClockIcon />

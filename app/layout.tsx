@@ -31,6 +31,14 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
     >
       <body>
+        {/* Visible only once focused: a keyboard player should not have to tab
+            through the admin nav to reach the question they are being timed on. */}
+        <a
+          href="#content"
+          className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-2 focus-visible:left-2 focus-visible:z-50 focus-visible:rounded-lg focus-visible:bg-popover focus-visible:px-3 focus-visible:py-2 focus-visible:text-popover-foreground focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          {copy.app.skipToContent}
+        </a>
         <ThemeProvider>
           <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>

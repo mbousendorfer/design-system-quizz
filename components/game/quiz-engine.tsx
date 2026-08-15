@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { FeedbackPanel } from '@/components/game/feedback-panel'
+import { FeedbackPanel, verdictAnnouncement } from '@/components/game/feedback-panel'
 import { QuestionOptions, QuestionPrompt } from '@/components/game/question-view'
 import { Results } from '@/components/game/results'
 import { TimerBar } from '@/components/game/timer-bar'
@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { copy } from '@/lib/copy'
-import { difficultyForPosition, type RunDifficulty } from '@/lib/difficulty'
+import { QUESTIONS_PER_RUN, difficultyForPosition, type RunDifficulty } from '@/lib/difficulty'
 import type {
   FinishRunResponse,
   ServedQuestionResponse,
@@ -223,6 +223,13 @@ export function QuizEngine({
 
   return (
     <div className="flex flex-col gap-4">
+      {/* Mounted empty and filled when the answer lands. A live region that
+          appears already holding its text is not reliably announced, and the
+          verdict never triggers a navigation for a screen reader to notice. */}
+      <div aria-live="polite" className="sr-only">
+        {result ? verdictAnnouncement(result) : ''}
+      </div>
+
       <Card>
         <CardHeader>
           <CardTitle>{copy.game.questionOf(position, totalQuestions)}</CardTitle>
@@ -234,6 +241,15 @@ export function QuizEngine({
         </CardHeader>
 
         <CardContent className="flex flex-col gap-6">
+          {/* A mode with only three published questions gives a three-question
+              run. The header already says "of 3", but saying it outright once
+              stops it reading like something broke. */}
+          {position === 1 && totalQuestions < QUESTIONS_PER_RUN ? (
+            <Alert>
+              <AlertTitle>{copy.errors.shortRun(totalQuestions, QUESTIONS_PER_RUN)}</AlertTitle>
+            </Alert>
+          ) : null}
+
           {substituted ? (
             <Alert>
               <AlertTitle>
@@ -264,7 +280,11 @@ export function QuizEngine({
           {result ? <FeedbackPanel result={result} /> : null}
 
           <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-muted-foreground">{copy.game.keyboardHint}</span>
+            {/* Pointer-coarse devices have no keyboard to press 1-6 on, and the
+                hint is just noise next to the answer they are trying to tap. */}
+            <span className="hidden text-sm text-muted-foreground pointer-fine:inline">
+              {copy.game.keyboardHint}
+            </span>
             {result ? (
               <Button onClick={advance} autoFocus>
                 {result.nextPosition === null ? copy.game.finish : copy.game.next}

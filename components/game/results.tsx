@@ -81,7 +81,7 @@ export function Results({ summary }: { summary: FinishRunResponse }) {
           {summary.answers.map((answer, index) => (
             <div key={answer.position} className="flex flex-col gap-3">
               {index > 0 ? <Separator /> : null}
-              <ReviewRow answer={answer} />
+              <ReviewRow answer={answer} total={summary.totalQuestions} />
             </div>
           ))}
         </CardContent>
@@ -98,7 +98,7 @@ function labelFor(options: PlayerOption[], optionId: string | null): string | nu
   return option.component ?? option.label ?? optionLetter(index)
 }
 
-function ReviewRow({ answer }: { answer: RunReviewAnswer }) {
+function ReviewRow({ answer, total }: { answer: RunReviewAnswer; total: number }) {
   const correctLabel = labelFor(answer.options, answer.correctOptionId)
   const chosenLabel = labelFor(answer.options, answer.chosenOptionId)
 
@@ -106,7 +106,9 @@ function ReviewRow({ answer }: { answer: RunReviewAnswer }) {
     <div className="flex flex-col gap-2">
       <div className="flex flex-wrap items-center gap-2">
         {answer.correct ? <CheckCircle2Icon className="size-4" /> : <XCircleIcon className="size-4" />}
-        <span className="font-medium">{copy.game.questionOf(answer.position, 5)}</span>
+        {/* The run length, not a hardcoded five: a mode with three published
+            questions gives a three-question run. */}
+        <span className="font-medium">{copy.game.questionOf(answer.position, total)}</span>
         <Badge variant="secondary">{copy.modes[answer.mode].name}</Badge>
         <Badge variant="outline">{copy.difficulties[answer.difficulty].name}</Badge>
         {answer.points > 0 ? (

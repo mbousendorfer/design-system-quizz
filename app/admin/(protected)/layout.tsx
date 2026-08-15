@@ -25,7 +25,7 @@ export default async function ProtectedAdminLayout({ children }: { children: Rea
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-6">
       <header className="flex flex-wrap items-center gap-3">
         <span className="font-semibold">{copy.admin.title}</span>
-        <nav className="flex items-center gap-1">
+        <nav aria-label={copy.admin.title} className="flex items-center gap-1">
           <Button variant="ghost" size="sm" nativeButton={false} render={<Link href="/admin/questions" />}>
             {copy.admin.navQuestions}
           </Button>
@@ -46,7 +46,9 @@ export default async function ProtectedAdminLayout({ children }: { children: Rea
 
       <Separator />
 
-      <Toaster>{children}</Toaster>
+      <Toaster>
+        <main id="content">{children}</main>
+      </Toaster>
     </div>
   )
 }

@@ -11,6 +11,7 @@ export const copy = {
   app: {
     name: 'DS Quiz',
     tagline: 'How well do you know the Agorapulse design system?',
+    skipToContent: 'Skip to content',
   },
 
   home: {
@@ -92,6 +93,7 @@ export const copy = {
     finish: 'See results',
     keyboardHint: 'Press 1–6 to answer, Enter to continue.',
     optionsLabel: 'Answer options',
+    runHeading: 'Design system quiz run',
     /** Accessible name for an option: a screenshot on its own has none. */
     optionName: (position: number, label: string) => `Option ${position}: ${label}`,
     optionScreenshot: (label: string) => `Screenshot for option ${label}`,
@@ -343,11 +345,18 @@ export const copy = {
   errors: {
     generic: 'Something went wrong.',
     retry: 'Try again',
+    withDigest: (digest: string) =>
+      `If it keeps happening, quote this reference so it can be found in the logs: ${digest}`,
+    noDigest: 'Try again. If it keeps happening, say so in the design system channel.',
+    notFound: 'Nothing here.',
+    notFoundHint: 'That link points at something that does not exist, or no longer does.',
     runNotFound: 'That run no longer exists.',
     questionExpired: 'That question already timed out.',
     poolTooThin: (requested: string, used: string) =>
       `Not enough unseen ${requested} questions, so some ${used} ones were mixed in.`,
     poolEmpty: 'There are no published questions for this mode yet.',
+    shortRun: (drawn: number, usual: number) =>
+      `This mode only has ${drawn} questions written for it so far, so this run is ${drawn} long instead of ${usual}.`,
   },
 
   loading: {

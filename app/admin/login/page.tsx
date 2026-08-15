@@ -30,7 +30,7 @@ export default async function AdminLoginPage({
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-sm flex-col gap-6 px-4 py-16">
+    <main id="content" className="mx-auto flex w-full max-w-sm flex-col gap-6 px-4 py-16">
       <Card>
         <CardHeader>
           <CardTitle>{copy.admin.title}</CardTitle>
