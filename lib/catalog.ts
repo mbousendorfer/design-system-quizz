@@ -23,6 +23,8 @@ export type DsComponent = {
   selectors: string[]
   cssClasses: string[]
   modifiers: string[]
+  /** Markup for a live render, or null when the component has no CSS-UI layer. */
+  cssUiTemplate: string | null
   specPath: string | null
   /** Null when the component has no story — which is itself the "not living" flag. */
   storybook: DsStorybook | null

@@ -1,13 +1,33 @@
 import 'server-only'
 
 import type { Difficulty, Mode } from '@/lib/difficulty'
+import { compileCssUi } from '@/lib/render/compile'
 import type { StoredOption, Status } from '@/lib/schema/question'
+import type { RenderRecipe, StoredRender } from '@/lib/schema/render'
 import { SHOTS_BUCKET } from '@/lib/supabase/env'
 import { serviceClient } from '@/lib/supabase/service'
 
 /** Every admin read and write. Service key only; nothing here reaches a browser. */
 
 export class AdminError extends Error {}
+
+/** The editable half of a stored render — what the form shows, minus the markup. */
+function toRecipe(render: StoredRender | null | undefined): RenderRecipe | null {
+  if (!render || render.kind !== 'css-ui') return null
+  return { component: render.component, modifiers: render.modifiers, label: render.label }
+}
+
+/**
+ * Compiles every option recipe on the way to the database.
+ *
+ * Compiling here rather than in the browser is what keeps the class map on the
+ * server, and what stops a client from supplying markup of its own choosing.
+ */
+function compileOptions(options: SaveOption[]): StoredOption[] {
+  return options.map(({ recipe, ...option }) =>
+    recipe ? { ...option, render: compileCssUi(recipe) } : option,
+  )
+}
 
 export type QuestionRow = {
   id: string
@@ -22,6 +42,8 @@ export type QuestionRow = {
   explanation: string
   docUrl: string | null
   imageKey: string | null
+  /** The question's own live render, as the recipe the form edits. */
+  stimulusRecipe: RenderRecipe | null
   timerSeconds: number | null
   updatedAt: string
 }
@@ -42,7 +64,7 @@ export type QuestionFilters = {
 }
 
 const SELECT =
-  'id, version, mode, difficulty, status, component, prompt, options, correct_option_id, explanation, doc_url, image_key, timer_seconds, updated_at'
+  'id, version, mode, difficulty, status, component, prompt, options, correct_option_id, explanation, doc_url, image_key, stimulus, timer_seconds, updated_at'
 
 function toRow(row: Record<string, unknown>): QuestionRow {
   return {
@@ -58,6 +80,7 @@ function toRow(row: Record<string, unknown>): QuestionRow {
     explanation: (row.explanation ?? '') as string,
     docUrl: (row.doc_url ?? null) as string | null,
     imageKey: (row.image_key ?? null) as string | null,
+    stimulusRecipe: toRecipe(row.stimulus as StoredRender | null),
     timerSeconds: (row.timer_seconds ?? null) as number | null,
     updatedAt: row.updated_at as string,
   }
@@ -158,6 +181,8 @@ export async function usedComponents(): Promise<string[]> {
 // Writing
 // ---------------------------------------------------------------------------
 
+export type SaveOption = StoredOption & { recipe?: RenderRecipe }
+
 export type SavePayload = {
   id?: string | null
   mode: Mode
@@ -165,11 +190,13 @@ export type SavePayload = {
   status: Status
   component: string
   prompt: string
-  options: StoredOption[]
+  options: SaveOption[]
   correctOptionId: string | null
   explanation: string
   docUrl: string | null
   imageKey: string | null
+  /** Compiled server-side before the write; a client never supplies markup. */
+  stimulusRecipe: RenderRecipe | null
   timerSeconds: number | null
 }
 
@@ -191,11 +218,12 @@ export async function saveQuestion(payload: SavePayload): Promise<SaveResult> {
         status: payload.status,
         component: payload.component,
         prompt: payload.prompt,
-        options: payload.options,
+        options: compileOptions(payload.options),
         correct_option_id: payload.correctOptionId,
         explanation: payload.explanation,
         doc_url: payload.docUrl,
         image_key: payload.imageKey,
+        stimulus: payload.stimulusRecipe ? compileCssUi(payload.stimulusRecipe) : null,
         timer_seconds: payload.timerSeconds,
       },
     })

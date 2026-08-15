@@ -1,10 +1,11 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useMemo, useState, useTransition } from 'react'
+import { useEffect, useMemo, useState, useTransition } from 'react'
 import { PlusIcon, SparklesIcon, TrashIcon } from 'lucide-react'
 
 import { ComponentCombobox } from '@/components/admin/component-combobox'
+import { ModifierFanout } from '@/components/admin/modifier-fanout'
 import { ShotDropzone } from '@/components/admin/shot-dropzone'
 import { ChoiceGroup } from '@/components/game/choice-group'
 import { QuestionOptions, QuestionPrompt } from '@/components/game/question-view'
@@ -23,7 +24,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from '@/components/ui/toast'
-import { saveQuestionAction } from '@/lib/admin/actions'
+import { compileRecipesAction, saveQuestionAction } from '@/lib/admin/actions'
 import type { AdminQuestionInput } from '@/lib/admin/validation'
 import {
   distractorsAvailableInCategory,
@@ -109,6 +110,22 @@ export function QuestionForm({
     })
   }
 
+  /**
+   * One option per chosen modifier, sharing the component and template.
+   *
+   * Replaces the option list rather than appending: a fan-out is the whole answer
+   * set for a `which-variant` question, and half-old-half-new options would differ
+   * structurally, which is a tell.
+   */
+  function fanOut(modifiers: string[]) {
+    const options = modifiers.map((modifier, index) => ({
+      id: OPTION_IDS[index] ?? `x${index}`,
+      recipe: { component: draft.component, modifiers: [modifier], label: draft.component },
+    }))
+    setErrors([])
+    patch({ options, correctOptionId: null })
+  }
+
   function addOption() {
     if (draft.options.length >= 6) return
     patch({ options: [...draft.options, { id: nextOptionId(draft.options) }] })
@@ -179,6 +196,31 @@ export function QuestionForm({
     })
   }
 
+  /**
+   * Compiled markup for whatever recipes the draft currently holds.
+   *
+   * Debounced because it is a round trip per keystroke otherwise, and keyed by the
+   * recipes themselves so an unrelated edit does not refetch.
+   */
+  const recipeKey = JSON.stringify(draft.options.map((option) => option.recipe ?? null))
+  const [compiled, setCompiled] = useState<(string | null)[]>([])
+
+  useEffect(() => {
+    const recipes = draft.options.map((option) => option.recipe).filter(Boolean)
+    // The timeout is what keeps this out of the effect body: nothing is set until
+    // the debounce fires, which is a callback rather than a cascading render.
+    const timer = setTimeout(async () => {
+      if (recipes.length === 0) {
+        setCompiled([])
+        return
+      }
+      const result = await compileRecipesAction(recipes)
+      if (result.ok) setCompiled(result.data.compiled)
+    }, 200)
+    return () => clearTimeout(timer)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [recipeKey])
+
   // Rendered through the very same components the game uses, so the preview
   // cannot drift from what a player will actually see.
   const preview = useMemo(
@@ -191,13 +233,24 @@ export function QuestionForm({
           imageKey: draft.imageKey,
           component: draft.component || null,
           // Half-filled options are dropped from the preview rather than rendered
-          // as empty boxes.
-          options: draft.options.filter((option) => option.component || option.imageKey),
+          // as empty boxes. A recipe carries its compiled markup in from the server.
+          options: draft.options
+            .map((option, index): StoredOption => {
+              const markup = option.recipe ? compiled[index] : null
+              if (!option.recipe || !markup) {
+                const rest = { ...option }
+                delete rest.recipe
+                return rest
+              }
+              const { recipe, ...rest } = option
+              return { ...rest, render: { kind: 'css-ui', ...recipe, compiled: markup } }
+            })
+            .filter((option) => option.component || option.imageKey || option.render),
           timerSeconds: timerSecondsFor(draft.difficulty, draft.timerSeconds),
         },
         { runId: 'preview', position: 1 },
       ),
-    [draft],
+    [draft, compiled],
   )
 
   const categorySize = draft.component ? distractorsAvailableInCategory(draft.component) : 0
@@ -372,6 +425,16 @@ export function QuestionForm({
                   </Button>
                 ) : null}
               </div>
+
+              {/* The accelerator for `which-variant`: pick the variants, get the
+                  options. `spot-the-drift` stays on screenshots — the drift is the
+                  markup, so a live render would hand it over in the inspector. */}
+              {draft.mode === 'which-variant' ? (
+                <FieldSet>
+                  <FieldLegend variant="label">{copy.questions.form.fanoutLabel}</FieldLegend>
+                  <ModifierFanout component={draft.component} onGenerate={fanOut} />
+                </FieldSet>
+              ) : null}
 
               {!images ? (
                 <FieldDescription>{copy.questions.form.suggestHint}</FieldDescription>

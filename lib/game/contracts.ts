@@ -7,7 +7,7 @@
 import { z } from 'zod'
 
 import { DIFFICULTIES, MODES, type Difficulty, type Mode } from '@/lib/difficulty'
-import type { PlayerOption, PlayerQuestion, Team } from '@/lib/schema/question'
+import type { PlayerQuestion, StoredOption, Team } from '@/lib/schema/question'
 import { TEAMS } from '@/lib/schema/question'
 import type { ScoreBreakdown } from '@/lib/scoring'
 
@@ -84,7 +84,8 @@ export type RunReviewAnswer = {
   correctOptionId: string
   explanation: string
   docUrl: string | null
-  options: PlayerOption[]
+  /** Stored shape, not the player projection: the run is over, nothing is hidden. */
+  options: StoredOption[]
 }
 
 export type FinishRunResponse = {

@@ -18,6 +18,7 @@ const BLANK: AdminQuestionInput = {
   explanation: '',
   docUrl: null,
   imageKey: null,
+  stimulusRecipe: null,
   timerSeconds: null,
 }
 

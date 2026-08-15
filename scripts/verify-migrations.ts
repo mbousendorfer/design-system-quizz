@@ -16,6 +16,7 @@ import { join } from 'node:path'
 
 import { PGlite } from '@electric-sql/pglite'
 
+import { MODES, RUN_MODES, isComponentAnswerMode } from '@/lib/difficulty'
 import { buildSeedQuestions, rpcPayload } from './seed-build'
 
 const MIGRATIONS_DIR = join(import.meta.dirname, '..', 'supabase', 'migrations')
@@ -433,13 +434,17 @@ const { rows: perMode } = await db.query<{ mode: string; count: number }>(
    group by mode order by mode`,
   [seeded.map(({ question }) => question.id)],
 )
-assert.deepEqual(perMode, [
-  { mode: 'name-that-component', count: 3 },
-  { mode: 'spot-the-drift', count: 3 },
-  { mode: 'which-component', count: 3 },
-  { mode: 'which-variant', count: 3 },
-])
-pass('three questions per mode')
+// Derived from the seed rather than hardcoded, so adding a mode's questions does
+// not mean editing this assertion.
+const expectedPerMode = new Map<string, number>()
+for (const { question } of seeded) {
+  expectedPerMode.set(question.mode, (expectedPerMode.get(question.mode) ?? 0) + 1)
+}
+assert.deepEqual(
+  perMode,
+  [...expectedPerMode.entries()].sort().map(([mode, count]) => ({ mode, count })),
+)
+pass(`the seed's ${expectedPerMode.size} modes land with the counts it declares`)
 
 // Re-seeding must update, not duplicate.
 for (const { question } of seeded) {
@@ -502,6 +507,78 @@ assert.ok(
   'a seeded question leaks its answer through questions_public',
 )
 pass('every seeded question is drawable from questions_public with no answer attached')
+
+// --- the TypeScript lists and the SQL ones must be the same lists ---------------
+
+// The real gap is not between the two SQL copies of the mode list — it is between
+// TypeScript and Postgres. Only a test that reads the constant and interrogates the
+// database closes it, and because it iterates MODES it extends itself when a sixth
+// mode arrives, and fails until the SQL follows.
+for (const [typeName, expected] of [
+  ['quiz_mode', MODES],
+  ['run_mode', RUN_MODES],
+] as const) {
+  const { rows } = await db.query<{ enumlabel: string }>(
+    `select enumlabel from pg_enum
+     join pg_type on pg_type.oid = pg_enum.enumtypid
+     where pg_type.typname = $1 order by enumsortorder`,
+    [typeName],
+  )
+  assert.deepEqual(rows.map((row) => row.enumlabel), [...expected])
+  pass(`${typeName} holds exactly the ${expected.length} modes lib/difficulty.ts declares`)
+}
+
+for (const mode of MODES) {
+  const { rows } = await db.query<{ id: string }>(
+    `insert into questions (mode, difficulty, status, component, prompt, options,
+                            correct_option_id, explanation, image_key)
+     values ($1::quiz_mode, 'easy', 'published', 'Badge', 'Mode agreement probe',
+             '[{"id":"a","component":"Badge"},{"id":"b","component":"Tag"}]'::jsonb,
+             'a', $2, 'probe1.png')
+     returning id`,
+    [mode, 'An explanation long enough to satisfy the publish-time length rule.'],
+  )
+  const { rows: visible } = await db.query<{ component: string | null }>(
+    `select component from questions_public where id = $1`,
+    [rows[0].id],
+  )
+  assert.equal(
+    visible[0].component === null,
+    isComponentAnswerMode(mode),
+    `questions_public disagrees with MODES_ANSWERING_A_COMPONENT on ${mode}`,
+  )
+  await db.query(`delete from questions where id = $1`, [rows[0].id])
+}
+pass('questions_public hides the component on exactly the modes TypeScript says it should')
+
+// --- a live render never carries its recipe into the view -----------------------
+
+const { rows: liveRenderRows } = await db.query<{ id: string }>(
+  `insert into questions (mode, difficulty, status, component, prompt, options,
+                          correct_option_id, explanation, stimulus)
+   values ('name-that-component', 'easy', 'published', 'Badge', 'Which component is this?',
+           '[{"id":"a","component":"Badge"},{"id":"b","component":"Tag"},
+             {"id":"c","component":"Status"},{"id":"d","component":"Counter"}]'::jsonb,
+           'a', $1,
+           '{"kind":"css-ui","component":"Badge","modifiers":["blue"],"label":"NEW",
+             "compiled":"<span class=\\"c3yuqrv cqpunfs\\">NEW</span>"}'::jsonb)
+   returning id`,
+  ['A Badge carries a count or a status dot; a Tag carries a removable label.'],
+)
+
+const { rows: publicStimulus } = await db.query<{ stimulus: Record<string, unknown> }>(
+  `select stimulus from questions_public where id = $1`,
+  [liveRenderRows[0].id],
+)
+const shown = publicStimulus[0].stimulus
+assert.ok(!('component' in shown), 'questions_public leaks the rendered component')
+assert.ok(!('modifiers' in shown), 'questions_public leaks the rendered modifiers')
+assert.ok(!('label' in shown), 'questions_public leaks the render label')
+assert.equal(shown.kind, 'css-ui')
+assert.ok(String(shown.compiled).includes('c3yuqrv'))
+pass('a live render reaches the view as compiled markup, with its recipe stripped')
+
+await db.query(`delete from questions where id = $1`, [liveRenderRows[0].id])
 
 console.log(`\n${checks.length} checks passed.`)
 console.log('Not covered here: the storage bucket and the anon/authenticated grants,')

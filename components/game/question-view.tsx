@@ -1,8 +1,9 @@
 'use client'
 
+import { useCallback, useMemo, useState } from 'react'
 import { CheckIcon, XIcon } from 'lucide-react'
 
-import { Shot } from '@/components/game/shot'
+import { RenderBox } from '@/components/game/render-box'
 import { Badge } from '@/components/ui/badge'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { copy } from '@/lib/copy'
@@ -33,8 +34,8 @@ export function QuestionPrompt({ question }: { question: PlayerQuestion }) {
 
       <p className="text-lg font-medium text-balance">{question.prompt}</p>
 
-      {question.imageKey ? (
-        <Shot imageKey={question.imageKey} alt={copy.modes[question.mode].short} priority />
+      {question.stimulus ? (
+        <RenderBox render={question.stimulus} alt={copy.modes[question.mode].short} priority />
       ) : null}
     </div>
   )
@@ -60,6 +61,38 @@ export function QuestionOptions({
   disabled: boolean
 }) {
   const images = hasImageOptions(question.mode)
+
+  /**
+   * One zoom for the whole group, never one per option.
+   *
+   * A component has an intrinsic size and the box does not, so live renders need
+   * scaling to fill it. Scaling each option to its own box would be a tell: an
+   * option drawn at 2.4x next to one at 1.0x announces that they are different
+   * components. The smallest fit across every option is used for all of them.
+   *
+   * `transform: scale()` and not width/height, because a transform is not a layout
+   * property — changing it reflows nothing and contributes no layout shift.
+   */
+  const [sizes, setSizes] = useState<Record<string, { width: number; height: number }>>({})
+
+  const zoom = useMemo(() => {
+    const measured = Object.values(sizes).filter((size) => size.width > 0 && size.height > 0)
+    if (measured.length === 0) return 1
+    // The box is 16:10 with padding; these are the usable inner bounds at the
+    // narrowest column the grid produces.
+    const fits = measured.map((size) => Math.min(280 / size.width, 175 / size.height))
+    return Math.max(0.5, Math.min(4, Math.min(...fits)))
+  }, [sizes])
+
+  const measure = useCallback(
+    (id: string) => (size: { width: number; height: number }) =>
+      setSizes((current) =>
+        current[id]?.width === size.width && current[id]?.height === size.height
+          ? current
+          : { ...current, [id]: size },
+      ),
+    [],
+  )
 
   return (
     <ToggleGroup
@@ -95,7 +128,13 @@ export function QuestionOptions({
             images && 'flex-col items-stretch',
           )}
         >
-          <OptionBody option={option} index={index} images={images} />
+          <OptionBody
+            option={option}
+            index={index}
+            images={images}
+            zoom={zoom}
+            onMeasure={measure(option.id)}
+          />
           <OptionVerdictBadge option={option} verdict={verdict} />
         </ToggleGroupItem>
       ))}
@@ -107,20 +146,26 @@ function OptionBody({
   option,
   index,
   images,
+  zoom,
+  onMeasure,
 }: {
   option: PlayerOption
   index: number
   images: boolean
+  zoom: number
+  onMeasure: (size: { width: number; height: number }) => void
 }) {
-  if (images && option.imageKey) {
+  if (images && option.render) {
     return (
       <>
         <div className="flex items-center gap-2">
           <Badge variant="secondary">{option.label ?? optionLetter(index)}</Badge>
         </div>
-        <Shot
-          imageKey={option.imageKey}
+        <RenderBox
+          render={option.render}
           alt={copy.game.optionScreenshot(option.label ?? optionLetter(index))}
+          zoom={zoom}
+          onMeasure={onMeasure}
           priority
         />
       </>

@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Separator } from '@/components/ui/separator'
 import { copy } from '@/lib/copy'
 import type { FinishRunResponse, RunReviewAnswer } from '@/lib/game/contracts'
-import type { PlayerOption } from '@/lib/schema/question'
+import type { StoredOption } from '@/lib/schema/question'
 
 export function Results({ summary }: { summary: FinishRunResponse }) {
   const delta = summary.averageScore === null ? null : summary.score - summary.averageScore
@@ -90,7 +90,7 @@ export function Results({ summary }: { summary: FinishRunResponse }) {
   )
 }
 
-function labelFor(options: PlayerOption[], optionId: string | null): string | null {
+function labelFor(options: StoredOption[], optionId: string | null): string | null {
   if (!optionId) return null
   const index = options.findIndex((option) => option.id === optionId)
   if (index < 0) return null

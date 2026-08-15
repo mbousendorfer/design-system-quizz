@@ -57,10 +57,15 @@ export const copy = {
       short: 'A product scenario. What would you reach for?',
       help: 'No screenshot. Pick the component the design system intends here.',
     },
+    'name-from-description': {
+      name: 'Name it from the description',
+      short: 'A description. Which component is it?',
+      help: 'How the design system describes a component, without naming it. Say which one.',
+    },
     mixed: {
       name: 'Mixed',
       short: 'A bit of everything',
-      help: 'Questions drawn from all four modes.',
+      help: 'Questions drawn from every mode.',
     },
   } satisfies Record<RunMode, { name: string; short: string; help: string }>,
 
@@ -229,9 +234,19 @@ export const copy = {
       optionsForMode: {
         'name-that-component': 'Component names to choose between',
         'which-component': 'Component names to choose between',
-        'which-variant': 'Screenshots of the variants',
+        'name-from-description': 'Component names to choose between',
+        'which-variant': 'The variants to choose between',
         'spot-the-drift': 'The two screenshots, right and wrong',
-      },
+      } satisfies Record<Mode, string>,
+      fanoutLabel: 'Variants to compare',
+      fanout: (count: number) =>
+        count < 2 ? 'Pick at least two variants' : `Make ${count} options from these`,
+      fanoutHint:
+        'One option per variant, all rendered live from the design system. No screenshots to take.',
+      noLiveRender: (component: string) =>
+        `${component} has no CSS-UI layer, so it cannot be rendered live. Use screenshots for this one.`,
+      noModifiers: (component: string) =>
+        `${component} ships no modifiers, so there are no variants to compare.`,
       addOption: 'Add an option',
       removeOption: 'Remove this option',
       optionNumber: (index: number) => `Option ${index}`,

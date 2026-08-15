@@ -10,6 +10,14 @@
  */
 import { z } from 'zod'
 
+import {
+  renderSchema,
+  toPlayerRender,
+  toRender,
+  type PlayerRender,
+  type StoredRender,
+} from '@/lib/schema/render'
+
 import { hasLivingStory, isKnownComponent } from '@/lib/catalog'
 import { copy } from '@/lib/copy'
 import {
@@ -52,16 +60,24 @@ const componentOptionSchema = z.object({
   component: componentNameSchema,
 })
 
-/** An option that shows a screenshot. */
-const imageOptionSchema = z.object({
-  id: optionIdSchema,
-  imageKey: imageKeySchema,
-  label: z.string().max(80).optional(),
-})
+/**
+ * An option that shows a component: rendered live, or as a screenshot.
+ * `imageKey` stays accepted so questions written before live rendering keep parsing.
+ */
+const visualOptionSchema = z
+  .object({
+    id: optionIdSchema,
+    imageKey: imageKeySchema.optional(),
+    render: renderSchema.optional(),
+    label: z.string().max(80).optional(),
+  })
+  .refine((option) => option.render != null || option.imageKey != null, {
+    message: 'This option needs a screenshot or a live render',
+  })
 
 export type ComponentOption = z.infer<typeof componentOptionSchema>
-export type ImageOption = z.infer<typeof imageOptionSchema>
-export type QuestionOption = ComponentOption | ImageOption
+export type VisualOption = z.infer<typeof visualOptionSchema>
+export type QuestionOption = ComponentOption | VisualOption
 
 /**
  * An option as it sits in the database, where a half-written draft is legal.
@@ -71,7 +87,10 @@ export type QuestionOption = ComponentOption | ImageOption
 export type StoredOption = {
   id: string
   component?: string
+  /** Older shape, still read: a bare screenshot key. */
   imageKey?: string
+  /** Live render or screenshot. Supersedes `imageKey`. */
+  render?: StoredRender
   label?: string
 }
 
@@ -89,37 +108,57 @@ const baseFields = {
   /** Overrides the level default when set. */
   timerSeconds: z.number().int().min(5).max(120).nullable(),
   correctOptionId: optionIdSchema,
+  /**
+   * The question's own visual, when it has one. `imageKey` is the older shape and
+   * stays accepted so nothing written before live rendering has to be rewritten.
+   */
+  stimulus: renderSchema.nullable().default(null),
+  imageKey: imageKeySchema.nullable().default(null),
 }
 
 const variants = [
   z.object({
     ...baseFields,
     mode: z.literal('name-that-component'),
-    /** The screenshot to identify. */
-    imageKey: imageKeySchema,
     options: z.array(componentOptionSchema).min(4).max(6),
   }),
   z.object({
     ...baseFields,
     mode: z.literal('which-variant'),
-    imageKey: z.null().default(null),
-    options: z.array(imageOptionSchema).min(3).max(6),
+    options: z.array(visualOptionSchema).min(3).max(6),
   }),
   z.object({
     ...baseFields,
     mode: z.literal('spot-the-drift'),
-    imageKey: z.null().default(null),
     /** Always A versus B. */
-    options: z.array(imageOptionSchema).length(2),
+    options: z.array(visualOptionSchema).length(2),
   }),
   z.object({
     ...baseFields,
     mode: z.literal('which-component'),
-    /** A product scenario in words — no screenshot at all. */
-    imageKey: z.null().default(null),
+    /** A product scenario in words — no visual at all. */
+    options: z.array(componentOptionSchema).min(4).max(6),
+  }),
+  z.object({
+    ...baseFields,
+    mode: z.literal('name-from-description'),
+    /** A description lifted from the design guidelines, with the names redacted. */
     options: z.array(componentOptionSchema).min(4).max(6),
   }),
 ] as const
+
+/**
+ * A missing variant used to fail at *runtime*, on a real question, in production,
+ * with a zod message about a discriminator. These two lines turn it into a compile
+ * error naming the mode — and the second one catches a typo'd literal, which is the
+ * other half of the same bug.
+ */
+type CoveredModes = z.infer<(typeof variants)[number]>['mode']
+type Exhaustive<T extends never> = T
+/* eslint-disable @typescript-eslint/no-unused-vars -- these exist to fail the build */
+type _EveryModeHasAVariant = Exhaustive<Exclude<Mode, CoveredModes>>
+type _NoVariantForAPhantomMode = Exhaustive<Exclude<CoveredModes, Mode>>
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 /**
  * Note there is no "exactly one correct answer" rule to enforce: `correctOptionId`
@@ -137,6 +176,20 @@ export const questionSchema = z.discriminatedUnion('mode', variants).superRefine
       code: 'custom',
       path: ['correctOptionId'],
       message: 'The correct answer does not match any option',
+    })
+  }
+
+  // Lives here rather than on the variant: refining a variant would turn it into a
+  // ZodEffects, and a discriminated union only accepts plain objects.
+  if (
+    question.mode === 'name-that-component' &&
+    question.stimulus == null &&
+    question.imageKey == null
+  ) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['stimulus'],
+      message: 'This mode shows the component being identified, so it needs one',
     })
   }
 })
@@ -182,7 +235,8 @@ export type PlayerOption = {
   id: string
   /** Set on the component-naming modes: these are the choices, not the answer. */
   component?: string
-  imageKey?: string
+  /** Compiled markup or a screenshot key — never the recipe either came from. */
+  render?: PlayerRender
   label?: string
 }
 
@@ -193,7 +247,8 @@ export type PlayerQuestion = {
   difficulty: Difficulty
   timerSeconds: number
   prompt: string
-  imageKey: string | null
+  /** The question's own visual, when it has one. */
+  stimulus: PlayerRender | null
   /**
    * Present only when naming the component is *not* the point of the question.
    * On `name-that-component` and `which-component` it is the answer, so it is
@@ -241,13 +296,14 @@ export type PlayerQuestionContext = {
  *
  * Options are the loose stored shape rather than the strict union, so the admin
  * can preview a half-written draft through the very same renderer the game uses.
- * Only `id`, `component`, `imageKey` and `label` are ever read.
  */
 export type PlayableFields = {
   mode: Mode
   difficulty: Difficulty
   prompt: string
-  imageKey: string | null
+  /** Either shape; `toRender` reads both. */
+  stimulus?: StoredRender | null
+  imageKey?: string | null
   component: string | null
   options: readonly StoredOption[]
   timerSeconds: number
@@ -268,15 +324,15 @@ export function buildPlayerQuestion(
   fields: PlayableFields,
   context: PlayerQuestionContext,
 ): PlayerQuestion {
-  const options: PlayerOption[] = fields.options.map((option) =>
-    'component' in option
-      ? { id: option.id, component: option.component }
-      : {
-          id: option.id,
-          imageKey: option.imageKey,
-          ...(option.label ? { label: option.label } : {}),
-        },
-  )
+  const options: PlayerOption[] = fields.options.map((option) => {
+    if (option.component) return { id: option.id, component: option.component }
+    const render = toPlayerRender(toRender(option))
+    return {
+      id: option.id,
+      ...(render ? { render } : {}),
+      ...(option.label ? { label: option.label } : {}),
+    }
+  })
 
   return {
     runId: context.runId,
@@ -285,7 +341,7 @@ export function buildPlayerQuestion(
     difficulty: fields.difficulty,
     timerSeconds: fields.timerSeconds,
     prompt: fields.prompt,
-    imageKey: fields.imageKey,
+    stimulus: toPlayerRender(toRender(fields)),
     component: isComponentAnswerMode(fields.mode) ? null : fields.component,
     options: shuffled(options, `${context.runId}:${context.position}`),
     totalQuestions: context.totalQuestions ?? QUESTIONS_PER_RUN,

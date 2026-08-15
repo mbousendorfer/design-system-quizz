@@ -1,13 +1,23 @@
 import { z } from 'zod'
 
 import { copy } from '@/lib/copy'
-import { DIFFICULTIES, MODES, type Mode } from '@/lib/difficulty'
+import { DIFFICULTIES, MODE_SPEC, MODES } from '@/lib/difficulty'
 import {
   STATUSES,
   imageKeySchema,
   optionIdSchema,
   questionSchema,
 } from '@/lib/schema/question'
+
+/**
+ * What an author edits for a live render. `compiled` is deliberately absent: it is
+ * produced on the server, so a client cannot hand over markup of its own choosing.
+ */
+export const renderRecipeSchema = z.object({
+  component: z.string().max(80),
+  modifiers: z.array(z.string().regex(/^[a-zA-Z][\w-]{0,40}$/)).max(8).default([]),
+  label: z.string().max(120).default(''),
+})
 
 /**
  * What the admin form may send. Deliberately permissive: an unfinished draft has
@@ -27,11 +37,15 @@ export const adminQuestionInputSchema = z.object({
         id: optionIdSchema,
         component: z.string().max(80).optional(),
         imageKey: imageKeySchema.optional(),
+        /** The recipe the author edits; `compiled` is filled in on the server. */
+        recipe: renderRecipeSchema.optional(),
         label: z.string().max(80).optional(),
       }),
     )
     .max(6)
     .default([]),
+  /** The question's own live render, when it has one. */
+  stimulusRecipe: renderRecipeSchema.nullable().default(null),
   correctOptionId: z.string().max(16).nullable().default(null),
   explanation: z.string().max(1000).default(''),
   docUrl: z.string().max(500).nullable().default(null),
@@ -44,12 +58,6 @@ export type AdminQuestionInput = z.infer<typeof adminQuestionInputSchema>
 /** Stands in for the real id while validating a question that has never been saved. */
 const PLACEHOLDER_ID = '00000000-0000-4000-8000-000000000000'
 
-const OPTION_BOUNDS: Record<Mode, [number, number]> = {
-  'name-that-component': [4, 6],
-  'which-component': [4, 6],
-  'which-variant': [3, 6],
-  'spot-the-drift': [2, 2],
-}
 
 /**
  * Turns a schema issue into something worth showing a person.
@@ -87,7 +95,7 @@ function humanise(issue: z.core.$ZodIssue, input: AdminQuestionInput): string {
       return blockers.correctAnswer
     case 'options': {
       if (issue.message.includes('same id')) return blockers.duplicateIds
-      const [min, max] = OPTION_BOUNDS[input.mode]
+      const [min, max] = MODE_SPEC[input.mode].options
       return blockers.optionCount(min, max)
     }
     default:

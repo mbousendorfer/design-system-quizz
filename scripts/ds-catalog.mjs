@@ -168,7 +168,17 @@ function cssUiTemplateFrom(source, modifiers) {
     return `class="${kept.join(' ')}{{modifiers}}"`
   })
 
-  return markup.trim()
+  markup = markup.trim()
+
+  // Several examples show an empty element — `<span class="ap-badge blue"></span>`
+  // — because the demo only needed to show the classes. Rendered as-is that is an
+  // empty pill, so every template gets a text slot whether the example had one or
+  // not.
+  if (!markup.includes('{{label}}')) {
+    markup = markup.replace(/></, '>{{label}}<')
+  }
+
+  return markup
 }
 
 function parseComponent(path) {

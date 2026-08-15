@@ -324,7 +324,7 @@
         "size-16",
         "size-32"
       ],
-      "cssUiTemplate": "<span class=\"ap-avatar-group{{modifiers}}\"></span>",
+      "cssUiTemplate": "<span class=\"ap-avatar-group{{modifiers}}\">{{label}}</span>",
       "specPath": "components/display/avatar-group.md",
       "intents": [
         "avatar group",
@@ -355,7 +355,7 @@
         "blue",
         "orange"
       ],
-      "cssUiTemplate": "<span class=\"ap-badge{{modifiers}}\"></span>",
+      "cssUiTemplate": "<span class=\"ap-badge{{modifiers}}\">{{label}}</span>",
       "specPath": "components/display/badge.md",
       "intents": [
         "badge",
@@ -394,7 +394,7 @@
         "notif",
         "orange"
       ],
-      "cssUiTemplate": "<span class=\"ap-counter{{modifiers}}\"></span>",
+      "cssUiTemplate": "<span class=\"ap-counter{{modifiers}}\">{{label}}</span>",
       "specPath": "components/display/counter.md",
       "intents": [
         "count indicator",
@@ -586,7 +586,7 @@
         "red",
         "tagOrange"
       ],
-      "cssUiTemplate": "<span class=\"ap-status{{modifiers}}\"></span>",
+      "cssUiTemplate": "<span class=\"ap-status{{modifiers}}\">{{label}}</span>",
       "specPath": "components/display/status.md",
       "intents": [
         "state pill",
@@ -625,7 +625,7 @@
         "red",
         "tagOrange"
       ],
-      "cssUiTemplate": "<span class=\"ap-status{{modifiers}}\"></span>",
+      "cssUiTemplate": "<span class=\"ap-status{{modifiers}}\">{{label}}</span>",
       "specPath": "components/display/status-card.md",
       "intents": [
         "state card",
@@ -876,7 +876,7 @@
         "top-left",
         "top-right"
       ],
-      "cssUiTemplate": "<span class=\"ap-tooltip{{modifiers}}\"></span>",
+      "cssUiTemplate": "<span class=\"ap-tooltip{{modifiers}}\">{{label}}</span>",
       "specPath": "components/feedback/tooltip.md",
       "intents": [
         "hint",
@@ -1425,7 +1425,7 @@
         "two-lines",
         "valid"
       ],
-      "cssUiTemplate": "<span class=\"ap-select{{modifiers}}\"></span>",
+      "cssUiTemplate": "<span class=\"ap-select{{modifiers}}\">{{label}}</span>",
       "specPath": "components/forms/select.md",
       "intents": [
         "combobox",
@@ -1575,7 +1575,7 @@
       "modifiers": [
         "active"
       ],
-      "cssUiTemplate": "<span class=\"ap-dot-stepper{{modifiers}}\"></span>",
+      "cssUiTemplate": "<span class=\"ap-dot-stepper{{modifiers}}\">{{label}}</span>",
       "specPath": "components/navigation/dot-stepper.md",
       "intents": [
         "carousel dots",

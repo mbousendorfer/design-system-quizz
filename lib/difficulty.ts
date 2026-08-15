@@ -11,8 +11,36 @@ export const MODES = [
   'which-variant',
   'spot-the-drift',
   'which-component',
+  'name-from-description',
 ] as const
 export type Mode = (typeof MODES)[number]
+
+export type ModeSpec = {
+  /**
+   * `component` means the component name is the answer, so it must never reach the
+   * client. `image` means the options are things to look at.
+   */
+  answers: 'component' | 'image'
+  /** [min, max] options. The zod union and the publish blockers both read this. */
+  options: readonly [number, number]
+}
+
+/**
+ * One row per mode, and `satisfies` makes a missing row a compile error naming the
+ * mode that is missing.
+ *
+ * The lists below used to be written out separately, parallel to `MODES` rather
+ * than derived from it — so a new mode that appeared in neither silently got the
+ * component kept in its payload and its options rendered as names. Plausible, wrong,
+ * and no error anywhere.
+ */
+export const MODE_SPEC = {
+  'name-that-component': { answers: 'component', options: [4, 6] },
+  'which-variant': { answers: 'image', options: [3, 6] },
+  'spot-the-drift': { answers: 'image', options: [2, 2] },
+  'which-component': { answers: 'component', options: [4, 6] },
+  'name-from-description': { answers: 'component', options: [4, 6] },
+} as const satisfies Record<Mode, ModeSpec>
 
 export const RUN_MODES = [...MODES, 'mixed'] as const
 export type RunMode = (typeof RUN_MODES)[number]
@@ -26,17 +54,19 @@ export type RunDifficulty = (typeof RUN_DIFFICULTIES)[number]
 export const QUESTIONS_PER_RUN = 5
 
 /** Modes where the component name *is* the answer — it must never reach the client. */
-export const MODES_ANSWERING_A_COMPONENT = ['name-that-component', 'which-component'] as const
+export const MODES_ANSWERING_A_COMPONENT = MODES.filter(
+  (mode) => MODE_SPEC[mode].answers === 'component',
+)
 
-/** Modes whose options are screenshots rather than component names. */
-export const MODES_WITH_IMAGE_OPTIONS = ['which-variant', 'spot-the-drift'] as const
+/** Modes whose options are things to look at rather than component names. */
+export const MODES_WITH_IMAGE_OPTIONS = MODES.filter((mode) => MODE_SPEC[mode].answers === 'image')
 
 export function isComponentAnswerMode(mode: Mode): boolean {
-  return (MODES_ANSWERING_A_COMPONENT as readonly string[]).includes(mode)
+  return MODE_SPEC[mode].answers === 'component'
 }
 
 export function hasImageOptions(mode: Mode): boolean {
-  return (MODES_WITH_IMAGE_OPTIONS as readonly string[]).includes(mode)
+  return MODE_SPEC[mode].answers === 'image'
 }
 
 export type DifficultyRule = {

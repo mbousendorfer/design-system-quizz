@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { copy } from '@/lib/copy'
+import { warmStyleSheets } from '@/lib/render/stylesheets'
 import { QUESTIONS_PER_RUN, difficultyForPosition, type RunDifficulty } from '@/lib/difficulty'
 import type {
   FinishRunResponse,
@@ -145,6 +146,10 @@ export function QuizEngine({
   // while their screen still showed a second left.
   /* eslint-disable react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
   useEffect(() => {
+    // Start fetching the design system sheets now: the question request is in
+    // flight at the same moment, so they are usually parsed before the first
+    // option paints, and questions 2 to 5 cost nothing.
+    warmStyleSheets()
     if (alreadyFinished) void finish()
     else void load(startPosition)
   }, [])

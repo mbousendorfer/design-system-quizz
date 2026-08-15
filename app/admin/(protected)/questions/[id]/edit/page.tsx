@@ -40,6 +40,7 @@ export default async function EditQuestionPage({ params }: { params: Promise<{ i
           explanation: question.explanation,
           docUrl: question.docUrl,
           imageKey: question.imageKey,
+          stimulusRecipe: question.stimulusRecipe,
           timerSeconds: question.timerSeconds,
         }}
         // Editing what was judged now cuts a new version, and the form says so

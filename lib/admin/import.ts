@@ -139,6 +139,9 @@ function toInput(raw: Record<string, string>): { input: AdminQuestionInput | nul
     explanation: raw.explanation?.trim() ?? '',
     docUrl: raw.docUrl?.trim() || null,
     imageKey: raw.imageKey?.trim() || null,
+    // Imported rows reference screenshots by key; live renders are authored in the
+    // form, where the modifier list is in front of you.
+    stimulusRecipe: null,
     timerSeconds: timer ? Number(timer) : null,
   }
 

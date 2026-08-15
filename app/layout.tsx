@@ -30,6 +30,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
     >
+      <head>
+        {/* Averta, for the live component renders. `@font-face` is ignored inside
+            adoptedStyleSheets — font registration is document-scoped — so this one
+            sheet is linked here. It declares nothing but @font-face, so it cannot
+            restyle the quiz's own interface. */}
+        <link rel="stylesheet" href="/ds/fonts.css" />
+      </head>
       <body>
         {/* Visible only once focused: a keyboard player should not have to tab
             through the admin nav to reach the question they are being timed on. */}

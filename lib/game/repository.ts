@@ -8,7 +8,8 @@ import {
   type RunMode,
 } from '@/lib/difficulty'
 import { drawRun, type DrawResult, type PoolQuestion } from '@/lib/game/draw'
-import type { QuestionOption, Team } from '@/lib/schema/question'
+import type { StoredOption, Team } from '@/lib/schema/question'
+import type { StoredRender } from '@/lib/schema/render'
 import { serviceClient } from '@/lib/supabase/service'
 
 /**
@@ -237,9 +238,11 @@ export type ServedQuestion = {
   mode: Mode
   difficulty: Difficulty
   prompt: string
+  /** Either shape: `stimulus` is the current one, `imageKey` the older. */
+  stimulus: StoredRender | null
   imageKey: string | null
   component: string | null
-  options: QuestionOption[]
+  options: StoredOption[]
   timerSeconds: number
   /** Server clock. The client counts down to this, the server judges against it. */
   servedAt: number
@@ -288,7 +291,7 @@ export async function serveQuestion(runId: string, position: number): Promise<Se
 
   const { data: question, error: questionError } = await supabase
     .from('questions_public')
-    .select('mode, difficulty, prompt, options, image_key, component')
+    .select('mode, difficulty, prompt, options, image_key, component, stimulus')
     .eq('id', item.question_id)
     .eq('version', item.question_version)
     .maybeSingle()
@@ -303,9 +306,10 @@ export async function serveQuestion(runId: string, position: number): Promise<Se
     mode: question.mode as Mode,
     difficulty: question.difficulty as Difficulty,
     prompt: question.prompt as string,
+    stimulus: (question.stimulus ?? null) as StoredRender | null,
     imageKey: question.image_key as string | null,
     component: question.component as string | null,
-    options: question.options as QuestionOption[],
+    options: question.options as StoredOption[],
     timerSeconds,
     servedAt: servedAtMs,
     deadline: servedAtMs + timerSeconds * 1000,
@@ -344,7 +348,7 @@ export async function loadAnswerKey(questionId: string, version: number): Promis
     component: data.component as string,
     mode: data.mode as Mode,
     difficulty: data.difficulty as Difficulty,
-    optionIds: (data.options as QuestionOption[]).map((option) => option.id),
+    optionIds: (data.options as StoredOption[]).map((option) => option.id),
   }
 }
 
@@ -461,7 +465,7 @@ export type ReviewedAnswer = {
   correctOptionId: string
   explanation: string
   docUrl: string | null
-  options: QuestionOption[]
+  options: StoredOption[]
 }
 
 export type RunSummary = {
@@ -522,7 +526,7 @@ export async function finishRun(runId: string): Promise<RunSummary> {
       correctOptionId: (question?.correct_option_id as string) ?? '',
       explanation: (question?.explanation as string) ?? '',
       docUrl: (question?.doc_url as string | null) ?? null,
-      options: (question?.options as QuestionOption[]) ?? [],
+      options: (question?.options as StoredOption[]) ?? [],
     })
   }
 
