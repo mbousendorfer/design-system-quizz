@@ -141,6 +141,7 @@ export const copy = {
     signIn: 'Sign in',
     signOut: 'Sign out',
     wrongPassword: 'That password does not match.',
+    throttled: 'Too many attempts. Wait a few minutes and try again.',
     navQuestions: 'Questions',
     navStats: 'Stats',
     navImport: 'Bulk import',
@@ -155,6 +156,7 @@ export const copy = {
     unpublish: 'Unpublish',
     archive: 'Archive',
     searchPlaceholder: 'Search prompts…',
+    filtersTitle: 'Filters',
     filterMode: 'Mode',
     filterStatus: 'Status',
     filterComponent: 'Component',
@@ -167,6 +169,16 @@ export const copy = {
     empty: 'No questions yet.',
     emptyHint: 'Write the first one, or import a batch from a spreadsheet.',
     notEnoughPlays: 'Not enough plays',
+    rowActions: 'Actions for this question',
+    untitled: 'Untitled draft',
+    duplicated: 'Duplicated as a draft.',
+    published: 'Published.',
+    unpublished: 'Back to draft.',
+    archived: 'Archived.',
+    publishRefused: 'This question cannot be published yet',
+    versionCut: (version: number) =>
+      `Saved as version ${version}. The previous one was archived so past statistics stay honest.`,
+    savedInPlace: 'Saved.',
 
     form: {
       modeLabel: 'Game mode',
@@ -189,10 +201,55 @@ export const copy = {
       categoryTooSmall: (category: string, available: number) =>
         `The ${category} category only holds ${available} other components, so some suggestions come from outside it.`,
       imageLabel: 'Screenshot',
-      imageDrop: 'Drop a screenshot, or click to choose one',
-      imageHint: 'Renamed to an opaque id on upload, so the filename cannot give the answer away.',
-      imageTooLarge: 'That file is too large.',
-      imageWrongType: 'Only PNG, JPEG, WebP and SVG are accepted.',
+      imageDrop: 'Drop a screenshot here, or choose a file',
+      imageChoose: 'Choose a file',
+      imageRemove: 'Remove',
+      imageUploading: 'Uploading…',
+      imageHint:
+        'Renamed to an opaque id on upload, so the filename cannot give the answer away. PNG, JPEG or WebP, up to 2 MB.',
+      noComponentFound: 'No component by that name in the design system.',
+      optionsForMode: {
+        'name-that-component': 'Component names to choose between',
+        'which-component': 'Component names to choose between',
+        'which-variant': 'Screenshots of the variants',
+        'spot-the-drift': 'The two screenshots, right and wrong',
+      },
+      addOption: 'Add an option',
+      removeOption: 'Remove this option',
+      optionNumber: (index: number) => `Option ${index}`,
+      noOptionsYet: 'No options yet.',
+      pickComponentFirst: 'Pick the component this question is about first.',
+      draftBadge: 'Draft',
+      publishedBadge: 'Published',
+      backToList: 'All questions',
+      newTitle: 'New question',
+      editTitle: 'Edit question',
+      playsSoFar: (plays: number) => `${plays} plays so far`,
+
+      /**
+       * Why a question cannot go live yet. The rules come from the zod schema,
+       * but its messages are written for developers — a designer should read
+       * what to do, not what type was expected.
+       */
+      blockers: {
+        prompt: 'Write the question prompt.',
+        explanation:
+          'The explanation is required, and needs to be a sentence or two: it is the part that teaches.',
+        component: 'Pick the component this question is about, from the catalog.',
+        image: 'This mode shows a screenshot of the component. Upload one.',
+        optionCount: (min: number, max: number) =>
+          min === max
+            ? `This mode needs exactly ${min} options.`
+            : `This mode needs between ${min} and ${max} options.`,
+        optionComponent: (name: string) =>
+          `“${name}” is not a component in the design system. Pick one from the list.`,
+        optionEmpty: 'Every option needs to be filled in.',
+        optionImage: 'Every option needs its own screenshot.',
+        correctAnswer: 'Mark which option is the correct answer.',
+        duplicateIds: 'Two options share the same id.',
+        docUrl: 'The documentation link is not a valid URL.',
+        fallback: (path: string) => `Check the ${path} field.`,
+      },
       previewTitle: 'Player preview',
       previewHint: 'Exactly what the player will see.',
       saveDraft: 'Save draft',

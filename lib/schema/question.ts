@@ -61,6 +61,18 @@ export type ComponentOption = z.infer<typeof componentOptionSchema>
 export type ImageOption = z.infer<typeof imageOptionSchema>
 export type QuestionOption = ComponentOption | ImageOption
 
+/**
+ * An option as it sits in the database, where a half-written draft is legal.
+ * The strict union above is what a question must satisfy to be published; this
+ * is what the admin reads and writes in the meantime.
+ */
+export type StoredOption = {
+  id: string
+  component?: string
+  imageKey?: string
+  label?: string
+}
+
 const baseFields = {
   id: z.uuid(),
   version: z.number().int().positive(),
@@ -222,14 +234,20 @@ export type PlayerQuestionContext = {
   totalQuestions?: number
 }
 
-/** The subset of a question that is allowed to be rendered. */
+/**
+ * The subset of a question that is allowed to be rendered.
+ *
+ * Options are the loose stored shape rather than the strict union, so the admin
+ * can preview a half-written draft through the very same renderer the game uses.
+ * Only `id`, `component`, `imageKey` and `label` are ever read.
+ */
 export type PlayableFields = {
   mode: Mode
   difficulty: Difficulty
   prompt: string
   imageKey: string | null
   component: string | null
-  options: readonly QuestionOption[]
+  options: readonly StoredOption[]
   timerSeconds: number
 }
 
