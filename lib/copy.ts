@@ -238,6 +238,15 @@ export const copy = {
         'which-variant': 'The variants to choose between',
         'spot-the-drift': 'The two screenshots, right and wrong',
       } satisfies Record<Mode, string>,
+      fillFromGuidelines: 'Fill from the guidelines',
+      fillFromGuidelinesHint:
+        'Suggests prompts taken from the design guidelines, with the component names removed.',
+      useThisDescription: 'Use this one',
+      descriptionThin: 'Too short to identify one component',
+      descriptionEditHint:
+        'These are drafts. The redaction leaves rough edges — read it back as a question before publishing, and rewrite anything that does not point at exactly one component.',
+      noDescriptionFor: (component: string) =>
+        `The design guidelines have nothing usable for ${component} — every sentence names a sibling component, so redacting leaves nothing.`,
       fanoutLabel: 'Variants to compare',
       fanout: (count: number) =>
         count < 2 ? 'Pick at least two variants' : `Make ${count} options from these`,

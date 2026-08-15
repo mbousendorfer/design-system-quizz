@@ -75,6 +75,26 @@ A product scenario in words, no screenshot at all.
   Notification is a good question because both are inline messages and only one
   takes a title and a button.
 
+### Name it from the description
+
+How the design system describes a component, with its name taken out. The player
+names it.
+
+- **Fill from the guidelines** offers drafts taken from the design-guideline files,
+  with every component name redacted. They are drafts, not prompts: the redaction
+  replaces names with "this component", so "keep to ≤6 tabs" comes out as "keep to
+  ≤6 this component". Read it back as a question and rewrite the rough edges.
+- The test that matters: **does the description point at exactly one component?**
+  "Turn a setting on or off" fits Toggle, Slide Toggle and Checkbox equally, so it
+  is a broken question however true it is. The picker flags the ones that are too
+  short to be unique, but only you can judge the rest.
+- Prefer the **Usage** tier over **Anatomy** when both are offered. Usage describes
+  intent and survives a redesign; Anatomy rewards memorising a number like "max
+  180px" that will change.
+- Distinctions the guidelines make explicitly are the best material here — Badge
+  versus Counter versus Status versus Tag is four components that all look like a
+  small pill and mean four different things.
+
 ## Choosing a level
 
 `easy`, `medium` and `hard` set the number of options, the timer and the score
@@ -91,6 +111,19 @@ declared level next to the measured success rate, and the **Calibration** tab li
 every question where the two disagree — a `hard` nobody misses, an `easy` most
 people fail — once it has at least ten plays. Below ten, a success rate is noise;
 above it, trust the measurement over your instinct.
+
+## Live renders instead of screenshots
+
+For `which-variant`, you rarely need screenshots at all. Pick the component, tick
+the variants worth comparing, and **Make N options from these** builds one option
+per variant, rendered from the real design system stylesheet. They stay correct when
+the design system changes, and there is nothing to re-capture.
+
+The options are deliberately identical apart from the one modifier that differs. A
+question where the variants also differ in size or label is asking something else.
+
+`spot-the-drift` still needs screenshots: the whole question is about markup, and
+markup rendered live is markup a player can read.
 
 ## Screenshots
 

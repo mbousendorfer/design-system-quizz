@@ -1,0 +1,1433 @@
+{
+  "checksum": "ccd05e920f1c2e78",
+  "descriptions": [
+    {
+      "component": "Action Dropdown",
+      "slug": "action-dropdown",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Presents a list of actions the user can take — the menu / overflow \"⋯\" primitive. Don't hand-build a floating menu; this is it."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Must be triggered by an action component — a button, icon button, or standalone link — which shows a right chevron when it opens a dropdown. Positioned exactly 4px from the trigger, below it (flips above when there isn't room), aligned to the trigger's left or right edge depending on its position in its parent. Use each option feature sparingly and for its purpose."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Width 250px default; 340px (\"big\") when content is long. Matching the trigger's width is a deliberate exception, not the norm. Item parts: an optional badge next to the label (e.g. \"New\"), separators to segment groups, and at most one right-side icon (feature-lock or info, never both)."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ Trigger from an action component with a chevron; red row for destructive actions; explain disabled items on hover. ❌ Hand-rolling a floating menu; two right-side icons on one item; matching trigger width as a default."
+        }
+      ]
+    },
+    {
+      "component": "Autocomplete",
+      "slug": "autocomplete",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 3,
+          "text": "Reach for it when the set is large or server-backed and the user knows roughly what they want, so free-typing is faster than scrolling."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 3,
+          "text": ""
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "thin",
+          "droppedUnits": 2,
+          "text": "A single-line text input that opens an option list as you type."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "✅ Use it for large or remote sets where typing beats scrolling; disambiguate look-alikes with a caption."
+        }
+      ]
+    },
+    {
+      "component": "Avatar",
+      "slug": "avatar",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "thin",
+          "droppedUnits": 3,
+          "text": "Represents a person or an organisation."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Fallbacks when a photo is missing, in order: initials → generic person glyph → anonymous mask, on a neutral grey fill. Use the default 40px unless the surrounding layout calls for another step on the ramp."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "People = circular; organisations = rounded-square brand tile."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "❌ Hand-laying overlapping this component; a 36 or 40px organisation tile."
+        }
+      ]
+    },
+    {
+      "component": "Avatar Group",
+      "slug": "avatar-group",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 3,
+          "text": "A stack of overlapping Avatars with an overflow count when the group exceeds its cap — use it whenever several people or orgs share one context (a post's approvers, a team, thread participants)."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Cap the visible count so a large group stays compact; the overflow chip carries the remainder. Turn on the description tooltip when identities aren't labelled elsewhere."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "Optional per-avatar description tooltip on hover."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Badge",
+      "slug": "badge",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 3,
+          "text": "It is not the result of a user action, and does not represent an object/person or a user-induced status."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Use orange for the single \"look here\" marker on a view; blue for routine, lower-priority context that may recur."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "A small pill of text. No min/max width to plan for — it's system-generated, not user text."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ Orange once per view, caps, short; blue for everything routine. ❌ An orange this component repeated across a view; a this component standing in for a count/state/entity."
+        }
+      ]
+    },
+    {
+      "component": "Button",
+      "slug": "button",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 4,
+          "text": "A discrete, triggerable action. Reach for a this component once the action carries weight or reads as a CTA. Action hierarchy structures the actions within a screen (a modal on a backdrop is its own screen; a backdrop-less dropdown belongs to the screen that opened it)."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Pick the hierarchy level first, then the color for meaning. One clear primary per screen; everything else takes a lighter weight."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Label, with an optional icon to the left (move it right only when the this component itself is right-aligned, so icons line up). Two actions ending the same flow: primary orange on the right, secondary orange to its left."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Checkbox",
+      "slug": "checkbox",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "empty",
+          "droppedUnits": 3,
+          "text": ""
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Use one this component per independent option; several may be checked at once. Use the indeterminate state for a parent that governs a partially-selected group (\"select all\")."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Close Button",
+      "slug": "close-button",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "The dedicated × control that dismisses a container — modals, panels, drawers, dismissible infoboxes/snackbars. Reach for it whenever a surface needs a standard \"close this\" affordance so the glyph, size, and hit area stay identical everywhere."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Use it only to dismiss/close the surface it sits in — not as a generic cancel or a destructive delete. One per surface, conventionally top-right; don't pair two close affordances on the same container."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 1,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Counter",
+      "slug": "counter",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 3,
+          "text": "A small numeric indicator. Two non-interchangeable forms: a normal this component for a live count placed after a label (\"Items in this list: 23\"), and a notif this component for a count shown as a notification on an icon."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Reserve orange for counts that genuinely need attention; use blue/grey for neutral counts that simply fit the surrounding UI. Keep the number live — if it never changes, it isn't a this component."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "The number, optionally on a coloured background — or bare, when it sits on an icon as a notif this component."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ Normal this component after a label; notif this component on an icon; orange only when urgent. ❌ A notif this component standing in for a normal one; a this component around a static number inside a sentence."
+        }
+      ]
+    },
+    {
+      "component": "Datepicker",
+      "slug": "datepicker",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Pick a single date, a date range, or a preset period, with the full calendar chrome the app expects: an inline calendar, a dropdown trigger, or an input-bound field, plus range presets and optional time selection."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "Turn on ranges for analytics/filter contexts where users pick a period, not one day. Compose from the three selectors and CSS-UI classes — never hand-build a calendar grid."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Calendar parts (CSS-UI): header, month nav, calendar grid(s), ranges rail, time row, footer."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ Match the selector to the surface (input in forms, dropdown in filters, inline when persistent). ❌ Reimplementing the grid or inventing modifier classes outside those in the spec."
+        }
+      ]
+    },
+    {
+      "component": "Dot Stepper",
+      "slug": "dot-stepper",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "Compact dots showing step position in a carousel or onboarding."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "Use for lightweight position feedback where labels would be noise."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 1,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "✅ Use for compact carousel / onboarding progress."
+        }
+      ]
+    },
+    {
+      "component": "Ellipsis",
+      "slug": "ellipsis",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "For a simple single-line clip, plain CSS truncation is fine — don't pull in the directive."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Use it for token-aware truncation (tags, mentions, mixed inline content) or when you need the \"+N / …\" click-to-expand behaviour."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "Emits the removed-elements count and the removed text so you can react (e.g. a tooltip with the full value)."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "✅ Use for element-aware or clickable truncation; surface the hidden text on demand."
+        }
+      ]
+    },
+    {
+      "component": "Filter Chips List",
+      "slug": "filter-chips-list",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 3,
+          "text": "A horizontal row of toggleable chips that filter a list in place — reach for it when the filter set is small, visible at a glance, and worth keeping on screen (source kinds, content types, statuses)."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Keep the option set short enough to sit on one line — this is a \"show the choices\" control, not a menu. Selection is state, not navigation: toggling a chip refines the visible list, it doesn't route."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Filter Dropdown",
+      "slug": "filter-dropdown",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 3,
+          "text": "A compact button that opens a panel of grouped filters — with optional Apply/Clear actions and saved presets."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "Use Apply mode when applying each toggle immediately would be costly or jarring; use presets when users re-run the same filter combinations."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Panel footer: Apply / Clear / Reset actions and the save-preset controls when enabled."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ Use for large/grouped/reusable filters; localise via the text inputs; surface locked groups and handle their click outputs. ❌ Force a big grouped taxonomy into always-visible chips; leave a needless Apply button on a trivial one-property filter."
+        }
+      ]
+    },
+    {
+      "component": "Icon Button",
+      "slug": "icon-button",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "A square, icon-only action. Use it for every icon-only action — close (×), kebab (⋯), inline edit, toolbar shortcuts."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Reserve the single hidden right-icon slot elsewhere; here the icon is the whole control, so choose a clear, broadly-recognised glyph."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "A single icon in a square target. A toolbar (crowded top-right shortcut cluster) is the only place this component may go without a stroke; if there's no background behind the toolbar, use them with stroke + background so they stay legible."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "✅ A tooltip label on every this component; stroke + background when floating over content."
+        }
+      ]
+    },
+    {
+      "component": "Infobox",
+      "slug": "infobox",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "A static callout that highlights a page element and flags something needing attention — errors, notifications, changes, updates. It stays at the top of a content area or on its own in a section, and persists until dismissed. Show at most one at a time in most cases."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Format by container width: horizontal when the container is ≥588px (button inline, right) · vertical when <588px, on mobile, or in narrow panels/drawers (button stacked under the text). Stacking: most recent on top; keep the higher-priority one on top; a dismissed this component doesn't return. Grouping the same type by context (e.g."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "thin",
+          "droppedUnits": 2,
+          "text": "An icon, a title, a description, and an optional button and/or close ×."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "❌ Use an this component for transient post-action feedback (that's a Snackbar); build ad-hoc grouped-error boxes out of the standard this component."
+        }
+      ]
+    },
+    {
+      "component": "Input",
+      "slug": "input",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "A single-line text-entry field for short, freeform values."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 3,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Labels",
+      "slug": "label",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "empty",
+          "droppedUnits": 3,
+          "text": ""
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Let a long row collapse into \"+N more\" rather than wrapping indefinitely; the \"＋\" control adds a new this component."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Single-colour chip. Text max 180px then ellipsis; no min width. Each this component may carry an × to remove it. A row of this component overflows into a \"+N more\" link plus a \"＋\" add control."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "✅ Use inside the this component feature; overflow with \"+N more\"."
+        }
+      ]
+    },
+    {
+      "component": "Link",
+      "slug": "link",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "A text this component. Use it for navigation (to another page, in-app or external) and for inline micro-actions — add / remove / \"see more\"."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 1,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "✅ Self-explanatory this component text; icon on standalone action this component."
+        }
+      ]
+    },
+    {
+      "component": "Loader",
+      "slug": "loader",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "An indeterminate loading indicator for waits with no known progress."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "Reserve it for indeterminate waits; use a button's inline bar for button-scoped loading."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Media Display Overlay",
+      "slug": "media-display-overlay",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "A layer shown over a piece of media (image or video) that presents controls, a caption, or actions on top of the visual instead of beside it — use it when the media is the surface and chrome must sit within its frame (a lightbox, a thumbnail's hover actions, a video preview). Not for panels or cards that merely contain a thumbnail — put that chrome in the surrounding layout."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Reserve it for chrome that genuinely belongs on the media (close, zoom, play, caption) — anything that reads as page layout stays outside the frame. Keep the overlay light so it never obscures the media it describes; let the media remain the focus."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 1,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ Layer controls/caption over the media when the media is the surface; keep the overlay minimal. ❌ Bury the image under heavy chrome; use it as a generic modal or as a container for non-media content."
+        }
+      ]
+    },
+    {
+      "component": "Menu",
+      "slug": "menu",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "empty",
+          "droppedUnits": 3,
+          "text": ""
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "For a plain list of actions with the DS look, reach for Action dropdown first; choose this component when you specifically need Material's this component (e.g. cascading submenus)."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "❌ Reaching for this component when a DS Action dropdown covers the need; using the deprecated PopMenu."
+        }
+      ]
+    },
+    {
+      "component": "Modal",
+      "slug": "modal",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "thin",
+          "droppedUnits": 3,
+          "text": "A focused, blocking task or decision presented on a backdrop."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Nav Selector",
+      "slug": "nav-selector",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 3,
+          "text": "A structured navigation-and-selection column: a tree of categories → groups → leaves (with per-leaf details and actions) that the user browses and selects from, typically a social-profile / workspace picker in a side rail. Reach for it when selection is over a large, grouped, possibly hierarchical set that persists alongside the content it drives."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "Use the built-in category empty state rather than rendering your own empty markup."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 1,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "✅ Use it for grouped/hierarchical persistent selection; drive it through entries + outputs; reuse its parts."
+        }
+      ]
+    },
+    {
+      "component": "Paginator",
+      "slug": "pagination",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "Page through a large data set."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "Place the this component directly under the table it controls."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "Often paired with a \"showing X–Y of N\" count and an optional \"go to\" input."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "❌ Leave more than one page marked active."
+        }
+      ]
+    },
+    {
+      "component": "Phone Number Input",
+      "slug": "phone-number-input",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "Let the component own formatting and country/code state — read the two outputs rather than parsing the raw string yourself."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 3,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "✅ Use this component for any phone field so the dial code and number stay in sync and validated."
+        }
+      ]
+    },
+    {
+      "component": "Radio",
+      "slug": "radio",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "thin",
+          "droppedUnits": 3,
+          "text": "Choose one option within a group."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 1,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Radio Button Card",
+      "slug": "radio-button-card",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "empty",
+          "droppedUnits": 3,
+          "text": ""
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 3,
+          "text": ""
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 3,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Segmented Control",
+      "slug": "segmented-control",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 3,
+          "text": "A compact inline control that flips between 2–4 short, mutually-exclusive views or modes shown side by side, all visible at once (e.g. List / Grid, Guided / Free-form, aspect-ratio presets). Exactly one segment is active."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Use it for a quick mode/view switch where the options are best compared at a glance, not for navigating between unrelated sections. Keep segment widths balanced so no single label dominates."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "A bounded track holding equal-weight segments; the active segment reads as a filled/inset pill, the others quiet."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Select",
+      "slug": "select",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 3,
+          "text": "Pick one or many entries from a set — kept simple and efficient. Three canonical targets: users, network / profiles, and generic items."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "A \"＋ Create\" footer opens a modal for input, and should come with search. Use groups (a selectable header this component its children) to differentiate items; 2-line caption items where names collide (prioritized for users/products — pair with the avatar); separators for unnamed groups. Show \"No result found\" when a search misses — offer \"Create\" when the list is empty."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Option list: avatar + label rows for users/profiles (profiles add a network sub-badge), plain text for generic items. Optional search field, an optional \"＋ Create\" footer, and a \"No result found\" empty state."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "✅ Users → 2-line + avatar rows so the right person is picked without guessing."
+        }
+      ]
+    },
+    {
+      "component": "Snackbars Thread",
+      "slug": "snackbars-thread",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "The toast primitive: instant feedback after a user action. It slides in, informs, and disappears — and must not interrupt the user. (Searching \"toast\" leads here.) There is no transient warning (the Warning variant was dropped) — reframe it as Success or Error."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Timing: temporary this component stay 5 seconds; permanent ones stay until the user acts or closes. Action wording must be very short (\"Undo\", \"Go to post\", \"Cancel\") — and short in translation too. Stacking: top → bottom with 12px gaps; the newest is lowest and on top in z-index; stacks infinitely."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "A short message, an optional action button with a very short label, and an optional close ×. Rendered in a container fixed 68px from the top / 32px from the right, at the highest z-index in the app (above the modal backdrop)."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "✅ Use Success and Error only; keep the action label short; let temporary this component self-dismiss after 5s."
+        }
+      ]
+    },
+    {
+      "component": "Social Button",
+      "slug": "social-button",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "A button carrying a social network's branding, for connect / sign-in actions where the network identity matters (Facebook, Instagram, LinkedIn, X, TikTok, YouTube…)."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 1,
+          "text": ""
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "thin",
+          "droppedUnits": 0,
+          "text": "Network logo + label, per-network styling."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "✅ Use the real component per network."
+        }
+      ]
+    },
+    {
+      "component": "Split Button",
+      "slug": "split-button",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "One primary action plus a caret revealing closely-related alternatives (e.g. Publish / schedule, Create draft / import). Use it only when there is a primary action; for a pure menu trigger use an Icon button + Action dropdown."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "The main button performs the primary action directly; the caret is for the variants, not the primary path."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 1,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ Use when the primary action is the common case and alternatives are secondary. ❌ Use as a generic dropdown trigger with no real primary action."
+        }
+      ]
+    },
+    {
+      "component": "Status",
+      "slug": "status",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 3,
+          "text": "Shows the this component of the whole component it sits in — connection state, publish state, and so on — set by either the system or a user action."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Keep the label to one or two words maximum. Choose the colour by meaning, not decoration."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 1,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "✅ One- or two-word label describing the whole component's state; colour by meaning."
+        }
+      ]
+    },
+    {
+      "component": "Status Card",
+      "slug": "status-card",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 3,
+          "text": "A coloured message card that surfaces a state or summary — an icon, a short explanatory line, and an optional link — sitting inline in a layout."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "Keep the body to a short, plain line; use the link for the one action that resolves or explains the state."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 1,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ One clear state per card, colour chosen by meaning, at most one resolving link. ❌ A paragraph of copy, multiple competing links, or a colour picked by hue rather than meaning."
+        }
+      ]
+    },
+    {
+      "component": "Stepper",
+      "slug": "stepper",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Labeled multi-step progress through a flow. For compact, unlabeled progress (carousel / onboarding dots) use the Dot this component instead."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "Use for flows where each step benefits from a visible label."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 1,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ Use for labeled multi-step flows; reflect real progress in the step states. ❌ Use it for compact, unlabeled progress (use the Dot this component)."
+        }
+      ]
+    },
+    {
+      "component": "Table",
+      "slug": "table",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "thin",
+          "droppedUnits": 3,
+          "text": "For scannable, sortable, tabular records."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Reach for a this component only when the content is real tabular data — never for page layout."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "A leading identity cell often pairs an avatar + name + email; empty numeric cells conventionally show an em-dash."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "empty",
+          "droppedUnits": 2,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "component": "Tabs",
+      "slug": "tabs",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 2,
+          "text": "Organise related content that sits at the same level of hierarchy, letting the user switch between groups easily. Not for primary navigation — this component switch views within one context, they don't navigate the app."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Keep to ≤6 this component — more adds cognitive load and clutter. Exactly one active at a time (an active this component can be clicked, it just does nothing)."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "A row of this component labels; an optional counter and/or icon per this component (an icon is an edge case)."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ Use for related, same-level content; keep ≤6 this component; keep exactly one active. ❌ Use this component as primary app navigation; overload the bar with many this component or long labels."
+        }
+      ]
+    },
+    {
+      "component": "Tag",
+      "slug": "tag",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 4,
+          "text": "Represents an entity — an object or a user — inside another component (lists, multiselects, inline text)."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Choose the colour by object type, then check what other features already use so the same object type stays consistent across the app."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Text is mandatory (a single-character this component is valid), max 180px then ellipsis; no min width. Optional leading avatar or icon (never both); optional trailing × on removable this component."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "❌ Both an avatar and an icon on one this component; a colour chosen by hue rather than by object type."
+        }
+      ]
+    },
+    {
+      "component": "Textarea",
+      "slug": "textarea",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "A multi-line text-entry field for longer freeform content."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "Choose the resize behaviour to match the content (grow-with-content vs. user-resizable)."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "thin",
+          "droppedUnits": 1,
+          "text": "An optional character counter sits with the field."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ Pick a resize mode on purpose; show the counter when there is a limit. ❌ Leaving resize to chance, or surfacing the limit only once it is exceeded."
+        }
+      ]
+    },
+    {
+      "component": "Toggle",
+      "slug": "toggle",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "thin",
+          "droppedUnits": 2,
+          "text": "Turn a setting on or off."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Use a this component for an immediate on/off setting, not for choosing among items. The state icon (×/check) carries the meaning, so on/off reads even in the disabled tint."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "A track with a sliding knob that carries a state icon — an × when off, a check when on."
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 1,
+          "text": "✅ Use a this component for a setting; keep the ×/check icon so state doesn't rest on color."
+        }
+      ]
+    },
+    {
+      "component": "Tooltip",
+      "slug": "tooltip",
+      "candidates": [
+        {
+          "tier": "Overview",
+          "suggestedDifficulty": "easy",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "A small hover hint: a label for an icon button, a \"why is this disabled\" note, or extra context on an option. Common pairings: Icon button (needs a this component label) · Action dropdown (info / disabled this component)."
+        },
+        {
+          "tier": "Usage",
+          "suggestedDifficulty": "medium",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "Set the position class for every this component so it anchors correctly to its trigger. Keep the text short — it's a hint, not documentation."
+        },
+        {
+          "tier": "Anatomy",
+          "suggestedDifficulty": "medium",
+          "status": "empty",
+          "droppedUnits": 3,
+          "text": ""
+        },
+        {
+          "tier": "Do / Don't",
+          "suggestedDifficulty": "hard",
+          "status": "ready",
+          "droppedUnits": 0,
+          "text": "✅ Always set a position class; keep the hint concise; use it to label icon-only buttons. ❌ Ship a this component with no position class; put essential information only in a this component."
+        }
+      ]
+    }
+  ]
+}

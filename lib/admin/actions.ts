@@ -15,6 +15,8 @@ import {
 } from '@/lib/admin/repository'
 import { adminQuestionInputSchema, publishBlockers, renderRecipeSchema } from '@/lib/admin/validation'
 import { isSignedIn } from '@/lib/auth/admin-session'
+import { describeComponent, type DescriptionCandidate } from '@/lib/admin/descriptions'
+import { docUrlFor } from '@/lib/catalog'
 import { copy } from '@/lib/copy'
 import { compileCssUi } from '@/lib/render/compile'
 import { lintQuestion, type Status } from '@/lib/schema/question'
@@ -213,6 +215,26 @@ export async function compileRecipesAction(
           }
         }),
       },
+    }
+  } catch (error) {
+    return failure(error)
+  }
+}
+
+/**
+ * Candidate prompts for a component, plus its documentation link.
+ *
+ * One call fills both fields, and it goes through an action because the
+ * descriptions are server-only — they are an answer key for the mode they feed.
+ */
+export async function suggestDescriptionsAction(component: string): Promise<
+  ActionResult<{ candidates: DescriptionCandidate[]; docUrl: string | null }>
+> {
+  try {
+    await requireAdmin()
+    return {
+      ok: true,
+      data: { candidates: describeComponent(component), docUrl: docUrlFor(component) },
     }
   } catch (error) {
     return failure(error)

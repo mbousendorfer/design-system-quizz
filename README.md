@@ -72,9 +72,12 @@ it is what the CLI replaces.
 npm run db:verify
 ```
 
-Applies the migrations to an in-memory Postgres (PGlite) and asserts 41 rules:
+Applies the migrations to an in-memory Postgres (PGlite) and asserts 45 rules:
 the versioning trigger, the single-live-version index, the publish-time
-constraints, the stats views, and that the bulk import is genuinely all-or-nothing.
+constraints, the stats views, that the bulk import is genuinely all-or-nothing, and
+that Postgres and TypeScript still agree on the list of modes — that last one reads
+`MODES` from the TypeScript source and interrogates `pg_enum`, so adding a sixth mode
+fails here until the SQL follows.
 It runs in a couple of seconds and needs no connection. The storage bucket and the
 `anon` grants are the only parts it cannot cover, since they only exist on a real
 Supabase instance.
@@ -110,7 +113,10 @@ every image request without waking a function.
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run lint` | ESLint |
 | `npm test` | Unit tests: schema, sanitiser, scoring, question drawing |
-| `npm run ds:catalog` | Regenerates `content/ds-catalog.json` from the design system |
+| `npm run ds:catalog` | Regenerates `content/ds-catalog.json` from the design system and the live Storybook |
+| `npm run ds:css` | Vendors the design system stylesheets, with every class renamed |
+| `npm run ds:descriptions` | Extracts redacted component descriptions from the design guidelines |
+| `npm run db:drafts` | Generates a draft question per usable description |
 | `npm run db:verify` | Migrations against an in-memory Postgres |
 | `npm run db:sql` | Bundles the migrations for the SQL editor |
 | `npm run db:seed` | Seeds the starter questions |
@@ -127,7 +133,35 @@ against, so a question can never name a component that does not exist.
 Point it elsewhere with `DS_SPECS_DIR=/path/to/design-specs npm run ds:catalog`.
 The design system repository is only ever read, never written to.
 
+The catalog is the union of two sources. Most components come from `design-specs/`;
+seven come from the Storybook alone, which documents them where the specs never did.
+Documentation links are resolved against the live story index, so a component whose
+story was renamed still links correctly, and one with no story gets no link at all
+rather than a wrong one.
+
+`npm run ds:css` vendors the stylesheets. It reads `DS_THEME_VERSION` and
+`DS_SYMBOL_VERSION`, both pinned in the script — never `@latest`, because a silent
+upgrade would change what a published question renders and quietly invalidate its
+answer.
+
+`npm run ds:descriptions` reads the design-guidelines plugin, defaulting to
+`~/sources/claude-marketplace/plugins/design/design-guidelines/references/components`
+and overridable with `DS_GUIDELINES_DIR`. Its output is committed, so nobody needs
+that checkout to build or to write questions — only to regenerate.
+
 ## Things worth knowing before changing anything
+
+**Components are rendered live, and the markup is renamed.** A live render is
+stored as a recipe — component, modifiers, label — plus the markup it compiles to,
+and only the markup travels. The vendored stylesheet renames every class and custom
+property, because `ap-button ghost` would otherwise spell out both the component and
+the variant to anyone with an inspector. This is obfuscation, not security: a
+structural diff against the public CDN file recovers the map. It raises cheating
+from five seconds and no skill to an afternoon of scripting, which is the right
+amount of defence for an internal quiz.
+
+`spot-the-drift` stays on screenshots. The drift *is* the markup, and no rename
+hides an inline `style` attribute.
 
 **The answer key never reaches the browser.** Questions are served through the
 `questions_public` view, which does not carry `correct_option_id` or `explanation`

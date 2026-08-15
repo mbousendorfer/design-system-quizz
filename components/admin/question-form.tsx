@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState, useTransition } from 'react'
 import { PlusIcon, SparklesIcon, TrashIcon } from 'lucide-react'
 
 import { ComponentCombobox } from '@/components/admin/component-combobox'
+import { DescriptionPicker } from '@/components/admin/description-picker'
 import { ModifierFanout } from '@/components/admin/modifier-fanout'
 import { ShotDropzone } from '@/components/admin/shot-dropzone'
 import { ChoiceGroup } from '@/components/game/choice-group'
@@ -335,6 +336,19 @@ export function QuestionForm({
                 />
                 <FieldDescription>{copy.questions.form.difficultyHint}</FieldDescription>
               </FieldSet>
+
+              {/* The accelerator for the description mode: the guidelines already
+                  describe every component, so the prompt is a pick-and-edit rather
+                  than a blank page. */}
+              {draft.mode === 'name-from-description' ? (
+                <Field>
+                  <FieldLabel>{copy.questions.form.fillFromGuidelines}</FieldLabel>
+                  <DescriptionPicker
+                    component={draft.component}
+                    onPick={(prompt, difficulty) => patch({ prompt, difficulty })}
+                  />
+                </Field>
+              ) : null}
 
               <Field>
                 <FieldLabel htmlFor="prompt">{copy.questions.form.promptLabel}</FieldLabel>

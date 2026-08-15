@@ -17,7 +17,9 @@
     "db:sql": "node --import tsx scripts/bundle-migrations.ts",
     "smoke": "node --conditions=react-server --env-file-if-exists=.env.local --import tsx scripts/smoke-game.ts",
     "questions:export": "node --env-file-if-exists=.env.local --import tsx scripts/questions-export.ts",
-    "ds:css": "node scripts/ds-css.mjs"
+    "ds:css": "node scripts/ds-css.mjs",
+    "ds:descriptions": "node scripts/ds-descriptions.mjs",
+    "db:drafts": "node --conditions=react-server --env-file-if-exists=.env.local --import tsx scripts/seed-descriptions.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
