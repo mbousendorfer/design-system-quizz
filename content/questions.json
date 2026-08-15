@@ -1,0 +1,376 @@
+{
+  "questions": [
+    {
+      "id": "1988f511-610f-5a76-b442-140c3c75e927",
+      "version": 1,
+      "mode": "name-that-component",
+      "difficulty": "easy",
+      "component": "Badge",
+      "prompt": "Which component is this?",
+      "options": [
+        {
+          "id": "a",
+          "component": "Badge"
+        },
+        {
+          "id": "b",
+          "component": "Modal"
+        },
+        {
+          "id": "c",
+          "component": "Paginator"
+        },
+        {
+          "id": "d",
+          "component": "Datepicker"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "A Badge is the small dot or count that attaches to another element to flag activity. It is read, never clicked. Modal, Paginator and Datepicker are all interactive surfaces in their own right — none of them can sit on the corner of an icon.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": "cdb5dff7.svg",
+      "timerSeconds": null
+    },
+    {
+      "id": "00dbd055-7b28-5377-bd8c-c0396ee6e172",
+      "version": 1,
+      "mode": "name-that-component",
+      "difficulty": "hard",
+      "component": "Status",
+      "prompt": "Which component is this?",
+      "options": [
+        {
+          "id": "a",
+          "component": "Badge"
+        },
+        {
+          "id": "b",
+          "component": "Tag"
+        },
+        {
+          "id": "c",
+          "component": "Status"
+        },
+        {
+          "id": "d",
+          "component": "Counter"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        },
+        {
+          "id": "f",
+          "component": "Filter Chips List"
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "This is a Status: a pill whose dot and colour carry a state the system decided. Badge is the bare dot or count attached to something else, with no label of its own. Tag is a token the user put there and can take away. Counter is a number pill. Labels are user-assigned to a conversation. Filter Chips List shows which filters are currently applied. The giveaway is the dot: Status ships with it by default and has a `no-dot` modifier to remove it.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": "7a719b85.svg",
+      "timerSeconds": null
+    },
+    {
+      "id": "3eef358a-134f-554c-8169-f5b09a4ea21e",
+      "version": 1,
+      "mode": "name-that-component",
+      "difficulty": "medium",
+      "component": "Segmented Control",
+      "prompt": "Which component is this?",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tabs"
+        },
+        {
+          "id": "b",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "c",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "d",
+          "component": "Stepper"
+        },
+        {
+          "id": "e",
+          "component": "Paginator"
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "A Segmented Control holds a small set of mutually exclusive choices in one joined control, and switches a view in place. Tabs also switch views, but they sit above a panel and can scroll. A Paginator moves through pages of the same list rather than between views. A Stepper walks a sequence that has a beginning and an end.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": "ac8d9fab.svg",
+      "timerSeconds": null
+    },
+    {
+      "id": "37d6cb41-593f-5d4a-9b84-2772994d0d16",
+      "version": 1,
+      "mode": "spot-the-drift",
+      "difficulty": "easy",
+      "component": "Button",
+      "prompt": "Both render an orange Save button. Which one follows the design system?",
+      "options": [
+        {
+          "id": "a",
+          "imageKey": "93201cc0.svg"
+        },
+        {
+          "id": "b",
+          "imageKey": "466efd55.svg"
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Two drifts in one on the wrong side. BEM double-dash modifiers do not exist in this design system — modifiers are plain words chained onto the base class, as in `ap-button primary orange`. And the colour is hardcoded instead of coming from `--comp-button-*`, which is exactly what turns a future theme change into a search-and-replace across the whole codebase.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "ae3b1b92-640f-5a29-a7f2-886316630913",
+      "version": 1,
+      "mode": "spot-the-drift",
+      "difficulty": "hard",
+      "component": "Status",
+      "prompt": "Both render a green \"Published\" pill. Which one follows the design system?",
+      "options": [
+        {
+          "id": "a",
+          "imageKey": "7c2b3c11.svg"
+        },
+        {
+          "id": "b",
+          "imageKey": "d2eb38a0.svg"
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "The wrong one is a Status pill rebuilt by hand: correct today, wrong the moment the green shifts or the radius scale moves, and invisible to anyone auditing the design system. Searching the codebase for \"pill\" and finding nothing is not proof the component is missing — search by intent instead. Both \"state pill\" and \"status label\" lead straight to Status in the component index.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "60da8e18-fb32-500d-bfd3-b10fcf28cbef",
+      "version": 1,
+      "mode": "spot-the-drift",
+      "difficulty": "medium",
+      "component": "Input Group",
+      "prompt": "Which markup respects the component anatomy?",
+      "options": [
+        {
+          "id": "a",
+          "imageKey": "edd117fa.svg"
+        },
+        {
+          "id": "b",
+          "imageKey": "92f5c950.svg"
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Components in this design system style their direct children — `> input`, `> i`, `> span`. Slipping an extra wrapper in between breaks that selector chain, the input silently loses its styling, and somebody patches it back with custom CSS a week later. There is already a documented wrapper for this: `ap-input-group`. Inventing `input-wrapper` is how a codebase grows a second, undocumented design system.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "c3369e27-123b-521e-915c-1db31466eae9",
+      "version": 1,
+      "mode": "which-component",
+      "difficulty": "easy",
+      "component": "Snackbars Thread",
+      "prompt": "A post has just been scheduled. You want to confirm it briefly, without interrupting what the user is doing, and let the message disappear on its own.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Modal"
+        },
+        {
+          "id": "b",
+          "component": "Snackbars Thread"
+        },
+        {
+          "id": "c",
+          "component": "Infobox"
+        },
+        {
+          "id": "d",
+          "component": "Tooltip"
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Snackbars Thread is the transient confirmation: it appears, it is read, it leaves. A Modal demands a decision before anything else can happen, which is far too much ceremony for a success message. An Infobox is a banner that stays on the page. A Tooltip only exists while you hover, so nobody would ever see it. If you reach for the word \"toast\", this design system calls it Snackbars Thread.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "8610e0ab-1761-5b83-9df2-4fdd2b3edbeb",
+      "version": 1,
+      "mode": "which-component",
+      "difficulty": "hard",
+      "component": "Filter Chips List",
+      "prompt": "The inbox is currently filtered by three criteria. You want to show them above the list, each one removable in a single click.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tag"
+        },
+        {
+          "id": "b",
+          "component": "Filter Chips List"
+        },
+        {
+          "id": "c",
+          "component": "Labels"
+        },
+        {
+          "id": "d",
+          "component": "Filter Dropdown"
+        },
+        {
+          "id": "e",
+          "component": "Labels Selector"
+        },
+        {
+          "id": "f",
+          "component": "Segmented Control"
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Filter Chips List is the row of filters currently applied — both \"active filters\" and \"filter chips\" map onto it in the component index, and it exposes the items and a change output for removal. Tag is the generic removable token underneath, but the list is the documented component and rebuilding it from Tags is drift. Filter Dropdown is where you choose the filters, not where you see them. Labels and Labels Selector are about labels a user assigns to a conversation, which is a different concept that merely looks alike.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "2b9b924b-c6a0-5b07-98bf-bb0f9d9601ab",
+      "version": 1,
+      "mode": "which-component",
+      "difficulty": "medium",
+      "component": "Infobox",
+      "prompt": "This workspace has hit its monthly publishing limit. The message has to stay on the page, carry a heading, and offer an \"Upgrade plan\" button.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Snackbars Thread"
+        },
+        {
+          "id": "b",
+          "component": "Notification"
+        },
+        {
+          "id": "c",
+          "component": "Infobox"
+        },
+        {
+          "id": "d",
+          "component": "Tooltip"
+        },
+        {
+          "id": "e",
+          "component": "Confirm Modal"
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Infobox is the one that can do all three: it takes a `title`, an action button with its own click output, and a `closable` flag — and its `type` even includes `feature-lock` for exactly this situation. Notification looks similar but only exposes a `type`: no heading, no button, so it cannot carry the call to action. A snackbar would vanish before the sentence is finished, and a Confirm Modal blocks the work to ask a question nobody asked.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "3e2aa166-49a1-516f-89dd-141117175d48",
+      "version": 1,
+      "mode": "which-variant",
+      "difficulty": "easy",
+      "component": "Button",
+      "prompt": "The composer is ready and \"Schedule post\" is the single most important action on the screen. Which button variant belongs here?",
+      "options": [
+        {
+          "id": "a",
+          "imageKey": "39a9f109.svg"
+        },
+        {
+          "id": "b",
+          "imageKey": "ec9de9f3.svg"
+        },
+        {
+          "id": "c",
+          "imageKey": "da51ce22.svg"
+        },
+        {
+          "id": "d",
+          "imageKey": "7d4a2123.svg"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "The primary variant carries the one action you most want taken on a screen, and the design system picks colour families by meaning rather than hue: `main` / orange is for primary CTAs. Secondary, ghost and transparent deliberately step back so the primary stays the only obvious target. Two primaries on one screen is what makes a page feel undecided.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "93625b73-241d-5c4e-b6b6-933dbbc68edf",
+      "version": 1,
+      "mode": "which-variant",
+      "difficulty": "hard",
+      "component": "Button",
+      "prompt": "The Advocacy report is not included in this workspace’s plan. The button should invite an upgrade rather than simply fail. Which variant belongs here?",
+      "options": [
+        {
+          "id": "a",
+          "imageKey": "e3639181.svg"
+        },
+        {
+          "id": "b",
+          "imageKey": "b7dea39b.svg"
+        },
+        {
+          "id": "c",
+          "imageKey": "2efbd357.svg"
+        },
+        {
+          "id": "d",
+          "imageKey": "f9e906d8.svg"
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "The `locked` variant, drawn from the feature-lock purple family, says \"available on another plan\" while staying interactive and leading somewhere. A greyed-out disabled button says \"not now, and there is nothing you can do about it\" — a different message and a dead end. Red is reserved for destructive actions, so it would read as a warning about deleting something.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "94fd31ae-8282-5f9c-8947-347f26389269",
+      "version": 1,
+      "mode": "which-variant",
+      "difficulty": "medium",
+      "component": "Button",
+      "prompt": "This button opens the AI caption generator. Which variant belongs here?",
+      "options": [
+        {
+          "id": "a",
+          "imageKey": "cf2bf123.svg"
+        },
+        {
+          "id": "b",
+          "imageKey": "ee15faff.svg"
+        },
+        {
+          "id": "c",
+          "imageKey": "f6d2a152.svg"
+        },
+        {
+          "id": "d",
+          "imageKey": "1766e575.svg"
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "The `mermaid` gradient is reserved for AI surfaces, and the conventions say so in as many words: never decoratively. The rule is not about taste. Use it on an ordinary button and you teach people it means nothing, and then it cannot mean \"AI\" on the screen where that actually matters.",
+      "docUrl": "https://design.agorapulse.com",
+      "imageKey": null,
+      "timerSeconds": null
+    }
+  ]
+}

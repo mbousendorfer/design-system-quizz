@@ -265,12 +265,33 @@ export const copy = {
       title: 'Bulk import',
       hint: 'Paste CSV or JSON. Nothing is written until every row passes.',
       pasteLabel: 'Rows',
-      preview: 'Preview',
-      commit: 'Import all',
-      rowsValid: (count: number) => `${count} rows ready`,
-      rowsInvalid: (count: number) => `${count} rows to fix`,
-      allOrNothing: 'One row failed, so nothing was written.',
-      imagesSeparate: 'Images are uploaded separately and referenced by their key.',
+      preview: 'Check the rows',
+      commit: (count: number) => `Import ${count} questions`,
+      rowsValid: (count: number) => `${count} ready`,
+      rowsInvalid: (count: number) => `${count} to fix`,
+      allOrNothing:
+        'All or nothing: one bad row and the whole batch is refused, so you never have to hunt for what half-landed.',
+      imagesSeparate:
+        'Upload the screenshots through a question form first, then reference them here by their key.',
+      columnsTitle: 'Columns',
+      columnsHint:
+        'CSV needs a header row. JSON takes the same field names, and accepts an `options` array instead of option1…option6.',
+      correctHint: '`correct` is the position of the right answer, counting from 1.',
+      statusHint: 'Set `status` to `draft` to import without publishing. Anything else publishes.',
+      empty: 'Nothing pasted yet.',
+      emptyHint: 'Paste a CSV or JSON batch above and check it before importing.',
+      rowLabel: (line: number) => `Row ${line}`,
+      imported: (count: number) => `Imported ${count} questions.`,
+      nothingValid: 'None of these rows can be imported yet.',
+      badMode: (given: string, allowed: string) =>
+        `“${given}” is not a game mode. Use one of: ${allowed}.`,
+      badDifficulty: (given: string, allowed: string) =>
+        `“${given}” is not a level. Use one of: ${allowed}.`,
+      badCorrect: (given: string, count: number) =>
+        `“${given}” is not a valid answer position. Give a number between 1 and ${count}.`,
+      badJson: (detail: string) => `That is not valid JSON. ${detail}`,
+      copyTemplate: 'Copy a template row',
+      templateCopied: 'Template copied.',
     },
   },
 

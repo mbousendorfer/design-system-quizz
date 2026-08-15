@@ -2,16 +2,19 @@
 
 import { revalidatePath } from 'next/cache'
 
+import { parseImport, type ImportReport } from '@/lib/admin/import'
 import {
   AdminError,
   loadQuestion,
   saveQuestion,
+  saveQuestionBatch,
   setStatus,
   uploadShot,
   type SaveResult,
 } from '@/lib/admin/repository'
 import { adminQuestionInputSchema, publishBlockers } from '@/lib/admin/validation'
 import { isSignedIn } from '@/lib/auth/admin-session'
+import { copy } from '@/lib/copy'
 import type { Status } from '@/lib/schema/question'
 
 /**
@@ -121,6 +124,52 @@ export async function duplicateQuestionAction(id: string): Promise<ActionResult<
 
     revalidatePath('/admin/questions')
     return { ok: true, data: result }
+  } catch (error) {
+    return failure(error)
+  }
+}
+
+/**
+ * Checks a pasted batch without writing anything. The author sees the whole
+ * report — which rows are ready, which are not and why — before deciding.
+ */
+export async function previewImportAction(text: string): Promise<ActionResult<ImportReport>> {
+  try {
+    await requireAdmin()
+    return { ok: true, data: parseImport(text) }
+  } catch (error) {
+    return failure(error)
+  }
+}
+
+/**
+ * Writes the batch. Re-parses from the pasted text rather than trusting a
+ * client-supplied list of rows, and refuses outright if any row is bad — the
+ * database call is a single transaction, so there is no half-imported state to
+ * clean up either way.
+ */
+export async function commitImportAction(text: string): Promise<ActionResult<{ imported: number }>> {
+  try {
+    await requireAdmin()
+
+    const report = parseImport(text)
+    if (report.rows.length === 0) return { ok: false, errors: [copy.questions.import.empty] }
+
+    if (report.invalidCount > 0) {
+      return {
+        ok: false,
+        errors: report.rows
+          .filter((row) => !row.input)
+          .map((row) => `${copy.questions.import.rowLabel(row.line)}: ${row.errors.join(' ')}`),
+      }
+    }
+
+    const saved = await saveQuestionBatch(
+      report.rows.map((row) => row.input as NonNullable<typeof row.input>),
+    )
+
+    revalidatePath('/admin/questions')
+    return { ok: true, data: { imported: saved.length } }
   } catch (error) {
     return failure(error)
   }

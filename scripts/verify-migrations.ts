@@ -423,6 +423,44 @@ const { rows: afterReseed } = await db.query<{ count: number }>(
 assert.equal(afterReseed[0].count, seeded.length)
 pass('re-running the seed updates in place rather than duplicating')
 
+// --- the batch save is all or nothing ---------------------------------------
+
+const batch = seeded.slice(0, 3).map(({ question }) => ({
+  ...rpcPayload(question),
+  id: null,
+  prompt: `${question.prompt} (batch)`,
+}))
+
+const { rows: batched } = await db.query<{ saved_id: string }>(
+  `select * from save_question_versions($1::jsonb)`,
+  [JSON.stringify(batch)],
+)
+assert.equal(batched.length, 3)
+pass('save_question_versions writes a whole batch')
+
+const countQuestions = async () => {
+  const { rows } = await db.query<{ count: number }>(`select count(*)::int as count from questions`)
+  return rows[0].count
+}
+const before = await countQuestions()
+
+// One bad row in the middle must take the whole batch down with it.
+await expectFailure(
+  'a batch with one malformed row writes nothing at all',
+  () =>
+    db.query(`select * from save_question_versions($1::jsonb)`, [
+      JSON.stringify([
+        { ...rpcPayload(seeded[0].question), id: null, prompt: 'first of a doomed batch' },
+        { ...rpcPayload(seeded[1].question), id: null, mode: 'not-a-real-mode' },
+        { ...rpcPayload(seeded[2].question), id: null, prompt: 'third of a doomed batch' },
+      ]),
+    ]),
+  /invalid input value for enum|not-a-real-mode/i,
+)
+
+assert.equal(await countQuestions(), before)
+pass('the rows before the bad one were rolled back too')
+
 const { rows: seedPool } = await db.query<Record<string, unknown>>(
   `select * from questions_public where id = any($1::uuid[])`,
   [seeded.map(({ question }) => question.id)],

@@ -15,7 +15,8 @@
     "test": "tsx --test \"lib/**/*.test.ts\"",
     "db:verify": "tsx scripts/verify-migrations.ts",
     "db:sql": "node --import tsx scripts/bundle-migrations.ts",
-    "smoke": "node --conditions=react-server --env-file-if-exists=.env.local --import tsx scripts/smoke-game.ts"
+    "smoke": "node --conditions=react-server --env-file-if-exists=.env.local --import tsx scripts/smoke-game.ts",
+    "questions:export": "node --env-file-if-exists=.env.local --import tsx scripts/questions-export.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

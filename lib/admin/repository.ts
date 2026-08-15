@@ -210,6 +210,38 @@ export async function saveQuestion(payload: SavePayload): Promise<SaveResult> {
   }
 }
 
+/**
+ * A batch, in one transaction. The database loops, not the application: thirty
+ * separate round trips would be thirty separate transactions, and a spreadsheet
+ * whose twenty-ninth row is malformed would leave twenty-eight questions behind.
+ */
+export async function saveQuestionBatch(payloads: SavePayload[]): Promise<SaveResult[]> {
+  const { data, error } = await serviceClient().rpc('save_question_versions', {
+    payloads: payloads.map((payload) => ({
+      id: payload.id ?? null,
+      mode: payload.mode,
+      difficulty: payload.difficulty,
+      status: payload.status,
+      component: payload.component,
+      prompt: payload.prompt,
+      options: payload.options,
+      correct_option_id: payload.correctOptionId,
+      explanation: payload.explanation,
+      doc_url: payload.docUrl,
+      image_key: payload.imageKey,
+      timer_seconds: payload.timerSeconds,
+    })),
+  })
+
+  if (error) throw new AdminError(error.message)
+
+  return (data as Record<string, unknown>[]).map((row) => ({
+    id: row.saved_id as string,
+    version: row.saved_version as number,
+    createdNewVersion: row.created_new_version as boolean,
+  }))
+}
+
 export async function setStatus(id: string, version: number, status: Status): Promise<void> {
   const { error } = await serviceClient()
     .from('questions')
