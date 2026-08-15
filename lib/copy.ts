@@ -323,6 +323,8 @@ export const copy = {
     questionCount: 'Questions',
     noConfusionYet: 'No wrong answers on the component-naming modes yet.',
     calibrationClear: 'Nothing to re-calibrate: every question with enough plays sits where it should.',
+    singleDay: (day: string, runs: number, players: number) =>
+      `Everything so far happened on ${day}: ${runs} runs from ${players} players. The trend line appears once there is a second day to compare with.`,
     confusion: 'Confusion matrix',
     confusionHint: 'When the answer was X, what did players pick instead?',
     calibration: 'Calibration',
