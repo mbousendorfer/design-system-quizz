@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { PlayIcon } from 'lucide-react'
 
 import { ChoiceGroup } from '@/components/game/choice-group'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import {
   Field,
@@ -18,6 +17,7 @@ import {
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Separator } from '@/components/ui/separator'
 import { copy } from '@/lib/copy'
 import { DIFFICULTIES, MODES, type RunDifficulty, type RunMode } from '@/lib/difficulty'
 import { pseudoSchema, type StartRunResponse } from '@/lib/game/contracts'
@@ -99,7 +99,10 @@ export function StartForm() {
 
   return (
     <form onSubmit={start} className="flex flex-col gap-6">
-      <FieldGroup>
+      {/* Identity first and compactly: who you are is a prerequisite, not a
+          decision. Name and team share a row so the two real choices below them
+          are visibly the point of the screen. */}
+      <FieldGroup className="grid gap-4 sm:grid-cols-[1fr_10rem]">
         <Field>
           <FieldLabel htmlFor="pseudo">{copy.home.pseudoLabel}</FieldLabel>
           <Input
@@ -132,7 +135,11 @@ export function StartForm() {
             </SelectContent>
           </Select>
         </Field>
+      </FieldGroup>
 
+      <Separator />
+
+      <FieldGroup className="flex flex-col gap-6">
         <FieldSet>
           <FieldLegend variant="label">{copy.home.modeLabel}</FieldLegend>
           <ChoiceGroup
@@ -156,15 +163,23 @@ export function StartForm() {
         </FieldSet>
       </FieldGroup>
 
-      <Button type="submit" size="lg" disabled={starting}>
-        <PlayIcon data-icon="inline-start" />
-        {starting ? copy.loading.question : copy.home.start}
-      </Button>
+      <div className="flex flex-col gap-3">
+        <Button type="submit" size="lg" disabled={starting}>
+          <PlayIcon data-icon="inline-start" />
+          {starting ? copy.loading.question : copy.home.start}
+        </Button>
 
-      <Alert>
-        <AlertTitle>{copy.game.keyboardHint}</AlertTitle>
-        <AlertDescription>{copy.app.tagline}</AlertDescription>
-      </Alert>
+        {/* A hint, not a section. It used to sit in an Alert alongside the app's
+            tagline — two unrelated sentences sharing a box that shouted for
+            attention it did not need. */}
+        <p className="text-text-tertiary text-center text-xs">
+          <kbd className="bg-muted rounded px-1 py-0.5 font-mono text-[0.7rem]">1</kbd>–
+          <kbd className="bg-muted rounded px-1 py-0.5 font-mono text-[0.7rem]">6</kbd>{' '}
+          {copy.home.keysToAnswer}{' '}
+          <kbd className="bg-muted rounded px-1 py-0.5 font-mono text-[0.7rem]">Enter</kbd>{' '}
+          {copy.home.keyToContinue}
+        </p>
+      </div>
     </form>
   )
 }

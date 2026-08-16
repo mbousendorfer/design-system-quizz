@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { LogOutIcon } from 'lucide-react'
 
+import { AdminNav } from '@/components/admin/admin-nav'
 import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
 import { Toaster } from '@/components/ui/toast'
 import { isSignedIn, signOut } from '@/lib/auth/admin-session'
 import { copy } from '@/lib/copy'
@@ -22,32 +22,31 @@ export default async function ProtectedAdminLayout({ children }: { children: Rea
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-6">
-      <header className="flex flex-wrap items-center gap-3">
-        <span className="font-semibold">{copy.admin.title}</span>
-        <nav aria-label={copy.admin.title} className="flex items-center gap-1">
-          <Button variant="ghost" size="sm" nativeButton={false} render={<Link href="/admin/questions" />}>
-            {copy.admin.navQuestions}
-          </Button>
-          <Button variant="ghost" size="sm" nativeButton={false} render={<Link href="/admin/questions/import" />}>
-            {copy.admin.navImport}
-          </Button>
-          <Button variant="ghost" size="sm" nativeButton={false} render={<Link href="/admin/stats" />}>
-            {copy.admin.navStats}
-          </Button>
-        </nav>
-        <form action={leave} className="ml-auto">
-          <Button variant="ghost" size="sm" type="submit">
-            <LogOutIcon data-icon="inline-start" />
-            {copy.admin.signOut}
-          </Button>
-        </form>
+    <div className="flex min-h-screen flex-col">
+      {/* Same ground as the canvas, separated by a border rather than by a
+          different colour: a differently-coloured bar would split the screen
+          into "chrome world" and "content world" for no gain. Sticky, because
+          the questions table is long and losing the nav halfway down it is how
+          you end up using the browser's back button as navigation. */}
+      <header className="bg-background/85 sticky top-0 z-20 border-b backdrop-blur">
+        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-3 px-4 py-3">
+          <Link href="/admin/questions" className="text-sm font-semibold tracking-tight">
+            {copy.admin.title}
+          </Link>
+          <AdminNav />
+          <form action={leave} className="ml-auto">
+            <Button variant="ghost" size="sm" type="submit">
+              <LogOutIcon data-icon="inline-start" />
+              {copy.admin.signOut}
+            </Button>
+          </form>
+        </div>
       </header>
 
-      <Separator />
-
       <Toaster>
-        <main id="content">{children}</main>
+        <main id="content" className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+          {children}
+        </main>
       </Toaster>
     </div>
   )

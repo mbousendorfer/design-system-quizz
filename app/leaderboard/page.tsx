@@ -2,9 +2,8 @@ import Link from 'next/link'
 import { ArrowLeftIcon, TrophyIcon } from 'lucide-react'
 
 import { LeaderboardFilters } from '@/components/game/leaderboard-filters'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { copy } from '@/lib/copy'
@@ -34,9 +33,20 @@ export default async function LeaderboardPage({
   const rows = await fetchLeaderboard({ difficulty, team, mode, window: timeWindow })
 
   return (
-    <main id="content" className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-6 sm:py-10">
+    <main id="content" className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-10 sm:py-14">
       <div className="flex flex-wrap items-center gap-3">
-        <h1 className="text-xl font-semibold">{copy.leaderboard.title}</h1>
+        <div className="flex flex-col gap-1">
+          <h1 className="text-2xl font-semibold tracking-tight">
+            {copy.leaderboard.title}
+            {/* The level was the card title over the filters, which put the
+                subject of the page inside the controls that narrow it. */}
+            <span className="text-text-tertiary font-normal">
+              {' '}
+              / {copy.difficulties[difficulty].name}
+            </span>
+          </h1>
+          <p className="text-text-secondary text-sm">{copy.leaderboard.perLevelHint}</p>
+        </div>
         <Button
           variant="ghost"
           size="sm"
@@ -49,15 +59,10 @@ export default async function LeaderboardPage({
         </Button>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{copy.difficulties[difficulty].name}</CardTitle>
-          <CardDescription>{copy.leaderboard.perLevelHint}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <LeaderboardFilters />
-        </CardContent>
-      </Card>
+      {/* Filters are a toolbar, not a section. They used to sit in a Card with
+          its own title and description, which made the controls that narrow the
+          board heavier than the board itself. */}
+      <LeaderboardFilters />
 
       {rows.length === 0 ? (
         <Empty>
@@ -73,8 +78,9 @@ export default async function LeaderboardPage({
           </Button>
         </Empty>
       ) : (
-        <div className="overflow-x-auto">
-          <Table>
+        <Card className="overflow-hidden py-0">
+          <div className="overflow-x-auto">
+            <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>{copy.leaderboard.columnRank}</TableHead>
@@ -87,18 +93,31 @@ export default async function LeaderboardPage({
             <TableBody>
               {rows.map((row) => (
                 <TableRow key={row.playerId}>
-                  <TableCell>
-                    <Badge variant={row.position <= 3 ? 'default' : 'ghost'}>{row.position}</Badge>
+                  <TableCell className="w-12">
+                    <span
+                      className={
+                        row.position <= 3
+                          ? 'font-mono text-sm font-semibold tabular-nums'
+                          : 'text-text-tertiary font-mono text-sm tabular-nums'
+                      }
+                    >
+                      {row.position}
+                    </span>
                   </TableCell>
                   <TableCell className="font-medium">{row.pseudo}</TableCell>
-                  <TableCell className="text-muted-foreground">{copy.teams[row.team]}</TableCell>
-                  <TableCell>{row.bestScore}</TableCell>
-                  <TableCell className="text-muted-foreground">{row.runsPlayed}</TableCell>
+                  <TableCell className="text-text-tertiary">{copy.teams[row.team]}</TableCell>
+                  {/* The column people actually scan, so it is set in figures
+                      that line up rather than in the body face. */}
+                  <TableCell className="font-mono font-medium tabular-nums">{row.bestScore}</TableCell>
+                  <TableCell className="text-text-tertiary font-mono tabular-nums">
+                    {row.runsPlayed}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
-          </Table>
-        </div>
+            </Table>
+          </div>
+        </Card>
       )}
     </main>
   )

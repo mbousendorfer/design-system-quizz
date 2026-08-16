@@ -5,10 +5,13 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { FeedbackPanel, verdictAnnouncement } from '@/components/game/feedback-panel'
 import { QuestionOptions, QuestionPrompt } from '@/components/game/question-view'
 import { Results } from '@/components/game/results'
+import { RunProgress, stepsFor } from '@/components/game/run-progress'
 import { TimerBar } from '@/components/game/timer-bar'
+import { InfoIcon } from 'lucide-react'
+
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { copy } from '@/lib/copy'
 import { warmStyleSheets } from '@/lib/render/stylesheets'
@@ -42,6 +45,10 @@ export function QuizEngine({
   const [summary, setSummary] = useState<FinishRunResponse | null>(null)
   const [message, setMessage] = useState<string | null>(null)
   const [remainingMs, setRemainingMs] = useState(0)
+  /** Verdict per position, for the run marks. Empty for a run resumed mid-way. */
+  const [outcomes, setOutcomes] = useState<Map<number, boolean>>(new Map())
+  /** The server's running total, so a resumed run shows a true score. */
+  const [runScore, setRunScore] = useState<number | null>(null)
 
   // The server's clock, not ours. Everything is judged against `served_at`, so a
   // client whose clock is minutes off must still see an honest countdown.
@@ -103,7 +110,12 @@ export function QuizEngine({
         return
       }
 
-      setResult((await response.json()) as SubmitAnswerResponse)
+      const answered = (await response.json()) as SubmitAnswerResponse
+      setResult(answered)
+      // Recorded here rather than derived on render: `outcomes` has to survive
+      // `advance` clearing the result, which is the whole point of keeping it.
+      setOutcomes((current) => new Map(current).set(position, answered.correct))
+      setRunScore(answered.runScore)
       setPhase('feedback')
     },
     [position, runId],
@@ -226,6 +238,20 @@ export function QuizEngine({
   const expected = difficultyForPosition(runDifficulty, position)
   const substituted = question.difficulty !== expected
 
+  const notices = [
+    // Said once, on the first question: the header already carries "of 3", and
+    // repeating it every question would nag.
+    position === 1 && totalQuestions < QUESTIONS_PER_RUN
+      ? copy.errors.shortRun(totalQuestions, QUESTIONS_PER_RUN)
+      : null,
+    substituted
+      ? copy.errors.poolTooThin(
+          copy.difficulties[expected].name.toLowerCase(),
+          copy.difficulties[question.difficulty].name.toLowerCase(),
+        )
+      : null,
+  ].filter((notice): notice is string => notice !== null)
+
   return (
     <div className="flex flex-col gap-4">
       {/* Mounted empty and filled when the answer lands. A live region that
@@ -236,8 +262,13 @@ export function QuizEngine({
       </div>
 
       <Card>
-        <CardHeader>
-          <CardTitle>{copy.game.questionOf(position, totalQuestions)}</CardTitle>
+        <CardHeader className="gap-3">
+          <RunProgress
+            position={position}
+            total={totalQuestions}
+            steps={stepsFor({ total: totalQuestions, position, outcomes })}
+            score={runScore}
+          />
           <TimerBar
             remainingMs={remainingMs}
             timerSeconds={question.timerSeconds}
@@ -245,25 +276,23 @@ export function QuizEngine({
           />
         </CardHeader>
 
-        <CardContent className="flex flex-col gap-6">
-          {/* A mode with only three published questions gives a three-question
-              run. The header already says "of 3", but saying it outright once
-              stops it reading like something broke. */}
-          {position === 1 && totalQuestions < QUESTIONS_PER_RUN ? (
-            <Alert>
-              <AlertTitle>{copy.errors.shortRun(totalQuestions, QUESTIONS_PER_RUN)}</AlertTitle>
-            </Alert>
-          ) : null}
-
-          {substituted ? (
-            <Alert>
-              <AlertTitle>
-                {copy.errors.poolTooThin(
-                  copy.difficulties[expected].name.toLowerCase(),
-                  copy.difficulties[question.difficulty].name.toLowerCase(),
-                )}
-              </AlertTitle>
-            </Alert>
+        <CardContent
+          // Keyed by position so React remounts it, which is what replays the
+          // entrance. Without the key the next question would swap in with no
+          // transition at all and the run would feel like a page of forms.
+          key={position}
+          className="motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-1 flex flex-col gap-6 duration-300"
+        >
+          {/* Housekeeping about the question pool, not part of the question.
+              These were two stacked Alerts, which made the loudest thing on the
+              screen a note about why the run is three questions long — above the
+              question you are being timed on. One quiet line, and both notes
+              share it when both apply. */}
+          {notices.length > 0 ? (
+            <p className="text-text-tertiary flex items-start gap-2 text-xs">
+              <InfoIcon className="mt-0.5 size-3.5 shrink-0" aria-hidden />
+              <span>{notices.join(' ')}</span>
+            </p>
           ) : null}
 
           <QuestionPrompt question={question} />
@@ -282,7 +311,11 @@ export function QuizEngine({
         </CardContent>
 
         <CardFooter className="flex-col items-stretch gap-4">
-          {result ? <FeedbackPanel result={result} /> : null}
+          {result ? (
+            <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 duration-200">
+              <FeedbackPanel result={result} />
+            </div>
+          ) : null}
 
           <div className="flex items-center justify-between gap-4">
             {/* Pointer-coarse devices have no keyboard to press 1-6 on, and the

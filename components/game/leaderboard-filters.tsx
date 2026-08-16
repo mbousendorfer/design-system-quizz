@@ -35,7 +35,11 @@ export function LeaderboardFilters() {
   }
 
   return (
-    <FieldGroup>
+    // A toolbar, not a form. Four stacked field sets took more vertical space
+    // than the board they were narrowing, on a page whose whole point is the
+    // board. The level leads because it *is* the board; the three facets sit on
+    // one line beside it once there is room.
+    <FieldGroup className="flex flex-col gap-4">
       <FieldSet>
         <FieldLegend variant="label">{copy.leaderboard.byDifficulty}</FieldLegend>
         <ChoiceGroup
@@ -46,17 +50,17 @@ export function LeaderboardFilters() {
         />
       </FieldSet>
 
-      <FieldSet>
-        <FieldLegend variant="label">{copy.leaderboard.window}</FieldLegend>
-        <ChoiceGroup
-          label={copy.leaderboard.window}
-          value={(params.get('window') ?? 'all') as 'all' | 'week'}
-          onChange={(value) => apply('window', value)}
-          choices={WINDOW_CHOICES}
-        />
-      </FieldSet>
+      <div className="grid gap-4 sm:grid-cols-[auto_1fr_1fr] sm:items-end">
+        <FieldSet>
+          <FieldLegend variant="label">{copy.leaderboard.window}</FieldLegend>
+          <ChoiceGroup
+            label={copy.leaderboard.window}
+            value={(params.get('window') ?? 'all') as 'all' | 'week'}
+            onChange={(value) => apply('window', value)}
+            choices={WINDOW_CHOICES}
+          />
+        </FieldSet>
 
-      <div className="grid gap-4 sm:grid-cols-2">
         <Field>
           <FieldLegend variant="label">{copy.leaderboard.byTeam}</FieldLegend>
           <Select

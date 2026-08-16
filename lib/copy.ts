@@ -19,12 +19,14 @@ export const copy = {
     subtitle: 'Five questions. One design system. No pressure.',
     pseudoLabel: 'Your name',
     pseudoPlaceholder: 'e.g. sam',
-    pseudoHint: 'Shown on the leaderboard. Remembered on this device.',
+    pseudoHint: 'Shown on the leaderboard.',
     teamLabel: 'Team',
     modeLabel: 'Game mode',
     difficultyLabel: 'Difficulty',
     start: 'Start playing',
     resume: 'Resume',
+    keysToAnswer: 'to answer,',
+    keyToContinue: 'to continue.',
     seeLeaderboard: 'Leaderboard',
     pseudoRequired: 'Pick a name first.',
   },
@@ -103,6 +105,7 @@ export const copy = {
     optionName: (position: number, label: string) => `Option ${position}: ${label}`,
     optionScreenshot: (label: string) => `Screenshot for option ${label}`,
     readTheDocs: 'Read the component docs',
+    youChose: (label: string) => `You chose ${label}`,
     answerWas: (label: string) => `The answer was ${label}.`,
     streak: (count: number) => `${count} in a row`,
     pointsEarned: (points: number) => `+${points}`,
@@ -113,6 +116,7 @@ export const copy = {
 
   results: {
     title: 'Run complete',
+    scoreLabel: 'Score',
     perfect: 'Flawless. Five out of five.',
     score: (points: number) => `${points} points`,
     correctCount: (correct: number, total: number) => `${correct} of ${total} correct`,
@@ -148,6 +152,7 @@ export const copy = {
 
   admin: {
     title: 'Admin',
+    signInHint: 'Write and publish the questions.',
     passwordLabel: 'Admin password',
     signIn: 'Sign in',
     signOut: 'Sign out',

@@ -30,11 +30,13 @@ export default async function AdminLoginPage({
   }
 
   return (
-    <main id="content" className="mx-auto flex w-full max-w-sm flex-col gap-6 px-4 py-16">
+    <main id="content" // Centred rather than pinned to the top: a lone card in the corner of a
+      // tall window reads as a page that failed to finish loading.
+      className="mx-auto flex min-h-[100svh] w-full max-w-sm flex-col justify-center gap-6 px-4 py-12">
       <Card>
         <CardHeader>
           <CardTitle>{copy.admin.title}</CardTitle>
-          <CardDescription>{copy.app.tagline}</CardDescription>
+          <CardDescription>{copy.admin.signInHint}</CardDescription>
         </CardHeader>
         <CardContent>
           <form action={attempt} className="flex flex-col gap-6">

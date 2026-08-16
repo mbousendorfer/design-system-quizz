@@ -5,12 +5,27 @@ import type { PlayerRender } from '@/lib/schema/render'
 import { cn } from '@/lib/utils'
 
 /**
- * One box, whatever is inside it.
+ * The plate: the surface every examined component sits on.
  *
- * The fixed ratio does two jobs. It reserves the space before any content exists,
- * so nothing shifts as images load or stylesheets parse. And it is byte-identical
- * across a live render and a screenshot, so a player cannot tell one kind of option
- * from another — or a tall component from a short one — by looking at the geometry.
+ * It is the one bright object in an otherwise neutral interface, and the only
+ * place colour is allowed to come from the content rather than from us. The wall
+ * around it is cool and quiet precisely so the plate carries the eye.
+ *
+ * Three properties it must hold, in order of how badly breaking them hurts:
+ *
+ * 1. **The same ground for every kind of content.** Live renders and screenshots
+ *    share one surface. This used to be `bg-white` for live and `bg-muted` for a
+ *    screenshot, which meant that on a mixed question the ground colour sorted the
+ *    options into two groups before the player had read anything.
+ * 2. **White, in both themes.** Not an aesthetic call. The design system is
+ *    authored against white, and on a dark plate a white component would read
+ *    off-white on the one screen where judging exactly that is the exercise.
+ * 3. **The same geometry, always.** The ratio is fixed and reserved before any
+ *    content exists, so nothing shifts as images load, and a tall component cannot
+ *    be told from a short one by the shape of its box.
+ *
+ * The edge is a hairline rather than the wall's border, and the corner is tighter
+ * than the card it sits in — a plate is a physical thing inside a softer frame.
  */
 export function RenderBox({
   render,
@@ -30,10 +45,8 @@ export function RenderBox({
   return (
     <div
       className={cn(
-        'flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-lg border',
-        // The design system's tokens are light-only, so a live component sits on a
-        // fixed light surface in either theme rather than half-inverting.
-        render.kind === 'live' ? 'bg-white' : 'bg-muted',
+        'flex aspect-[16/10] w-full items-center justify-center overflow-hidden',
+        'rounded-plate border border-plate-edge bg-plate',
         className,
       )}
     >
