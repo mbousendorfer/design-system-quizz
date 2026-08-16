@@ -5,7 +5,7 @@ import { QuestionFilters } from '@/components/admin/question-filters'
 import { QuestionRowActions } from '@/components/admin/question-row-actions'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { listQuestions, usedComponents, type QuestionWithStats } from '@/lib/admin/repository'
@@ -35,21 +35,24 @@ export default async function QuestionsPage({
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center gap-3">
-        <h1 className="text-xl font-semibold">{copy.questions.title}</h1>
+        <div className="flex items-baseline gap-3">
+          <h1 className="text-2xl font-semibold tracking-tight">{copy.questions.title}</h1>
+          {/* How many you are looking at, which is the first thing you want to
+              know after filtering and the thing the page never said. */}
+          <span className="text-text-tertiary font-mono text-sm tabular-nums">
+            {questions.length}
+          </span>
+        </div>
         <Button className="ml-auto" nativeButton={false} render={<Link href="/admin/questions/new" />}>
           <PlusIcon data-icon="inline-start" />
           {copy.questions.create}
         </Button>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{copy.questions.filtersTitle}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <QuestionFilters components={components} />
-        </CardContent>
-      </Card>
+      {/* Filters are a toolbar. Wrapping them in a titled card made the controls
+          heavier than the table they narrow — the same mistake the leaderboard
+          made, from the same reflex to put everything in a Card. */}
+      <QuestionFilters components={components} />
 
       {questions.length === 0 ? (
         <Empty>
@@ -62,8 +65,9 @@ export default async function QuestionsPage({
           </EmptyHeader>
         </Empty>
       ) : (
-        <div className="overflow-x-auto">
-          <Table>
+        <Card className="overflow-hidden py-0">
+          <div className="overflow-x-auto">
+            <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>{copy.questions.columnPrompt}</TableHead>
@@ -80,8 +84,9 @@ export default async function QuestionsPage({
                 <QuestionRow key={`${question.id}:${question.version}`} question={question} />
               ))}
             </TableBody>
-          </Table>
-        </div>
+            </Table>
+          </div>
+        </Card>
       )}
     </div>
   )
@@ -101,11 +106,13 @@ function QuestionRow({ question }: { question: QuestionWithStats }) {
           <span className="text-xs text-muted-foreground">{question.component}</span>
         </Link>
       </TableCell>
-      <TableCell>
-        <Badge variant="secondary">{copy.modes[question.mode].name}</Badge>
-      </TableCell>
-      <TableCell>
-        <Badge variant="outline">{copy.difficulties[question.difficulty].name}</Badge>
+      {/* Mode and difficulty are facts about the question; status is a state you
+          act on. They were three badges of the same weight, so the one that
+          decides whether anybody is being asked this question looked like
+          metadata. */}
+      <TableCell className="text-text-tertiary text-sm">{copy.modes[question.mode].name}</TableCell>
+      <TableCell className="text-text-tertiary text-sm">
+        {copy.difficulties[question.difficulty].name}
       </TableCell>
       <TableCell>
         <Badge variant={question.status === 'published' ? 'default' : 'ghost'}>

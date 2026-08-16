@@ -55,7 +55,7 @@ export default async function StatsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center gap-3">
-        <h1 className="text-xl font-semibold">{copy.stats.title}</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">{copy.stats.title}</h1>
         <Button
           variant="outline"
           size="sm"
@@ -75,8 +75,8 @@ export default async function StatsPage() {
         <Metric label={copy.stats.bestScore} value={String(overview.bestScore)} />
       </div>
 
-      <Tabs defaultValue="overview">
-        <TabsList>
+      <Tabs defaultValue="overview" className="gap-4">
+        <TabsList className="flex-wrap">
           <TabsTrigger value="overview">{copy.stats.overview}</TabsTrigger>
           <TabsTrigger value="questions">{copy.stats.byQuestion}</TabsTrigger>
           <TabsTrigger value="confusion">{copy.stats.confusion}</TabsTrigger>
@@ -345,13 +345,29 @@ export default async function StatsPage() {
   )
 }
 
+/**
+ * One number, and what it counts.
+ *
+ * These are read side by side and compared, which is the whole reason they sit
+ * in a row — so the figures are monospaced and tabular: proportional digits put
+ * "1 059" and "246" on different rhythms and make four tiles read as four
+ * unrelated facts rather than as one row you can scan down.
+ *
+ * The label goes above the number and stays small. It was a CardDescription over
+ * a CardTitle, which gave the word describing the number and the number itself
+ * nearly the same presence.
+ */
 function Metric({ label, value }: { label: string; value: string }) {
   return (
     <Card>
-      <CardHeader>
-        <CardDescription>{label}</CardDescription>
-        <CardTitle className="text-2xl">{value}</CardTitle>
-      </CardHeader>
+      <CardContent className="flex flex-col gap-1.5 py-5">
+        <span className="text-text-tertiary text-xs font-medium tracking-wide uppercase">
+          {label}
+        </span>
+        <span className="font-mono text-3xl leading-none font-semibold tracking-tight tabular-nums">
+          {value}
+        </span>
+      </CardContent>
     </Card>
   )
 }
