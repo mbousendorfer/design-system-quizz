@@ -198,11 +198,60 @@
 }
 
 @layer base {
+  /*
+   * Atmosphere.
+   *
+   * A flat near-black page is the single biggest reason this read as austere
+   * rather than as a game. Two very wide radial washes — one warm from the
+   * primary, one cool from the interaction blue — give the page a centre and a
+   * depth that a solid fill cannot.
+   *
+   * `fixed` and behind everything, so it never moves under a scrolling question
+   * and never touches the plate, which keeps its own opaque white fill.
+   */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(70rem 40rem at 12% -12%, color-mix(in oklch, var(--primary), transparent 86%), transparent 62%),
+      radial-gradient(62rem 38rem at 104% 6%, color-mix(in oklch, var(--ring), transparent 88%), transparent 62%);
+  }
+
   * {
     @apply border-border outline-ring/50;
     }
   body {
     @apply bg-background text-foreground;
+    }
+
+  /*
+   * Cards lift, slightly.
+   *
+   * The system said borders-only, which is right for a dense tool and too
+   * austere for something people play. One shadow, and only on the outermost
+   * card — nothing nested gets one, so there is never an elevation inside an
+   * elevation.
+   */
+  [data-slot='card'] {
+    box-shadow:
+      0 1px 2px oklch(0 0 0 / 6%),
+      0 12px 32px -12px oklch(0 0 0 / 10%);
+    }
+
+  .dark [data-slot='card'] {
+    /* Shadows barely read on a dark ground, so the lift comes from a hairline
+       of light along the top edge instead — the same trick a physical object
+       gets from a light source above it. */
+    box-shadow:
+      inset 0 1px 0 oklch(1 0 0 / 6%),
+      0 16px 40px -16px oklch(0 0 0 / 60%);
+    }
+
+  [data-slot='card'] [data-slot='card'] {
+    box-shadow: none;
     }
   html {
     @apply font-sans;

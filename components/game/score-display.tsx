@@ -60,7 +60,7 @@ export function ScoreDisplay({
 
   return (
     <div className={cn('flex flex-col gap-1', className)}>
-      <span className="text-text-tertiary text-xs font-medium tracking-wide uppercase">{label}</span>
+      <span className="text-text-tertiary text-xs font-medium">{label}</span>
       {/* The accessible name is the real score, announced once. A screen reader
           following the count-up frame by frame would read seventy numbers. */}
       <span className="sr-only">{score}</span>

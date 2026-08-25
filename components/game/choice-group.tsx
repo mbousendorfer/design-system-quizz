@@ -1,11 +1,17 @@
 'use client'
 
+import type { ReactNode } from 'react'
+
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { cn } from '@/lib/utils'
 
 export type Choice<T extends string> = {
   value: T
   label: string
+  /** Optional glyph, shown before the label. */
+  icon?: ReactNode
+  /** Optional trailing mark — a difficulty meter, for instance. */
+  meter?: ReactNode
 }
 
 /**
@@ -47,8 +53,26 @@ export function ChoiceGroup<T extends string>({
       className={cn('flex-wrap', className)}
     >
       {choices.map((choice) => (
-        <ToggleGroupItem key={choice.value} value={choice.value} className={itemClassName}>
+        <ToggleGroupItem
+          key={choice.value}
+          value={choice.value}
+          className={cn(
+            'gap-2 transition-all',
+            // Selected was three percent lighter than unselected, which on a dark
+            // ground is no signal at all — you could not tell which mode you were
+            // about to play. Blue is the design system's own selected state, and
+            // this is a control, which is exactly what blue is for.
+            // The primitive marks the pressed item with aria-pressed and
+            // data-state=on; there is no data-pressed, and a wrong selector here
+            // fails silently as "no selected state at all".
+            'aria-pressed:border-ring aria-pressed:bg-ring/12 aria-pressed:text-foreground aria-pressed:font-medium',
+            'data-[state=on]:border-ring data-[state=on]:bg-ring/12 data-[state=on]:text-foreground data-[state=on]:font-medium',
+            itemClassName,
+          )}
+        >
+          {choice.icon}
           {choice.label}
+          {choice.meter}
         </ToggleGroupItem>
       ))}
     </ToggleGroup>

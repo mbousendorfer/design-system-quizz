@@ -128,6 +128,11 @@ export function QuestionOptions({
           className={cn(
             'h-auto justify-start gap-3 whitespace-normal p-3 text-left transition-colors',
             images && 'flex-col items-stretch',
+            // Blue border on hover, which is the house rule for a hoverable
+            // card — never a lift, never a coloured edge, never green. Only
+            // while the question is live: once a verdict is on the row, the
+            // verdict owns its border.
+            !verdict && 'hover:border-ring',
             // The verdict is carried by the whole row, not by a chip at its far
             // edge. Before this, the single most important thing on the screen —
             // which one was right — was the least visible thing on it.

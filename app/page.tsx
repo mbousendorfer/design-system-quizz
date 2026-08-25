@@ -27,10 +27,17 @@ export default function HomePage() {
       // `svh` rather than `vh` so mobile browser chrome does not push it off.
       className="mx-auto flex min-h-[100svh] w-full max-w-xl flex-col justify-center gap-8 px-4 py-12"
     >
-      <header className="flex items-start justify-between gap-4">
-        <div className="flex flex-col gap-1.5">
-          <h1 className="text-3xl font-semibold tracking-tight text-balance">{copy.home.title}</h1>
-          <p className="text-text-secondary text-balance">{copy.home.subtitle}</p>
+      {/* A staggered reveal on load. One orchestrated entrance is worth more
+          than a dozen scattered micro-interactions, and it is the only place
+          this screen moves at all. */}
+      <header className="motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 flex items-start justify-between gap-4 duration-500">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-4xl font-bold tracking-tight text-balance sm:text-5xl">
+            {copy.home.title}
+          </h1>
+          <p className="text-text-secondary text-base text-balance sm:text-lg">
+            {copy.home.subtitle}
+          </p>
         </div>
 
         <Button
@@ -45,7 +52,11 @@ export default function HomePage() {
         </Button>
       </header>
 
-      <Card>
+      <Card
+        className="motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-3 duration-500"
+        // A beat after the title, so the screen assembles rather than appearing.
+        style={{ animationDelay: '90ms', animationFillMode: 'backwards' }}
+      >
         <CardContent>
           <StartForm />
         </CardContent>
