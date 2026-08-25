@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" role="img" aria-label="Code: &lt;div class=&quot;ap-form-field&quot;&gt;&lt;div class=&quot;input-wrapper&quot;&gt;&lt;input type=&quot;text&quot; /&gt;&lt;/div&gt;&lt;/div&gt;">
+  <style>
+    .bg { fill: #f4f4f5 }
+    .frame { fill: none; stroke: #d4d4d8; stroke-width: 2; stroke-dasharray: 8 6 }
+    .tag { fill: #71717a; font: 600 13px ui-monospace, monospace; letter-spacing: .12em }
+    .body { fill: #27272a; font: 15px ui-monospace, monospace }
+    .key { fill: #a1a1aa; font: 12px ui-monospace, monospace }
+  </style>
+  <rect width="640" height="400" class="bg"/>
+  <rect x="12" y="12" width="616" height="376" rx="10" class="frame"/>
+  <text x="40" y="72" class="tag">PLACEHOLDER — REPLACE WITH A REAL CAPTURE</text>
+    <text x="40" y="150" class="body">Code: &lt;div class=&quot;ap-form-field&quot;&gt;&lt;div</text>
+    <text x="40" y="176" class="body">class=&quot;input-wrapper&quot;&gt;&lt;input type=&quot;text&quot;</text>
+    <text x="40" y="202" class="body">/&gt;&lt;/div&gt;&lt;/div&gt;</text>
+  <text x="40" y="360" class="key">edd117fa.svg</text>
+</svg>

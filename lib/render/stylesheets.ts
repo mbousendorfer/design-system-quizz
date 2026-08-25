@@ -1,5 +1,7 @@
 'use client'
 
+import { assetPath } from '@/lib/base-path'
+
 /**
  * The vendored design system sheets, parsed once per page load and shared by every
  * shadow root that adopts them.
@@ -10,7 +12,7 @@
  * free thereafter.
  */
 
-const SHEETS = ['/ds/tokens.css', '/ds/ui.css', '/ds/icons.css']
+const SHEETS = ['/ds/tokens.css', '/ds/ui.css', '/ds/icons.css'].map(assetPath)
 
 let cache: Promise<CSSStyleSheet[]> | null = null
 

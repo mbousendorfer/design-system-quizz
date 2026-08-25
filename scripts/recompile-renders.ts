@@ -32,7 +32,8 @@ const supabase = createClient(url, secretKey, {
 const { data, error } = await supabase
   .from('questions')
   .select('id, component, stimulus, options, status')
-  .eq('is_live', true)
+  // Not archived is what "live" means here; there is no is_live column.
+  .neq('status', 'archived')
 
 if (error) {
   console.error(`\nCould not read the questions: ${error.message}\n`)

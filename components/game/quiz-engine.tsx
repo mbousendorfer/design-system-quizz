@@ -5,6 +5,13 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { FeedbackPanel, verdictAnnouncement } from '@/components/game/feedback-panel'
 import { QuestionOptions, QuestionPrompt } from '@/components/game/question-view'
 import { Results } from '@/components/game/results'
+import {
+  finishRun,
+  loadRun,
+  serveQuestion,
+  submitAnswer,
+} from '@/lib/game/local-run'
+import { publishScore } from '@/lib/game/leaderboard'
 import { RunProgress, stepsFor } from '@/components/game/run-progress'
 import { TimerBar } from '@/components/game/timer-bar'
 import { InfoIcon } from 'lucide-react'
@@ -25,13 +32,11 @@ import type {
 type Phase = 'loading' | 'question' | 'feedback' | 'finished' | 'error'
 
 export function QuizEngine({
-  runId,
   startPosition,
   totalQuestions,
   runDifficulty,
   alreadyFinished,
 }: {
-  runId: string
   startPosition: number
   totalQuestions: number
   runDifficulty: RunDifficulty
@@ -56,15 +61,22 @@ export function QuizEngine({
   const submitting = useRef(false)
 
   const finish = useCallback(async () => {
-    const response = await fetch(`/api/runs/${runId}/finish`, { method: 'POST' })
-    if (!response.ok) {
-      setMessage(copy.errors.generic)
+    const stored = loadRun()
+    if (!stored) {
+      setMessage(copy.errors.runGone)
       setPhase('error')
       return
     }
-    setSummary((await response.json()) as FinishRunResponse)
+    // The score is what the browser computed; the rank and the average are the
+    // only things that need the network, and a leaderboard that is down should
+    // cost the player their standing, not their results.
+    const summary = finishRun(stored)
+    setSummary(summary)
     setPhase('finished')
-  }, [runId])
+    void publishScore(summary).then((standing) => {
+      if (standing) setSummary({ ...summary, ...standing })
+    })
+  }, [])
 
   /**
    * Fetches and shows a question. Deliberately touches no state before the first
@@ -72,24 +84,22 @@ export function QuizEngine({
    * cascade a second render before the first has painted. Clearing the previous
    * question is the caller's job, in the event handler that decided to move on.
    */
-  const load = useCallback(
-    async (nextPosition: number) => {
-      const response = await fetch(`/api/runs/${runId}/items/${nextPosition}`)
-      if (!response.ok) {
-        const body = (await response.json().catch(() => null)) as { error?: string } | null
-        setMessage(body?.error ?? copy.errors.generic)
-        setPhase('error')
-        return
-      }
+  const load = useCallback(async (nextPosition: number) => {
+    const stored = loadRun()
+    const served = stored ? serveQuestion(stored, nextPosition) : null
+    if (!served) {
+      setMessage(copy.errors.runGone)
+      setPhase('error')
+      return
+    }
 
-      const served = (await response.json()) as ServedQuestionResponse
-      clockOffset.current = served.now - Date.now()
-      setQuestion(served)
-      setRemainingMs(served.deadline - (Date.now() + clockOffset.current))
-      setPhase('question')
-    },
-    [runId],
-  )
+    // Zero now that both clocks are the same clock. Kept rather than removed so
+    // the countdown keeps reading `deadline - (now + offset)` in one place.
+    clockOffset.current = served.now - Date.now()
+    setQuestion(served)
+    setRemainingMs(served.deadline - (Date.now() + clockOffset.current))
+    setPhase('question')
+  }, [])
 
   const submit = useCallback(
     async (optionId: string | null) => {
@@ -97,20 +107,14 @@ export function QuizEngine({
       submitting.current = true
       setChosen(optionId)
 
-      const response = await fetch(`/api/runs/${runId}/answers`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ position, chosenOptionId: optionId }),
-      })
-
-      if (!response.ok) {
-        const body = (await response.json().catch(() => null)) as { error?: string } | null
-        setMessage(body?.error ?? copy.errors.generic)
+      const stored = loadRun()
+      const answered = stored ? submitAnswer(stored, position, optionId) : null
+      if (!answered) {
+        setMessage(copy.errors.runGone)
         setPhase('error')
         return
       }
 
-      const answered = (await response.json()) as SubmitAnswerResponse
       setResult(answered)
       // Recorded here rather than derived on render: `outcomes` has to survive
       // `advance` clearing the result, which is the whole point of keeping it.
@@ -118,7 +122,7 @@ export function QuizEngine({
       setRunScore(answered.runScore)
       setPhase('feedback')
     },
-    [position, runId],
+    [position],
   )
 
   const advance = useCallback(() => {

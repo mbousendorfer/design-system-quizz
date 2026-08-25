@@ -139,6 +139,8 @@ export const copy = {
     window: 'Period',
     lastSevenDays: 'Last 7 days',
     allTime: 'All time',
+    unavailable: 'The leaderboard is off in this build.',
+    unavailableHint: 'It needs Supabase credentials at build time. The game itself plays without them.',
     perLevelHint:
       'One board per level, not one overall: a single table would just reward grinding the easy one.',
     columnRank: 'Rank',
@@ -384,6 +386,8 @@ export const copy = {
   },
 
   errors: {
+    noQuestionsForMode: 'No published questions for this mode yet. Try another one.',
+    runGone: 'This run is no longer in this tab. Start a new one.',
     generic: 'Something went wrong.',
     retry: 'Try again',
     withDigest: (digest: string) =>

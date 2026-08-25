@@ -1,0 +1,75 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One deploy at a time, and a queued one supersedes the one waiting rather than
+# piling up. `cancel-in-progress: false` so a deploy that is already writing is
+# allowed to finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # The checks run before the deploy, not after it: a build that typechecks
+      # but ships a broken question bank is worse than no deploy at all.
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+
+      # Before the build, not after it: the build reads `base_path` from this
+      # step's output, and an empty prefix 404s every asset on a project site.
+      - uses: actions/configure-pages@v5
+        id: pages
+
+      - name: Build
+        env:
+          # A project Pages site is served from /<repo>, not from the domain
+          # root. Everything that assembles a URL by hand reads this through
+          # lib/base-path.ts.
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Publishable by design: what an anonymous visitor may do is decided by
+          # the row level security policies on `public_scores`. The secret key
+          # must never appear here — it bypasses them, and everything NEXT_PUBLIC_
+          # is inlined into the bundle.
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run build
+
+      # Next writes a `_next` directory, and Pages runs Jekyll by default, which
+      # skips anything starting with an underscore. Without this the site loads
+      # with no JavaScript and no CSS.
+      - run: touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

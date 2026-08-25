@@ -1,6 +1,7 @@
 'use client'
 
 import { LiveRender } from '@/components/game/live-render'
+import { assetPath } from '@/lib/base-path'
 import type { PlayerRender } from '@/lib/schema/render'
 import { cn } from '@/lib/utils'
 
@@ -55,7 +56,7 @@ export function RenderBox({
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={`/shots/${render.imageKey}`}
+          src={assetPath(`/shots/${render.imageKey}`)}
           alt={alt}
           loading={priority ? 'eager' : 'lazy'}
           decoding="async"

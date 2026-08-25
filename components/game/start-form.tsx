@@ -20,7 +20,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Separator } from '@/components/ui/separator'
 import { copy } from '@/lib/copy'
 import { DIFFICULTIES, MODES, type RunDifficulty, type RunMode } from '@/lib/difficulty'
-import { pseudoSchema, type StartRunResponse } from '@/lib/game/contracts'
+import { pseudoSchema } from '@/lib/game/contracts'
+import { startRun } from '@/lib/game/local-run'
+import { publishedCount } from '@/lib/game/question-bank'
 import {
   getRememberedPlayer,
   getRememberedPlayerOnServer,
@@ -72,25 +74,21 @@ export function StartForm() {
       return
     }
 
+    // A mode with nothing published cannot be drawn from, and finding that out
+    // as an empty question screen is worse than being told here.
+    if (publishedCount(mode) === 0) {
+      setError(copy.errors.noQuestionsForMode)
+      return
+    }
+
     setStarting(true)
     rememberPlayer({ pseudo: valid.data, team, mode, difficulty })
 
     try {
-      const response = await fetch('/api/runs', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pseudo: valid.data, team, mode, difficulty }),
-      })
-
-      if (!response.ok) {
-        const body = (await response.json().catch(() => null)) as { error?: string } | null
-        setError(body?.error ?? copy.errors.generic)
-        setStarting(false)
-        return
-      }
-
-      const run = (await response.json()) as StartRunResponse
-      router.push(`/play/${run.runId}`)
+      // The run is drawn in this tab and kept in session storage. There is no
+      // request to make: the question bank ships with the build.
+      startRun({ pseudo: valid.data, team, mode, difficulty })
+      router.push('/play')
     } catch {
       setError(copy.errors.generic)
       setStarting(false)

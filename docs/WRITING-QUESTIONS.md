@@ -127,13 +127,24 @@ markup rendered live is markup a player can read.
 
 ## Screenshots
 
-Upload through the question form. The file is renamed to an opaque id on the way
-in, so you can drop `badge-orange-wrong.png` without the filename handing the
-answer to anyone reading the network tab.
+Screenshots live in `public/shots/`, named by an opaque id rather than by what
+they show — `badge-orange-wrong.png` would hand the answer to anyone reading the
+network tab. Add one by committing the file and referencing its name from the
+question's `imageKey`.
 
 PNG, JPEG or WebP, up to 2 MB. Crop to the component plus a little breathing room.
 Take them at a consistent zoom — a player comparing two screenshots at different
 scales is answering a different question than the one you asked.
+
+## Where questions live
+
+They are files. `content/questions.json`, edited in a pull request, baked into
+the build. `"status": "published"` is what makes one playable; anything else sits
+in the same file as work in progress.
+
+There is no admin screen any more — a static site has nothing to run it on. What
+that costs is the preview and the validation that used to happen as you typed;
+what it buys is that a question changes through a diff somebody read.
 
 ## Writing in bulk
 

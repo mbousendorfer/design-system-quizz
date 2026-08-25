@@ -1,8 +1,3660 @@
 {
   "questions": [
     {
+      "id": "be59dfe5-8690-561c-8059-1879d0c8ce71",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Action Dropdown",
+      "prompt": "Presents a list of actions the user can take — the menu / overflow \"⋯\" primitive. Don't hand-build a floating menu; this is it.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "b",
+          "component": "Filter Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Popmenu"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "13e061c6-716b-59d2-b911-769f11c7acaa",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Autocomplete",
+      "prompt": "Reach for it when the set is large or server-backed and the user knows roughly what they want, so free-typing is faster than scrolling.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "b",
+          "component": "Select"
+        },
+        {
+          "id": "c",
+          "component": "Selection Dropdown"
+        },
+        {
+          "id": "d",
+          "component": "Action Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "41d74bf1-2998-58d7-9165-7a7d22c62801",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Avatar Group",
+      "prompt": "A stack of overlapping Avatars with an overflow count when the group exceeds its cap — use it whenever several people or orgs share one context (a post's approvers, a team, thread participants).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Avatar Group"
+        },
+        {
+          "id": "b",
+          "component": "Avatar"
+        },
+        {
+          "id": "c",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "d",
+          "component": "Badge"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "1a96880c-1404-5618-8318-cc830e4c2812",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Badge",
+      "prompt": "It is not the result of a user action, and does not represent an object/person or a user-induced status.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Badge"
+        },
+        {
+          "id": "b",
+          "component": "Counter"
+        },
+        {
+          "id": "c",
+          "component": "Status"
+        },
+        {
+          "id": "d",
+          "component": "Tag"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "cb81c7a2-f6ee-528a-934f-757e25ff6245",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Button",
+      "prompt": "A discrete, triggerable action. Reach for a this component once the action carries weight or reads as a CTA. Action hierarchy structures the actions within a screen (a modal on a backdrop is its own screen; a backdrop-less dropdown belongs to the screen that opened it).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Button"
+        },
+        {
+          "id": "b",
+          "component": "Close Button"
+        },
+        {
+          "id": "c",
+          "component": "Icon Button"
+        },
+        {
+          "id": "d",
+          "component": "Social Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "bfe34dc5-56a4-5030-a9c3-9c0e91914fdb",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Close Button",
+      "prompt": "The dedicated × control that dismisses a container — modals, panels, drawers, dismissible infoboxes/snackbars. Reach for it whenever a surface needs a standard \"close this\" affordance so the glyph, size, and hit area stay identical everywhere.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Close Button"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Icon Button"
+        },
+        {
+          "id": "d",
+          "component": "Social Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "5c813bf4-ae5d-5cab-a6df-6233cedf502e",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Counter",
+      "prompt": "A small numeric indicator. Two non-interchangeable forms: a normal this component for a live count placed after a label (\"Items in this list: 23\"), and a notif this component for a count shown as a notification on an icon.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Counter"
+        },
+        {
+          "id": "b",
+          "component": "Badge"
+        },
+        {
+          "id": "c",
+          "component": "Status"
+        },
+        {
+          "id": "d",
+          "component": "Tag"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "28ed360d-0b97-5427-9b8f-f1ad9e49a395",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Datepicker",
+      "prompt": "Pick a single date, a date range, or a preset period, with the full calendar chrome the app expects: an inline calendar, a dropdown trigger, or an input-bound field, plus range presets and optional time selection.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Datepicker"
+        },
+        {
+          "id": "b",
+          "component": "Neo Datepicker"
+        },
+        {
+          "id": "c",
+          "component": "Add Comment"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "6903a6ee-0803-58c5-bcc7-489e012274c2",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Ellipsis",
+      "prompt": "For a simple single-line clip, plain CSS truncation is fine — don't pull in the directive.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Ellipsis"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Avatar"
+        },
+        {
+          "id": "d",
+          "component": "Avatar Group"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "05e51295-4e81-52b7-801f-532c9030cb68",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Filter Chips List",
+      "prompt": "A horizontal row of toggleable chips that filter a list in place — reach for it when the filter set is small, visible at a glance, and worth keeping on screen (source kinds, content types, statuses).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Filter Chips List"
+        },
+        {
+          "id": "b",
+          "component": "Labels"
+        },
+        {
+          "id": "c",
+          "component": "Labels Selector"
+        },
+        {
+          "id": "d",
+          "component": "Action Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "da52d32c-1378-5c68-9652-0219e435c742",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Filter Dropdown",
+      "prompt": "A compact button that opens a panel of grouped filters — with optional Apply/Clear actions and saved presets.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Filter Dropdown"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Popmenu"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "b1b21c01-bfcf-5079-9518-3ff61b9b171e",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Icon Button",
+      "prompt": "A square, icon-only action. Use it for every icon-only action — close (×), kebab (⋯), inline edit, toolbar shortcuts.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Icon Button"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Close Button"
+        },
+        {
+          "id": "d",
+          "component": "Social Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "b851e0c0-c79e-5faa-8139-81d9f4f3fe96",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Infobox",
+      "prompt": "A static callout that highlights a page element and flags something needing attention — errors, notifications, changes, updates. It stays at the top of a content area or on its own in a section, and persists until dismissed. Show at most one at a time in most cases.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Infobox"
+        },
+        {
+          "id": "b",
+          "component": "Notification"
+        },
+        {
+          "id": "c",
+          "component": "Snackbars Thread"
+        },
+        {
+          "id": "d",
+          "component": "Tooltip"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "cf5f5899-8130-5c70-b9ee-23c42a79eeee",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Link",
+      "prompt": "A text this component. Use it for navigation (to another page, in-app or external) and for inline micro-actions — add / remove / \"see more\".",
+      "options": [
+        {
+          "id": "a",
+          "component": "Link"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Close Button"
+        },
+        {
+          "id": "d",
+          "component": "Icon Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "d4b612e7-c882-5ec3-b37c-74c105d93906",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Media Display Overlay",
+      "prompt": "A layer shown over a piece of media (image or video) that presents controls, a caption, or actions on top of the visual instead of beside it — use it when the media is the surface and chrome must sit within its frame (a lightbox, a thumbnail's hover actions, a video preview). Not for panels or cards that merely contain a thumbnail — put that chrome in the surrounding layout.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Media Display Overlay"
+        },
+        {
+          "id": "b",
+          "component": "Confirm Modal"
+        },
+        {
+          "id": "c",
+          "component": "Modal"
+        },
+        {
+          "id": "d",
+          "component": "Action Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "bc754651-7879-5556-b02b-9bb976a1964a",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Nav Selector",
+      "prompt": "A structured navigation-and-selection column: a tree of categories → groups → leaves (with per-leaf details and actions) that the user browses and selects from, typically a social-profile / workspace picker in a side rail. Reach for it when selection is over a large, grouped, possibly hierarchical set that persists alongside the content it drives.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "b",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "c",
+          "component": "Tabs"
+        },
+        {
+          "id": "d",
+          "component": "Dot Stepper"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "8b439f98-6bc8-5438-9311-f96664005576",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Segmented Control",
+      "prompt": "A compact inline control that flips between 2–4 short, mutually-exclusive views or modes shown side by side, all visible at once (e.g. List / Grid, Guided / Free-form, aspect-ratio presets). Exactly one segment is active.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "b",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "c",
+          "component": "Tabs"
+        },
+        {
+          "id": "d",
+          "component": "Dot Stepper"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "38514480-95b6-52a7-9868-c41b6f13ba13",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Select",
+      "prompt": "Pick one or many entries from a set — kept simple and efficient. Three canonical targets: users, network / profiles, and generic items.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Select"
+        },
+        {
+          "id": "b",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "c",
+          "component": "Selection Dropdown"
+        },
+        {
+          "id": "d",
+          "component": "Action Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "fb49385b-8180-5952-857d-cdfe3005db50",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Snackbars Thread",
+      "prompt": "The toast primitive: instant feedback after a user action. It slides in, informs, and disappears — and must not interrupt the user. (Searching \"toast\" leads here.) There is no transient warning (the Warning variant was dropped) — reframe it as Success or Error.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Snackbars Thread"
+        },
+        {
+          "id": "b",
+          "component": "Infobox"
+        },
+        {
+          "id": "c",
+          "component": "Notification"
+        },
+        {
+          "id": "d",
+          "component": "Tooltip"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "319113c6-48b7-56a9-84da-6a5a754e2624",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Social Button",
+      "prompt": "A button carrying a social network's branding, for connect / sign-in actions where the network identity matters (Facebook, Instagram, LinkedIn, X, TikTok, YouTube…).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Social Button"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Close Button"
+        },
+        {
+          "id": "d",
+          "component": "Icon Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "0d85b880-92cd-50e1-bf7b-6bc8ad736389",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Split Button",
+      "prompt": "One primary action plus a caret revealing closely-related alternatives (e.g. Publish / schedule, Create draft / import). Use it only when there is a primary action; for a pure menu trigger use an Icon button + Action dropdown.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Split Button"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Close Button"
+        },
+        {
+          "id": "d",
+          "component": "Icon Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "aeecc316-7d4b-5ff3-903b-2d1821777b05",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Status",
+      "prompt": "Shows the this component of the whole component it sits in — connection state, publish state, and so on — set by either the system or a user action.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Status"
+        },
+        {
+          "id": "b",
+          "component": "Badge"
+        },
+        {
+          "id": "c",
+          "component": "Counter"
+        },
+        {
+          "id": "d",
+          "component": "Tag"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "e629da2e-0c82-56f5-a16c-0b3f818dd40c",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Status Card",
+      "prompt": "A coloured message card that surfaces a state or summary — an icon, a short explanatory line, and an optional link — sitting inline in a layout.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Status Card"
+        },
+        {
+          "id": "b",
+          "component": "Radio Button Card"
+        },
+        {
+          "id": "c",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "d",
+          "component": "Avatar"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "a02557ca-a287-575e-8d34-9ae48ccebfc9",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Stepper",
+      "prompt": "Labeled multi-step progress through a flow. For compact, unlabeled progress (carousel / onboarding dots) use the Dot this component instead.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Stepper"
+        },
+        {
+          "id": "b",
+          "component": "Dot Stepper"
+        },
+        {
+          "id": "c",
+          "component": "Paginator"
+        },
+        {
+          "id": "d",
+          "component": "Nav Selector"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "8b4c84b2-7d66-5cff-8edb-963db1ac56e6",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Tabs",
+      "prompt": "Organise related content that sits at the same level of hierarchy, letting the user switch between groups easily. Not for primary navigation — this component switch views within one context, they don't navigate the app.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tabs"
+        },
+        {
+          "id": "b",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "c",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "d",
+          "component": "Dot Stepper"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "03456503-860c-550a-9b23-2cfbb4163709",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Tag",
+      "prompt": "Represents an entity — an object or a user — inside another component (lists, multiselects, inline text).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tag"
+        },
+        {
+          "id": "b",
+          "component": "Badge"
+        },
+        {
+          "id": "c",
+          "component": "Counter"
+        },
+        {
+          "id": "d",
+          "component": "Status"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "b3940b2d-8fcd-5515-808a-f56ae80b20b7",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "easy",
+      "component": "Tooltip",
+      "prompt": "A small hover hint: a label for an icon button, a \"why is this disabled\" note, or extra context on an option. Common pairings: Icon button (needs a this component label) · Action dropdown (info / disabled this component).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tooltip"
+        },
+        {
+          "id": "b",
+          "component": "Infobox"
+        },
+        {
+          "id": "c",
+          "component": "Notification"
+        },
+        {
+          "id": "d",
+          "component": "Snackbars Thread"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "42d5dd32-b6e8-5929-91c2-fcc571ac0f01",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Action Dropdown",
+      "prompt": "✅ Trigger from an action component with a chevron; red row for destructive actions; explain disabled items on hover. ❌ Hand-rolling a floating menu; two right-side icons on one item; matching trigger width as a default.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "b",
+          "component": "Filter Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Popmenu"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "e",
+          "component": "Select"
+        },
+        {
+          "id": "f",
+          "component": "Selection Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "27a373cb-0639-54e6-8e10-7e32d6c1099a",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Autocomplete",
+      "prompt": "✅ Use it for large or remote sets where typing beats scrolling; disambiguate look-alikes with a caption.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "b",
+          "component": "Select"
+        },
+        {
+          "id": "c",
+          "component": "Selection Dropdown"
+        },
+        {
+          "id": "d",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "e",
+          "component": "Filter Dropdown"
+        },
+        {
+          "id": "f",
+          "component": "Popmenu"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "994cfbea-5b45-5386-b911-f3af081eb459",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Badge",
+      "prompt": "✅ Orange once per view, caps, short; blue for everything routine. ❌ An orange this component repeated across a view; a this component standing in for a count/state/entity.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Badge"
+        },
+        {
+          "id": "b",
+          "component": "Counter"
+        },
+        {
+          "id": "c",
+          "component": "Status"
+        },
+        {
+          "id": "d",
+          "component": "Tag"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        },
+        {
+          "id": "f",
+          "component": "Action Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "c7c7b0b7-be9a-5e6f-95e4-3934c7e4a70e",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Counter",
+      "prompt": "✅ Normal this component after a label; notif this component on an icon; orange only when urgent. ❌ A notif this component standing in for a normal one; a this component around a static number inside a sentence.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Counter"
+        },
+        {
+          "id": "b",
+          "component": "Badge"
+        },
+        {
+          "id": "c",
+          "component": "Status"
+        },
+        {
+          "id": "d",
+          "component": "Tag"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        },
+        {
+          "id": "f",
+          "component": "Action Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "6d00f7cc-9884-5c2e-930e-1e5a34eca033",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Datepicker",
+      "prompt": "✅ Match the selector to the surface (input in forms, dropdown in filters, inline when persistent). ❌ Reimplementing the grid or inventing modifier classes outside those in the spec.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Datepicker"
+        },
+        {
+          "id": "b",
+          "component": "Neo Datepicker"
+        },
+        {
+          "id": "c",
+          "component": "Add Comment"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "e",
+          "component": "Checkbox"
+        },
+        {
+          "id": "f",
+          "component": "Form Field"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "208ed2c6-3c2b-53a3-8e82-5d9f1203592c",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Ellipsis",
+      "prompt": "✅ Use for element-aware or clickable truncation; surface the hidden text on demand.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Ellipsis"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Avatar"
+        },
+        {
+          "id": "d",
+          "component": "Avatar Group"
+        },
+        {
+          "id": "e",
+          "component": "Badge"
+        },
+        {
+          "id": "f",
+          "component": "Counter"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "ed0861a8-a4d3-51c5-a751-a2a38abc80b7",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Filter Dropdown",
+      "prompt": "✅ Use for large/grouped/reusable filters; localise via the text inputs; surface locked groups and handle their click outputs. ❌ Force a big grouped taxonomy into always-visible chips; leave a needless Apply button on a trivial one-property filter.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Filter Dropdown"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Popmenu"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "e",
+          "component": "Select"
+        },
+        {
+          "id": "f",
+          "component": "Selection Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "c400f2af-5eee-5de3-8cfe-341c0c143887",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Icon Button",
+      "prompt": "✅ A tooltip label on every this component; stroke + background when floating over content.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Icon Button"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Close Button"
+        },
+        {
+          "id": "d",
+          "component": "Social Button"
+        },
+        {
+          "id": "e",
+          "component": "Split Button"
+        },
+        {
+          "id": "f",
+          "component": "Link"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "5d8481d4-743f-57fa-b00c-d47bed968eef",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Infobox",
+      "prompt": "❌ Use an this component for transient post-action feedback (that's a Snackbar); build ad-hoc grouped-error boxes out of the standard this component.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Infobox"
+        },
+        {
+          "id": "b",
+          "component": "Notification"
+        },
+        {
+          "id": "c",
+          "component": "Snackbars Thread"
+        },
+        {
+          "id": "d",
+          "component": "Tooltip"
+        },
+        {
+          "id": "e",
+          "component": "Form Message"
+        },
+        {
+          "id": "f",
+          "component": "Confirm Modal"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "3cc2ef07-f45e-58af-a3f5-90c683f5a9a3",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Link",
+      "prompt": "✅ Self-explanatory this component text; icon on standalone action this component.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Link"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Close Button"
+        },
+        {
+          "id": "d",
+          "component": "Icon Button"
+        },
+        {
+          "id": "e",
+          "component": "Social Button"
+        },
+        {
+          "id": "f",
+          "component": "Split Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "fe6efcf1-7f4b-53a5-8100-d3febc8ce936",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Media Display Overlay",
+      "prompt": "✅ Layer controls/caption over the media when the media is the surface; keep the overlay minimal. ❌ Bury the image under heavy chrome; use it as a generic modal or as a container for non-media content.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Media Display Overlay"
+        },
+        {
+          "id": "b",
+          "component": "Confirm Modal"
+        },
+        {
+          "id": "c",
+          "component": "Modal"
+        },
+        {
+          "id": "d",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "e",
+          "component": "Avatar"
+        },
+        {
+          "id": "f",
+          "component": "Avatar Group"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "8f6cc6a0-e603-5382-a40e-8dbd13d51963",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Menu",
+      "prompt": "❌ Reaching for this component when a DS Action dropdown covers the need; using the deprecated PopMenu.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Menu"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Avatar"
+        },
+        {
+          "id": "d",
+          "component": "Avatar Group"
+        },
+        {
+          "id": "e",
+          "component": "Badge"
+        },
+        {
+          "id": "f",
+          "component": "Counter"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "85416f88-9df6-53e6-a67f-487ff9afe65b",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Nav Selector",
+      "prompt": "✅ Use it for grouped/hierarchical persistent selection; drive it through entries + outputs; reuse its parts.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "b",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "c",
+          "component": "Tabs"
+        },
+        {
+          "id": "d",
+          "component": "Dot Stepper"
+        },
+        {
+          "id": "e",
+          "component": "Paginator"
+        },
+        {
+          "id": "f",
+          "component": "Stepper"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "58d2db0e-f55f-5448-96bf-64bab8780787",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Phone Number Input",
+      "prompt": "✅ Use this component for any phone field so the dial code and number stay in sync and validated.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Phone Number Input"
+        },
+        {
+          "id": "b",
+          "component": "Form Field"
+        },
+        {
+          "id": "c",
+          "component": "Input Group"
+        },
+        {
+          "id": "d",
+          "component": "Input Search"
+        },
+        {
+          "id": "e",
+          "component": "Password Input"
+        },
+        {
+          "id": "f",
+          "component": "Add Comment"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "a52dd5f2-8e7d-5837-b471-912f68a0a3f6",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Snackbars Thread",
+      "prompt": "✅ Use Success and Error only; keep the action label short; let temporary this component self-dismiss after 5s.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Snackbars Thread"
+        },
+        {
+          "id": "b",
+          "component": "Infobox"
+        },
+        {
+          "id": "c",
+          "component": "Notification"
+        },
+        {
+          "id": "d",
+          "component": "Tooltip"
+        },
+        {
+          "id": "e",
+          "component": "Form Message"
+        },
+        {
+          "id": "f",
+          "component": "Confirm Modal"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "0228e4ae-8cfe-53f2-823e-e92027bfc7dc",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Split Button",
+      "prompt": "✅ Use when the primary action is the common case and alternatives are secondary. ❌ Use as a generic dropdown trigger with no real primary action.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Split Button"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Close Button"
+        },
+        {
+          "id": "d",
+          "component": "Icon Button"
+        },
+        {
+          "id": "e",
+          "component": "Social Button"
+        },
+        {
+          "id": "f",
+          "component": "Link"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "92bc8814-22d7-5471-a835-6d295cf1a7b0",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Status",
+      "prompt": "✅ One- or two-word label describing the whole component's state; colour by meaning.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Status"
+        },
+        {
+          "id": "b",
+          "component": "Badge"
+        },
+        {
+          "id": "c",
+          "component": "Counter"
+        },
+        {
+          "id": "d",
+          "component": "Tag"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        },
+        {
+          "id": "f",
+          "component": "Action Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "09f6e6d4-0d46-5ec4-bae0-6adf31326484",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Status Card",
+      "prompt": "✅ One clear state per card, colour chosen by meaning, at most one resolving link. ❌ A paragraph of copy, multiple competing links, or a colour picked by hue rather than meaning.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Status Card"
+        },
+        {
+          "id": "b",
+          "component": "Radio Button Card"
+        },
+        {
+          "id": "c",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "d",
+          "component": "Avatar"
+        },
+        {
+          "id": "e",
+          "component": "Avatar Group"
+        },
+        {
+          "id": "f",
+          "component": "Badge"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "2ad186ce-88d0-537e-9753-d72005f04511",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Stepper",
+      "prompt": "✅ Use for labeled multi-step flows; reflect real progress in the step states. ❌ Use it for compact, unlabeled progress (use the Dot this component).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Stepper"
+        },
+        {
+          "id": "b",
+          "component": "Dot Stepper"
+        },
+        {
+          "id": "c",
+          "component": "Paginator"
+        },
+        {
+          "id": "d",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "e",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "f",
+          "component": "Tabs"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "97666d99-9616-51e5-9e6a-d59ab7fb3a76",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Tabs",
+      "prompt": "✅ Use for related, same-level content; keep ≤6 this component; keep exactly one active. ❌ Use this component as primary app navigation; overload the bar with many this component or long labels.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tabs"
+        },
+        {
+          "id": "b",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "c",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "d",
+          "component": "Dot Stepper"
+        },
+        {
+          "id": "e",
+          "component": "Paginator"
+        },
+        {
+          "id": "f",
+          "component": "Stepper"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "67f28f41-f004-55a7-b521-9984945c666f",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Tag",
+      "prompt": "❌ Both an avatar and an icon on one this component; a colour chosen by hue rather than by object type.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tag"
+        },
+        {
+          "id": "b",
+          "component": "Badge"
+        },
+        {
+          "id": "c",
+          "component": "Counter"
+        },
+        {
+          "id": "d",
+          "component": "Status"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        },
+        {
+          "id": "f",
+          "component": "Action Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "587955cb-857f-5ea6-823f-61d2acf38e86",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Textarea",
+      "prompt": "✅ Pick a resize mode on purpose; show the counter when there is a limit. ❌ Leaving resize to chance, or surfacing the limit only once it is exceeded.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Textarea"
+        },
+        {
+          "id": "b",
+          "component": "Add Comment"
+        },
+        {
+          "id": "c",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "d",
+          "component": "Checkbox"
+        },
+        {
+          "id": "e",
+          "component": "Datepicker"
+        },
+        {
+          "id": "f",
+          "component": "Form Field"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "df1d3465-e96e-5f8d-a5d0-58058c9fb82e",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Toggle",
+      "prompt": "✅ Use a this component for a setting; keep the ×/check icon so state doesn't rest on color.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Toggle"
+        },
+        {
+          "id": "b",
+          "component": "Checkbox"
+        },
+        {
+          "id": "c",
+          "component": "Radio"
+        },
+        {
+          "id": "d",
+          "component": "Slide Toggle"
+        },
+        {
+          "id": "e",
+          "component": "Add Comment"
+        },
+        {
+          "id": "f",
+          "component": "Autocomplete"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "1b6477b7-0e9c-554a-8591-058ca73424a5",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "hard",
+      "component": "Tooltip",
+      "prompt": "✅ Always set a position class; keep the hint concise; use it to label icon-only buttons. ❌ Ship a this component with no position class; put essential information only in a this component.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tooltip"
+        },
+        {
+          "id": "b",
+          "component": "Infobox"
+        },
+        {
+          "id": "c",
+          "component": "Notification"
+        },
+        {
+          "id": "d",
+          "component": "Snackbars Thread"
+        },
+        {
+          "id": "e",
+          "component": "Form Message"
+        },
+        {
+          "id": "f",
+          "component": "Confirm Modal"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "03e87bbd-489e-53b7-a42e-559e3c7424e2",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Action Dropdown",
+      "prompt": "Must be triggered by an action component — a button, icon button, or standalone link — which shows a right chevron when it opens a dropdown. Positioned exactly 4px from the trigger, below it (flips above when there isn't room), aligned to the trigger's left or right edge depending on its position in its parent. Use each option feature sparingly and for its purpose.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "b",
+          "component": "Filter Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Popmenu"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "e",
+          "component": "Select"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "a2435a5b-ceb1-5881-9b6f-09603af6a76b",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Action Dropdown",
+      "prompt": "Width 250px default; 340px (\"big\") when content is long. Matching the trigger's width is a deliberate exception, not the norm. Item parts: an optional badge next to the label (e.g. \"New\"), separators to segment groups, and at most one right-side icon (feature-lock or info, never both).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "b",
+          "component": "Filter Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Popmenu"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "e",
+          "component": "Select"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "ff8e6570-ba61-53cf-b80f-947ebdeaca3f",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Avatar",
+      "prompt": "Fallbacks when a photo is missing, in order: initials → generic person glyph → anonymous mask, on a neutral grey fill. Use the default 40px unless the surrounding layout calls for another step on the ramp.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Avatar"
+        },
+        {
+          "id": "b",
+          "component": "Avatar Group"
+        },
+        {
+          "id": "c",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "d",
+          "component": "Badge"
+        },
+        {
+          "id": "e",
+          "component": "Counter"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "990dff8d-e7d3-555a-ba3d-5ff60aba491f",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Avatar Group",
+      "prompt": "Cap the visible count so a large group stays compact; the overflow chip carries the remainder. Turn on the description tooltip when identities aren't labelled elsewhere.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Avatar Group"
+        },
+        {
+          "id": "b",
+          "component": "Avatar"
+        },
+        {
+          "id": "c",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "d",
+          "component": "Badge"
+        },
+        {
+          "id": "e",
+          "component": "Counter"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "79b632aa-c0b9-579e-b81b-c7a19172c97d",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Badge",
+      "prompt": "A small pill of text. No min/max width to plan for — it's system-generated, not user text.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Badge"
+        },
+        {
+          "id": "b",
+          "component": "Counter"
+        },
+        {
+          "id": "c",
+          "component": "Status"
+        },
+        {
+          "id": "d",
+          "component": "Tag"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "f206d3e2-abc7-5a8a-9562-164baef97cfa",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Badge",
+      "prompt": "Use orange for the single \"look here\" marker on a view; blue for routine, lower-priority context that may recur.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Badge"
+        },
+        {
+          "id": "b",
+          "component": "Counter"
+        },
+        {
+          "id": "c",
+          "component": "Status"
+        },
+        {
+          "id": "d",
+          "component": "Tag"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "12698830-b18b-58bc-ac15-70884933af14",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Button",
+      "prompt": "Pick the hierarchy level first, then the color for meaning. One clear primary per screen; everything else takes a lighter weight.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Button"
+        },
+        {
+          "id": "b",
+          "component": "Close Button"
+        },
+        {
+          "id": "c",
+          "component": "Icon Button"
+        },
+        {
+          "id": "d",
+          "component": "Social Button"
+        },
+        {
+          "id": "e",
+          "component": "Split Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "e2c056ed-cffd-55ea-92e3-c2bee89788e5",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Button",
+      "prompt": "Label, with an optional icon to the left (move it right only when the this component itself is right-aligned, so icons line up). Two actions ending the same flow: primary orange on the right, secondary orange to its left.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Button"
+        },
+        {
+          "id": "b",
+          "component": "Close Button"
+        },
+        {
+          "id": "c",
+          "component": "Icon Button"
+        },
+        {
+          "id": "d",
+          "component": "Social Button"
+        },
+        {
+          "id": "e",
+          "component": "Split Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "33cbd0da-c356-5be1-85c0-05d84400b910",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Checkbox",
+      "prompt": "Use one this component per independent option; several may be checked at once. Use the indeterminate state for a parent that governs a partially-selected group (\"select all\").",
+      "options": [
+        {
+          "id": "a",
+          "component": "Checkbox"
+        },
+        {
+          "id": "b",
+          "component": "Radio"
+        },
+        {
+          "id": "c",
+          "component": "Slide Toggle"
+        },
+        {
+          "id": "d",
+          "component": "Toggle"
+        },
+        {
+          "id": "e",
+          "component": "Add Comment"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "02ae1e93-5026-529c-b4c7-5764302eecf8",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Close Button",
+      "prompt": "Use it only to dismiss/close the surface it sits in — not as a generic cancel or a destructive delete. One per surface, conventionally top-right; don't pair two close affordances on the same container.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Close Button"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Icon Button"
+        },
+        {
+          "id": "d",
+          "component": "Social Button"
+        },
+        {
+          "id": "e",
+          "component": "Split Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "54e6a21a-9e43-539a-8df0-70818efdbb4b",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Counter",
+      "prompt": "Reserve orange for counts that genuinely need attention; use blue/grey for neutral counts that simply fit the surrounding UI. Keep the number live — if it never changes, it isn't a this component.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Counter"
+        },
+        {
+          "id": "b",
+          "component": "Badge"
+        },
+        {
+          "id": "c",
+          "component": "Status"
+        },
+        {
+          "id": "d",
+          "component": "Tag"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "ceb84f52-7910-5f39-b168-ac58a09d311c",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Counter",
+      "prompt": "The number, optionally on a coloured background — or bare, when it sits on an icon as a notif this component.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Counter"
+        },
+        {
+          "id": "b",
+          "component": "Badge"
+        },
+        {
+          "id": "c",
+          "component": "Status"
+        },
+        {
+          "id": "d",
+          "component": "Tag"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "b630d091-83cc-5ec3-aeee-915a649f8e77",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Datepicker",
+      "prompt": "Calendar parts (CSS-UI): header, month nav, calendar grid(s), ranges rail, time row, footer.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Datepicker"
+        },
+        {
+          "id": "b",
+          "component": "Neo Datepicker"
+        },
+        {
+          "id": "c",
+          "component": "Add Comment"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "e",
+          "component": "Checkbox"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "dc8b8a15-6b36-5f0a-b25a-6eb753ee29bf",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Datepicker",
+      "prompt": "Turn on ranges for analytics/filter contexts where users pick a period, not one day. Compose from the three selectors and CSS-UI classes — never hand-build a calendar grid.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Datepicker"
+        },
+        {
+          "id": "b",
+          "component": "Neo Datepicker"
+        },
+        {
+          "id": "c",
+          "component": "Add Comment"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "e",
+          "component": "Checkbox"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "11842d12-ed7e-5d69-aae4-156a9ab55c5b",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Ellipsis",
+      "prompt": "Use it for token-aware truncation (tags, mentions, mixed inline content) or when you need the \"+N / …\" click-to-expand behaviour.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Ellipsis"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Avatar"
+        },
+        {
+          "id": "d",
+          "component": "Avatar Group"
+        },
+        {
+          "id": "e",
+          "component": "Badge"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "f4732402-b8b7-58a8-ad2c-e14cf22e7af5",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Ellipsis",
+      "prompt": "Emits the removed-elements count and the removed text so you can react (e.g. a tooltip with the full value).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Ellipsis"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Avatar"
+        },
+        {
+          "id": "d",
+          "component": "Avatar Group"
+        },
+        {
+          "id": "e",
+          "component": "Badge"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "4a20c282-19cb-585a-9f3d-a87da7378104",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Filter Chips List",
+      "prompt": "Keep the option set short enough to sit on one line — this is a \"show the choices\" control, not a menu. Selection is state, not navigation: toggling a chip refines the visible list, it doesn't route.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Filter Chips List"
+        },
+        {
+          "id": "b",
+          "component": "Labels"
+        },
+        {
+          "id": "c",
+          "component": "Labels Selector"
+        },
+        {
+          "id": "d",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "e",
+          "component": "Avatar"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "16924b42-e8f4-54cf-9a6d-281ed1f92c0b",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Filter Dropdown",
+      "prompt": "Use Apply mode when applying each toggle immediately would be costly or jarring; use presets when users re-run the same filter combinations.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Filter Dropdown"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Popmenu"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "e",
+          "component": "Select"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "f4cbcefc-b955-5762-ac69-0c0b44ef7346",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Filter Dropdown",
+      "prompt": "Panel footer: Apply / Clear / Reset actions and the save-preset controls when enabled.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Filter Dropdown"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Popmenu"
+        },
+        {
+          "id": "d",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "e",
+          "component": "Select"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "784122d5-3b57-593f-a5f0-edc9d734a7b2",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Icon Button",
+      "prompt": "A single icon in a square target. A toolbar (crowded top-right shortcut cluster) is the only place this component may go without a stroke; if there's no background behind the toolbar, use them with stroke + background so they stay legible.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Icon Button"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Close Button"
+        },
+        {
+          "id": "d",
+          "component": "Social Button"
+        },
+        {
+          "id": "e",
+          "component": "Split Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "93d54ad1-77ac-584a-a6fa-6f2d581e42ff",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Icon Button",
+      "prompt": "Reserve the single hidden right-icon slot elsewhere; here the icon is the whole control, so choose a clear, broadly-recognised glyph.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Icon Button"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Close Button"
+        },
+        {
+          "id": "d",
+          "component": "Social Button"
+        },
+        {
+          "id": "e",
+          "component": "Split Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "20e7f20f-5b3c-5eec-acc4-2ca74cf640cc",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Infobox",
+      "prompt": "Format by container width: horizontal when the container is ≥588px (button inline, right) · vertical when <588px, on mobile, or in narrow panels/drawers (button stacked under the text). Stacking: most recent on top; keep the higher-priority one on top; a dismissed this component doesn't return. Grouping the same type by context (e.g.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Infobox"
+        },
+        {
+          "id": "b",
+          "component": "Notification"
+        },
+        {
+          "id": "c",
+          "component": "Snackbars Thread"
+        },
+        {
+          "id": "d",
+          "component": "Tooltip"
+        },
+        {
+          "id": "e",
+          "component": "Form Message"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "06270c0e-1112-56f2-a9f1-60d18017203b",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Labels",
+      "prompt": "Let a long row collapse into \"+N more\" rather than wrapping indefinitely; the \"＋\" control adds a new this component.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Labels"
+        },
+        {
+          "id": "b",
+          "component": "Labels Selector"
+        },
+        {
+          "id": "c",
+          "component": "Badge"
+        },
+        {
+          "id": "d",
+          "component": "Counter"
+        },
+        {
+          "id": "e",
+          "component": "Filter Chips List"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "37aac32b-b7cb-5d03-97d5-bd4fdf8b59f2",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Labels",
+      "prompt": "Single-colour chip. Text max 180px then ellipsis; no min width. Each this component may carry an × to remove it. A row of this component overflows into a \"+N more\" link plus a \"＋\" add control.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Labels"
+        },
+        {
+          "id": "b",
+          "component": "Labels Selector"
+        },
+        {
+          "id": "c",
+          "component": "Badge"
+        },
+        {
+          "id": "d",
+          "component": "Counter"
+        },
+        {
+          "id": "e",
+          "component": "Filter Chips List"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "6b358ab3-31c5-5bf8-8197-f7b86ea4a328",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Loader",
+      "prompt": "Reserve it for indeterminate waits; use a button's inline bar for button-scoped loading.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Loader"
+        },
+        {
+          "id": "b",
+          "component": "Confirm Modal"
+        },
+        {
+          "id": "c",
+          "component": "Infobox"
+        },
+        {
+          "id": "d",
+          "component": "Modal"
+        },
+        {
+          "id": "e",
+          "component": "Notification"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "2f3e3863-8e54-5d37-820d-6fa477da1a90",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Media Display Overlay",
+      "prompt": "Reserve it for chrome that genuinely belongs on the media (close, zoom, play, caption) — anything that reads as page layout stays outside the frame. Keep the overlay light so it never obscures the media it describes; let the media remain the focus.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Media Display Overlay"
+        },
+        {
+          "id": "b",
+          "component": "Confirm Modal"
+        },
+        {
+          "id": "c",
+          "component": "Modal"
+        },
+        {
+          "id": "d",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "e",
+          "component": "Avatar"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "35f5c57c-4ea2-5feb-b43f-a2b67948d7c9",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Menu",
+      "prompt": "For a plain list of actions with the DS look, reach for Action dropdown first; choose this component when you specifically need Material's this component (e.g. cascading submenus).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Menu"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Avatar"
+        },
+        {
+          "id": "d",
+          "component": "Avatar Group"
+        },
+        {
+          "id": "e",
+          "component": "Badge"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "03c19fe3-5a20-57d1-9ba5-1b887fb72621",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Nav Selector",
+      "prompt": "Use the built-in category empty state rather than rendering your own empty markup.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "b",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "c",
+          "component": "Tabs"
+        },
+        {
+          "id": "d",
+          "component": "Dot Stepper"
+        },
+        {
+          "id": "e",
+          "component": "Paginator"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "9ebbec88-ca88-5070-9db7-4c723496e006",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Phone Number Input",
+      "prompt": "Let the component own formatting and country/code state — read the two outputs rather than parsing the raw string yourself.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Phone Number Input"
+        },
+        {
+          "id": "b",
+          "component": "Form Field"
+        },
+        {
+          "id": "c",
+          "component": "Input Group"
+        },
+        {
+          "id": "d",
+          "component": "Input Search"
+        },
+        {
+          "id": "e",
+          "component": "Password Input"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "34c18e79-75cd-531a-a910-a288b671d4c1",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Segmented Control",
+      "prompt": "Use it for a quick mode/view switch where the options are best compared at a glance, not for navigating between unrelated sections. Keep segment widths balanced so no single label dominates.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "b",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "c",
+          "component": "Tabs"
+        },
+        {
+          "id": "d",
+          "component": "Dot Stepper"
+        },
+        {
+          "id": "e",
+          "component": "Paginator"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "8fb0e489-219a-5a52-97c9-9a385fb96842",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Segmented Control",
+      "prompt": "A bounded track holding equal-weight segments; the active segment reads as a filled/inset pill, the others quiet.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "b",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "c",
+          "component": "Tabs"
+        },
+        {
+          "id": "d",
+          "component": "Dot Stepper"
+        },
+        {
+          "id": "e",
+          "component": "Paginator"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "63f6a41b-60f4-55de-8652-8cd4361c9e6f",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Select",
+      "prompt": "A \"＋ Create\" footer opens a modal for input, and should come with search. Use groups (a selectable header this component its children) to differentiate items; 2-line caption items where names collide (prioritized for users/products — pair with the avatar); separators for unnamed groups. Show \"No result found\" when a search misses — offer \"Create\" when the list is empty.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Select"
+        },
+        {
+          "id": "b",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "c",
+          "component": "Selection Dropdown"
+        },
+        {
+          "id": "d",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "e",
+          "component": "Filter Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "d203e410-80d9-5f78-a102-ac3956f60872",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Select",
+      "prompt": "Option list: avatar + label rows for users/profiles (profiles add a network sub-badge), plain text for generic items. Optional search field, an optional \"＋ Create\" footer, and a \"No result found\" empty state.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Select"
+        },
+        {
+          "id": "b",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "c",
+          "component": "Selection Dropdown"
+        },
+        {
+          "id": "d",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "e",
+          "component": "Filter Dropdown"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "2c2f9da4-ee3c-5fa5-86f6-8bd303f4d914",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Snackbars Thread",
+      "prompt": "Timing: temporary this component stay 5 seconds; permanent ones stay until the user acts or closes. Action wording must be very short (\"Undo\", \"Go to post\", \"Cancel\") — and short in translation too. Stacking: top → bottom with 12px gaps; the newest is lowest and on top in z-index; stacks infinitely.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Snackbars Thread"
+        },
+        {
+          "id": "b",
+          "component": "Infobox"
+        },
+        {
+          "id": "c",
+          "component": "Notification"
+        },
+        {
+          "id": "d",
+          "component": "Tooltip"
+        },
+        {
+          "id": "e",
+          "component": "Form Message"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "874872f8-b5d2-5aee-931a-c85da58a1f63",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Snackbars Thread",
+      "prompt": "A short message, an optional action button with a very short label, and an optional close ×. Rendered in a container fixed 68px from the top / 32px from the right, at the highest z-index in the app (above the modal backdrop).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Snackbars Thread"
+        },
+        {
+          "id": "b",
+          "component": "Infobox"
+        },
+        {
+          "id": "c",
+          "component": "Notification"
+        },
+        {
+          "id": "d",
+          "component": "Tooltip"
+        },
+        {
+          "id": "e",
+          "component": "Form Message"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "7823ed13-f7de-5ef0-af68-42c0f32e6662",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Split Button",
+      "prompt": "The main button performs the primary action directly; the caret is for the variants, not the primary path.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Split Button"
+        },
+        {
+          "id": "b",
+          "component": "Button"
+        },
+        {
+          "id": "c",
+          "component": "Close Button"
+        },
+        {
+          "id": "d",
+          "component": "Icon Button"
+        },
+        {
+          "id": "e",
+          "component": "Social Button"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "4b704016-f40d-5395-af5c-afbb5de13ddc",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Status",
+      "prompt": "Keep the label to one or two words maximum. Choose the colour by meaning, not decoration.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Status"
+        },
+        {
+          "id": "b",
+          "component": "Badge"
+        },
+        {
+          "id": "c",
+          "component": "Counter"
+        },
+        {
+          "id": "d",
+          "component": "Tag"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "a3bd6a05-0448-5697-824c-72de91ecb0b7",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Status Card",
+      "prompt": "Keep the body to a short, plain line; use the link for the one action that resolves or explains the state.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Status Card"
+        },
+        {
+          "id": "b",
+          "component": "Radio Button Card"
+        },
+        {
+          "id": "c",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "d",
+          "component": "Avatar"
+        },
+        {
+          "id": "e",
+          "component": "Avatar Group"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "45e772eb-e1c2-5d75-9904-25f4623f154a",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Table",
+      "prompt": "A leading identity cell often pairs an avatar + name + email; empty numeric cells conventionally show an em-dash.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Table"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Avatar"
+        },
+        {
+          "id": "d",
+          "component": "Avatar Group"
+        },
+        {
+          "id": "e",
+          "component": "Badge"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "dbf4f126-616d-548f-bedd-a0eca9803f1f",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Table",
+      "prompt": "Reach for a this component only when the content is real tabular data — never for page layout.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Table"
+        },
+        {
+          "id": "b",
+          "component": "Action Dropdown"
+        },
+        {
+          "id": "c",
+          "component": "Avatar"
+        },
+        {
+          "id": "d",
+          "component": "Avatar Group"
+        },
+        {
+          "id": "e",
+          "component": "Badge"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "e7581cc6-26eb-5a1e-b3bd-da61eb0e4dde",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Tabs",
+      "prompt": "Keep to ≤6 this component — more adds cognitive load and clutter. Exactly one active at a time (an active this component can be clicked, it just does nothing).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tabs"
+        },
+        {
+          "id": "b",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "c",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "d",
+          "component": "Dot Stepper"
+        },
+        {
+          "id": "e",
+          "component": "Paginator"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "f1e88011-5d6c-56b5-9ebf-d70186b5116c",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Tabs",
+      "prompt": "A row of this component labels; an optional counter and/or icon per this component (an icon is an edge case).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tabs"
+        },
+        {
+          "id": "b",
+          "component": "Nav Selector"
+        },
+        {
+          "id": "c",
+          "component": "Segmented Control"
+        },
+        {
+          "id": "d",
+          "component": "Dot Stepper"
+        },
+        {
+          "id": "e",
+          "component": "Paginator"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "3c58cc28-47c1-5c81-a9f9-b67cbd02d747",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Tag",
+      "prompt": "Choose the colour by object type, then check what other features already use so the same object type stays consistent across the app.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tag"
+        },
+        {
+          "id": "b",
+          "component": "Badge"
+        },
+        {
+          "id": "c",
+          "component": "Counter"
+        },
+        {
+          "id": "d",
+          "component": "Status"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "872ffda7-4839-59a3-8e8e-1a5dbee9331b",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Tag",
+      "prompt": "Text is mandatory (a single-character this component is valid), max 180px then ellipsis; no min width. Optional leading avatar or icon (never both); optional trailing × on removable this component.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tag"
+        },
+        {
+          "id": "b",
+          "component": "Badge"
+        },
+        {
+          "id": "c",
+          "component": "Counter"
+        },
+        {
+          "id": "d",
+          "component": "Status"
+        },
+        {
+          "id": "e",
+          "component": "Labels"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "4a1470b0-c868-5e3e-b9a4-610266fdc5aa",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Textarea",
+      "prompt": "Choose the resize behaviour to match the content (grow-with-content vs. user-resizable).",
+      "options": [
+        {
+          "id": "a",
+          "component": "Textarea"
+        },
+        {
+          "id": "b",
+          "component": "Add Comment"
+        },
+        {
+          "id": "c",
+          "component": "Autocomplete"
+        },
+        {
+          "id": "d",
+          "component": "Checkbox"
+        },
+        {
+          "id": "e",
+          "component": "Datepicker"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "05f3c258-2b62-5403-9df4-b0e0089baea5",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Toggle",
+      "prompt": "A track with a sliding knob that carries a state icon — an × when off, a check when on.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Toggle"
+        },
+        {
+          "id": "b",
+          "component": "Checkbox"
+        },
+        {
+          "id": "c",
+          "component": "Radio"
+        },
+        {
+          "id": "d",
+          "component": "Slide Toggle"
+        },
+        {
+          "id": "e",
+          "component": "Add Comment"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "a0aee274-6e2f-51dd-a9e7-ffff20360516",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Toggle",
+      "prompt": "Use a this component for an immediate on/off setting, not for choosing among items. The state icon (×/check) carries the meaning, so on/off reads even in the disabled tint.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Toggle"
+        },
+        {
+          "id": "b",
+          "component": "Checkbox"
+        },
+        {
+          "id": "c",
+          "component": "Radio"
+        },
+        {
+          "id": "d",
+          "component": "Slide Toggle"
+        },
+        {
+          "id": "e",
+          "component": "Add Comment"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
+      "id": "31803d18-151c-5c68-b961-32c94ce60730",
+      "version": 1,
+      "status": "draft",
+      "mode": "name-from-description",
+      "difficulty": "medium",
+      "component": "Tooltip",
+      "prompt": "Set the position class for every this component so it anchors correctly to its trigger. Keep the text short — it's a hint, not documentation.",
+      "options": [
+        {
+          "id": "a",
+          "component": "Tooltip"
+        },
+        {
+          "id": "b",
+          "component": "Infobox"
+        },
+        {
+          "id": "c",
+          "component": "Notification"
+        },
+        {
+          "id": "d",
+          "component": "Snackbars Thread"
+        },
+        {
+          "id": "e",
+          "component": "Form Message"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "",
+      "docUrl": null,
+      "imageKey": null,
+      "stimulus": null,
+      "timerSeconds": null
+    },
+    {
       "id": "1988f511-610f-5a76-b442-140c3c75e927",
       "version": 1,
+      "status": "published",
       "mode": "name-that-component",
       "difficulty": "easy",
       "component": "Badge",
@@ -27,13 +3679,15 @@
       ],
       "correctOptionId": "a",
       "explanation": "A Badge is the small dot or count that attaches to another element to flag activity. It is read, never clicked. Modal, Paginator and Datepicker are all interactive surfaces in their own right — none of them can sit on the corner of an icon.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": "https://design.agorapulse.com/?path=/docs/display-badge--docs",
       "imageKey": "cdb5dff7.svg",
+      "stimulus": null,
       "timerSeconds": null
     },
     {
       "id": "00dbd055-7b28-5377-bd8c-c0396ee6e172",
       "version": 1,
+      "status": "published",
       "mode": "name-that-component",
       "difficulty": "hard",
       "component": "Status",
@@ -66,13 +3720,15 @@
       ],
       "correctOptionId": "c",
       "explanation": "This is a Status: a pill whose dot and colour carry a state the system decided. Badge is the bare dot or count attached to something else, with no label of its own. Tag is a token the user put there and can take away. Counter is a number pill. Labels are user-assigned to a conversation. Filter Chips List shows which filters are currently applied. The giveaway is the dot: Status ships with it by default and has a `no-dot` modifier to remove it.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": "https://design.agorapulse.com/?path=/docs/display-status--docs",
       "imageKey": "7a719b85.svg",
+      "stimulus": null,
       "timerSeconds": null
     },
     {
       "id": "3eef358a-134f-554c-8169-f5b09a4ea21e",
       "version": 1,
+      "status": "published",
       "mode": "name-that-component",
       "difficulty": "medium",
       "component": "Segmented Control",
@@ -101,13 +3757,15 @@
       ],
       "correctOptionId": "b",
       "explanation": "A Segmented Control holds a small set of mutually exclusive choices in one joined control, and switches a view in place. Tabs also switch views, but they sit above a panel and can scroll. A Paginator moves through pages of the same list rather than between views. A Stepper walks a sequence that has a beginning and an end.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": "https://design.agorapulse.com/?path=/docs/navigation-segmentedcontrol--docs",
       "imageKey": "ac8d9fab.svg",
+      "stimulus": null,
       "timerSeconds": null
     },
     {
       "id": "37d6cb41-593f-5d4a-9b84-2772994d0d16",
       "version": 1,
+      "status": "published",
       "mode": "spot-the-drift",
       "difficulty": "easy",
       "component": "Button",
@@ -124,13 +3782,15 @@
       ],
       "correctOptionId": "b",
       "explanation": "Two drifts in one on the wrong side. BEM double-dash modifiers do not exist in this design system — modifiers are plain words chained onto the base class, as in `ap-button primary orange`. And the colour is hardcoded instead of coming from `--comp-button-*`, which is exactly what turns a future theme change into a search-and-replace across the whole codebase.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": "https://design.agorapulse.com/?path=/docs/actions-button--docs",
       "imageKey": null,
+      "stimulus": null,
       "timerSeconds": null
     },
     {
       "id": "ae3b1b92-640f-5a29-a7f2-886316630913",
       "version": 1,
+      "status": "published",
       "mode": "spot-the-drift",
       "difficulty": "hard",
       "component": "Status",
@@ -147,13 +3807,15 @@
       ],
       "correctOptionId": "b",
       "explanation": "The wrong one is a Status pill rebuilt by hand: correct today, wrong the moment the green shifts or the radius scale moves, and invisible to anyone auditing the design system. Searching the codebase for \"pill\" and finding nothing is not proof the component is missing — search by intent instead. Both \"state pill\" and \"status label\" lead straight to Status in the component index.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": "https://design.agorapulse.com/?path=/docs/display-status--docs",
       "imageKey": null,
+      "stimulus": null,
       "timerSeconds": null
     },
     {
       "id": "60da8e18-fb32-500d-bfd3-b10fcf28cbef",
       "version": 1,
+      "status": "published",
       "mode": "spot-the-drift",
       "difficulty": "medium",
       "component": "Input Group",
@@ -170,13 +3832,15 @@
       ],
       "correctOptionId": "b",
       "explanation": "Components in this design system style their direct children — `> input`, `> i`, `> span`. Slipping an extra wrapper in between breaks that selector chain, the input silently loses its styling, and somebody patches it back with custom CSS a week later. There is already a documented wrapper for this: `ap-input-group`. Inventing `input-wrapper` is how a codebase grows a second, undocumented design system.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": null,
       "imageKey": null,
+      "stimulus": null,
       "timerSeconds": null
     },
     {
       "id": "c3369e27-123b-521e-915c-1db31466eae9",
       "version": 1,
+      "status": "published",
       "mode": "which-component",
       "difficulty": "easy",
       "component": "Snackbars Thread",
@@ -201,13 +3865,15 @@
       ],
       "correctOptionId": "b",
       "explanation": "Snackbars Thread is the transient confirmation: it appears, it is read, it leaves. A Modal demands a decision before anything else can happen, which is far too much ceremony for a success message. An Infobox is a banner that stays on the page. A Tooltip only exists while you hover, so nobody would ever see it. If you reach for the word \"toast\", this design system calls it Snackbars Thread.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": "https://design.agorapulse.com/?path=/docs/feedback-snackbar--docs",
       "imageKey": null,
+      "stimulus": null,
       "timerSeconds": null
     },
     {
       "id": "8610e0ab-1761-5b83-9df2-4fdd2b3edbeb",
       "version": 1,
+      "status": "published",
       "mode": "which-component",
       "difficulty": "hard",
       "component": "Filter Chips List",
@@ -240,13 +3906,15 @@
       ],
       "correctOptionId": "b",
       "explanation": "Filter Chips List is the row of filters currently applied — both \"active filters\" and \"filter chips\" map onto it in the component index, and it exposes the items and a change output for removal. Tag is the generic removable token underneath, but the list is the documented component and rebuilding it from Tags is drift. Filter Dropdown is where you choose the filters, not where you see them. Labels and Labels Selector are about labels a user assigns to a conversation, which is a different concept that merely looks alike.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": "https://design.agorapulse.com/?path=/docs/display-filterchipslist--docs",
       "imageKey": null,
+      "stimulus": null,
       "timerSeconds": null
     },
     {
       "id": "2b9b924b-c6a0-5b07-98bf-bb0f9d9601ab",
       "version": 1,
+      "status": "published",
       "mode": "which-component",
       "difficulty": "medium",
       "component": "Infobox",
@@ -275,13 +3943,15 @@
       ],
       "correctOptionId": "c",
       "explanation": "Infobox is the one that can do all three: it takes a `title`, an action button with its own click output, and a `closable` flag — and its `type` even includes `feature-lock` for exactly this situation. Notification looks similar but only exposes a `type`: no heading, no button, so it cannot carry the call to action. A snackbar would vanish before the sentence is finished, and a Confirm Modal blocks the work to ask a question nobody asked.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": "https://design.agorapulse.com/?path=/docs/feedback-infobox--docs",
       "imageKey": null,
+      "stimulus": null,
       "timerSeconds": null
     },
     {
       "id": "3e2aa166-49a1-516f-89dd-141117175d48",
       "version": 1,
+      "status": "published",
       "mode": "which-variant",
       "difficulty": "easy",
       "component": "Button",
@@ -306,13 +3976,15 @@
       ],
       "correctOptionId": "a",
       "explanation": "The primary variant carries the one action you most want taken on a screen, and the design system picks colour families by meaning rather than hue: `main` / orange is for primary CTAs. Secondary, ghost and transparent deliberately step back so the primary stays the only obvious target. Two primaries on one screen is what makes a page feel undecided.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": "https://design.agorapulse.com/?path=/docs/actions-button--docs",
       "imageKey": null,
+      "stimulus": null,
       "timerSeconds": null
     },
     {
       "id": "93625b73-241d-5c4e-b6b6-933dbbc68edf",
       "version": 1,
+      "status": "published",
       "mode": "which-variant",
       "difficulty": "hard",
       "component": "Button",
@@ -337,13 +4009,15 @@
       ],
       "correctOptionId": "b",
       "explanation": "The `locked` variant, drawn from the feature-lock purple family, says \"available on another plan\" while staying interactive and leading somewhere. A greyed-out disabled button says \"not now, and there is nothing you can do about it\" — a different message and a dead end. Red is reserved for destructive actions, so it would read as a warning about deleting something.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": "https://design.agorapulse.com/?path=/docs/actions-button--docs",
       "imageKey": null,
+      "stimulus": null,
       "timerSeconds": null
     },
     {
       "id": "94fd31ae-8282-5f9c-8947-347f26389269",
       "version": 1,
+      "status": "published",
       "mode": "which-variant",
       "difficulty": "medium",
       "component": "Button",
@@ -368,8 +4042,9 @@
       ],
       "correctOptionId": "b",
       "explanation": "The `mermaid` gradient is reserved for AI surfaces, and the conventions say so in as many words: never decoratively. The rule is not about taste. Use it on an ordinary button and you teach people it means nothing, and then it cannot mean \"AI\" on the screen where that actually matters.",
-      "docUrl": "https://design.agorapulse.com",
+      "docUrl": "https://design.agorapulse.com/?path=/docs/actions-button--docs",
       "imageKey": null,
+      "stimulus": null,
       "timerSeconds": null
     }
   ]

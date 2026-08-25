@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { copy } from "@/lib/copy"
 import { cn } from "@/lib/utils";
+import { assetPath } from "@/lib/base-path"
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'})
 
@@ -35,10 +36,7 @@ export default function RootLayout({
             adoptedStyleSheets — font registration is document-scoped — so this one
             sheet is linked here. It declares nothing but @font-face, so it cannot
             restyle the quiz's own interface. */}
-        {/* eslint-disable-next-line @next/next/no-css-tags -- this is a vendored
-            runtime asset in public/, not a module the bundler can import, and it
-            has to land in the document rather than in a shadow root. */}
-        <link rel="stylesheet" href="/ds/fonts.css" />
+                <link rel="stylesheet" href={assetPath("/ds/fonts.css")} />
       </head>
       <body>
         {/* Visible only once focused: a keyboard player should not have to tab
