@@ -40,6 +40,11 @@ jobs:
       # step's output, and an empty prefix 404s every asset on a project site.
       - uses: actions/configure-pages@v5
         id: pages
+        with:
+          # Turns Pages on if it is not already, rather than failing with "Get
+          # Pages site failed" and leaving someone to find the setting. The
+          # `pages: write` permission above is what makes this allowed.
+          enablement: true
 
       - name: Build
         env:
