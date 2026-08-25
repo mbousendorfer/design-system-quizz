@@ -39,6 +39,7 @@
     --color-foreground: var(--foreground);
     --color-background: var(--background);
     --color-link: var(--link);
+    --color-warning: var(--warning);
     --color-success: var(--success);
     --color-success-foreground: var(--success-foreground);
     --color-plate: var(--plate);
@@ -109,6 +110,10 @@
        button palette, which is why it is not the primary orange. */
     --success: oklch(0.695 0.174 145.7);
     --success-foreground: oklch(1 0 0);
+    /* yellow-150 #A56608 for the clock. The design system's warning is
+       yellow-100 #FFE91F, which is a highlighter and unreadable as a thin bar on
+       white; 150 is the same family at a lightness that can carry a shape. */
+    --warning: oklch(0.567 0.122 67.5);
 
     --border: oklch(0.922 0 0);
     --input: oklch(0.922 0 0);
@@ -162,6 +167,9 @@
     --destructive: oklch(0.680 0.190 28.6);
     --success: oklch(0.720 0.155 145.7);
     --success-foreground: oklch(0.145 0 0);
+    /* Closer to yellow-100 here: a dark ground can take the brighter one, and
+       the darker 150 would disappear into it. */
+    --warning: oklch(0.800 0.150 90);
 
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);

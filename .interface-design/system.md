@@ -14,14 +14,30 @@ system, and only where it means something — every value converted from its rea
 | Error, wrong answer | `--destructive` | red-100 `#E81313` |
 | Charts | `--chart-1..5` | the DS data palette (sky, emerald, sun, iris, cherry) |
 
-**`--accent` stays grey, and that is the load-bearing decision.** It is what
-shadcn paints hovered and selected surfaces with, including the option toggles.
-On a `which-variant` question comparing a blue button against an orange one, a
-coloured wash under the option the player is hovering is a thumb on the scale.
-The chrome may be branded; nothing touching an option may be.
+**`--accent` stays grey, and the rule has a boundary that matters.** `--accent`
+is what shadcn paints hovered and selected surfaces with, including the option
+toggles. *While the question is live*, a coloured wash under the option the
+player is hovering is a thumb on the scale — on a `which-variant` question
+comparing a blue button against an orange one it is worse than that.
 
-For the same reason a verdict is coloured by meaning rather than by the button
-palette: a right answer is green, not the primary orange.
+*Once the answer is in, that concern is over.* The first version of this rule did
+not draw the line and applied it to the verdict too, which left the single most
+important thing on the screen — which option was right — as a small chip at the
+far right edge of a row identical to every other. The verdict now takes the whole
+row: tinted surface, coloured border, the number chip replaced by a tick or a
+cross, the losing options faded back.
+
+Colour is never the only carrier. Every verdict says it three ways — colour,
+icon, and the word — so it survives colour blindness and a screenshot in
+grayscale.
+
+A verdict is coloured by meaning rather than by the button palette: a right
+answer is green, not the primary orange.
+
+**The clock is green, then yellow, then red**, at half and a fifth of the time
+remaining, in the same three semantic families the rest of the app uses for the
+same three ideas. It was a one-pixel hairline once. Honest about how little it
+now enforces, and far too quiet for the thing a player is racing.
 
 ## The signature: the plate
 

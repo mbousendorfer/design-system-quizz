@@ -110,7 +110,9 @@ export function QuestionOptions({
         images ? 'grid grid-cols-1 sm:grid-cols-2' : 'flex flex-col items-stretch',
       )}
     >
-      {question.options.map((option, index) => (
+      {question.options.map((option, index) => {
+        const outcome = verdictFor(option, verdict)
+        return (
         <ToggleGroupItem
           key={option.id}
           value={option.id}
@@ -124,8 +126,23 @@ export function QuestionOptions({
           // Layout only: the toggle is a single-line control by default and these
           // options are a full-width row, or a card holding a screenshot.
           className={cn(
-            'h-auto justify-start gap-3 whitespace-normal p-3 text-left',
+            'h-auto justify-start gap-3 whitespace-normal p-3 text-left transition-colors',
             images && 'flex-col items-stretch',
+            // The verdict is carried by the whole row, not by a chip at its far
+            // edge. Before this, the single most important thing on the screen —
+            // which one was right — was the least visible thing on it.
+            //
+            // Colour is never the only signal: the number chip becomes a tick or
+            // a cross, and the row keeps its label. Colour, shape and text all
+            // say the same thing.
+            outcome === 'correct' &&
+              'border-success bg-success/12 text-foreground hover:bg-success/12 data-[selected]:bg-success/12',
+            outcome === 'wrong' &&
+              'border-destructive bg-destructive/12 text-foreground hover:bg-destructive/12 data-[selected]:bg-destructive/12',
+            // The rest step back so the two that matter carry the eye. Only once
+            // the answer is in — while the question is live every option has to
+            // look equally plausible.
+            outcome === 'other' && 'opacity-45',
           )}
         >
           <OptionBody
@@ -133,12 +150,51 @@ export function QuestionOptions({
             index={index}
             images={images}
             zoom={zoom}
+            outcome={outcome}
             onMeasure={measure(option.id)}
           />
-          <OptionVerdictBadge option={option} verdict={verdict} />
+          <OptionVerdictLabel outcome={outcome} />
         </ToggleGroupItem>
-      ))}
+        )
+      })}
     </ToggleGroup>
+  )
+}
+
+/** What this option turned out to be, once the answer is in. */
+type Outcome = 'pending' | 'correct' | 'wrong' | 'other'
+
+function verdictFor(option: PlayerOption, verdict: OptionVerdict | null): Outcome {
+  if (!verdict) return 'pending'
+  if (option.id === verdict.correctOptionId) return 'correct'
+  if (option.id === verdict.chosenOptionId) return 'wrong'
+  return 'other'
+}
+
+/**
+ * The marker at the head of a row: the keyboard number while the question is
+ * live, the verdict once it is over. One slot, so nothing shifts when the answer
+ * lands and the eye already knows where to look.
+ */
+function OptionMarker({ index, outcome }: { index: number; outcome: Outcome }) {
+  if (outcome === 'correct') {
+    return (
+      <span className="bg-success text-success-foreground flex size-6 shrink-0 items-center justify-center rounded-full">
+        <CheckIcon className="size-3.5" aria-hidden />
+      </span>
+    )
+  }
+  if (outcome === 'wrong') {
+    return (
+      <span className="bg-destructive text-background flex size-6 shrink-0 items-center justify-center rounded-full">
+        <XIcon className="size-3.5" aria-hidden />
+      </span>
+    )
+  }
+  return (
+    <span className="bg-muted text-text-tertiary flex size-6 shrink-0 items-center justify-center rounded-full font-mono text-xs tabular-nums">
+      {index + 1}
+    </span>
   )
 }
 
@@ -147,19 +203,24 @@ function OptionBody({
   index,
   images,
   zoom,
+  outcome,
   onMeasure,
 }: {
   option: PlayerOption
   index: number
   images: boolean
   zoom: number
+  outcome: Outcome
   onMeasure: (size: { width: number; height: number }) => void
 }) {
   if (images && option.render) {
     return (
       <>
         <div className="flex items-center gap-2">
-          <Badge variant="secondary">{option.label ?? optionLetter(index)}</Badge>
+          <OptionMarker index={index} outcome={outcome} />
+          <span className="text-text-secondary text-sm font-medium">
+            {option.label ?? optionLetter(index)}
+          </span>
         </div>
         <RenderBox
           render={option.render}
@@ -174,46 +235,27 @@ function OptionBody({
 
   return (
     <span className="flex items-center gap-3">
-      <Badge variant="secondary">{index + 1}</Badge>
+      <OptionMarker index={index} outcome={outcome} />
       <span className="font-medium">{option.component ?? option.label ?? optionLetter(index)}</span>
     </span>
   )
 }
 
-/**
- * The verdict is carried by a labelled badge rather than by recolouring the
- * option: it survives being colour-blind, and it keeps the toggle's own styling
- * out of this file.
- */
-function OptionVerdictBadge({
-  option,
-  verdict,
-}: {
-  option: PlayerOption
-  verdict: OptionVerdict | null
-}) {
-  if (!verdict) return null
-
-  if (option.id === verdict.correctOptionId) {
+/** The word, so the verdict never rests on colour alone. */
+function OptionVerdictLabel({ outcome }: { outcome: Outcome }) {
+  if (outcome === 'correct') {
     return (
-      // Success green, not the primary orange. Orange is the colour of the
-      // action a screen is for; a right answer is not an action, and painting
-      // the verdict with the button palette says nothing about what happened.
-      <Badge className="bg-success text-success-foreground ml-auto border-transparent">
-        <CheckIcon data-icon="inline-start" />
+      <span className="text-success ml-auto shrink-0 text-sm font-semibold">
         {copy.game.correct}
-      </Badge>
+      </span>
     )
   }
-
-  if (option.id === verdict.chosenOptionId) {
+  if (outcome === 'wrong') {
     return (
-      <Badge variant="destructive" className="ml-auto">
-        <XIcon data-icon="inline-start" />
+      <span className="text-destructive ml-auto shrink-0 text-sm font-semibold">
         {copy.game.incorrect}
-      </Badge>
+      </span>
     )
   }
-
   return null
 }
