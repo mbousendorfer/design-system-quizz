@@ -35,7 +35,10 @@ export function FeedbackPanel({ result }: { result: SubmitAnswerResponse }) {
 
   return (
     <div className="flex flex-col gap-3">
-      <Alert variant={result.correct ? 'default' : 'destructive'}>
+      <Alert
+        variant={result.correct ? 'default' : 'destructive'}
+        className={result.correct ? 'border-success/40 [&>svg]:text-success' : undefined}
+      >
         {result.timedOut ? (
           <ClockIcon />
         ) : result.correct ? (

@@ -196,7 +196,10 @@ function OptionVerdictBadge({
 
   if (option.id === verdict.correctOptionId) {
     return (
-      <Badge variant="default" className="ml-auto">
+      // Success green, not the primary orange. Orange is the colour of the
+      // action a screen is for; a right answer is not an action, and painting
+      // the verdict with the button palette says nothing about what happened.
+      <Badge className="bg-success text-success-foreground ml-auto border-transparent">
         <CheckIcon data-icon="inline-start" />
         {copy.game.correct}
       </Badge>

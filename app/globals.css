@@ -38,6 +38,8 @@
     --color-card: var(--card);
     --color-foreground: var(--foreground);
     --color-background: var(--background);
+    --color-success: var(--success);
+    --color-success-foreground: var(--success-foreground);
     --color-plate: var(--plate);
     --color-plate-edge: var(--plate-edge);
     --color-text-secondary: var(--text-secondary);
@@ -53,111 +55,134 @@
 }
 
 /* ---------------------------------------------------------------------------
-   The wall and the plates.
+   The Agorapulse colours, on the base neutrals.
 
-   Every colour this product is *about* lives inside the questions: `main` orange,
-   `feature-lock` purple, the `mermaid` gradient. Those are the answers. So the
-   chrome is a gallery wall — neutral by decision rather than by default, and cool
-   rather than dead, because the specimens are mostly warm and a cool ground makes
-   them come forward.
+   The greys are shadcn's own and stay that way. What comes from the design
+   system is colour, and only colour — each value below is a real token converted
+   from its hex to oklch, never mixed by hand.
 
-   The plates stay pure white in both themes. Not for looks: the design system is
-   authored against white, and a tinted ground would make a white component read
-   off-white on the one screen where judging exactly that is the exercise.
+   ## What each one is allowed to do
 
-   Elevation moves in steps of a few percent of lightness. You should not be able
-   to see a single step; you should only be able to read the stack.
+   Orange (`--ref-color-orange-100`, #FF6726) is the primary action, which in the
+   design system means the one action a screen is for: start a run, advance it.
+   Electric blue (#178DFE) is interaction — focus rings and links — per the rule
+   that blue belongs to controls and never tints static data. Green (#45B854) is
+   success and red (#E81313) is error, so a verdict is coloured by what it means
+   rather than by the button palette. The chart ramp is the design system's own
+   data palette, which exists for exactly this and for nothing else.
+
+   ## What they are not allowed to do
+
+   `--accent` stays grey. It is what shadcn paints hovered and selected surfaces
+   with, including the option toggles — and on a `which-variant` question
+   comparing a blue button against an orange one, a coloured wash under the
+   option the player is hovering is a thumb on the scale. The chrome may be
+   branded; nothing touching an option may be.
+
+   The plate stays white, because the design system is authored against white and
+   a specimen has to be judged on the ground it was drawn for.
    --------------------------------------------------------------------------- */
 :root {
-    /* The wall sits just below white, so a plate is still the brightest thing on
-       screen. Pure white here would swallow it. */
-    --background: oklch(0.981 0.003 255);
-    --foreground: oklch(0.17 0.008 255);
-    --card: oklch(0.995 0.002 255);
-    --card-foreground: oklch(0.17 0.008 255);
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.17 0.008 255);
-    --primary: oklch(0.21 0.01 255);
-    --primary-foreground: oklch(0.985 0.002 255);
-    --secondary: oklch(0.955 0.004 255);
-    --secondary-foreground: oklch(0.21 0.01 255);
-    --muted: oklch(0.955 0.004 255);
-    --muted-foreground: oklch(0.53 0.011 255);
-    --accent: oklch(0.945 0.006 255);
-    --accent-foreground: oklch(0.21 0.01 255);
-    --destructive: oklch(0.55 0.216 27.2);
-    --border: oklch(0.17 0.02 255 / 10%);
-    --input: oklch(0.17 0.02 255 / 13%);
-    --ring: oklch(0.55 0.02 255);
+    --popover-foreground: oklch(0.145 0 0);
 
-    /* Four levels, not two. Body, supporting, metadata, disabled. A hierarchy
-       with two levels is not a hierarchy. */
-    --text-secondary: oklch(0.40 0.010 255);
-    --text-tertiary: oklch(0.53 0.011 255);
+    /* orange-100 #FF6726 — the primary action, and only that. */
+    --primary: oklch(0.698 0.199 40.5);
+    --primary-foreground: oklch(1 0 0);
 
-    /* The signature. Identical in both themes, and the only pure white in the
-       light palette. */
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    /* Grey on purpose: this paints the option a player is hovering. */
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+
+    /* red-100 #E81313 */
+    --destructive: oklch(0.590 0.235 28.6);
+    /* green-100 #45B854 — a right answer is coloured by meaning, not by the
+       button palette, which is why it is not the primary orange. */
+    --success: oklch(0.695 0.174 145.7);
+    --success-foreground: oklch(1 0 0);
+
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    /* electric-blue-100 #178DFE — the active border, per the semantic map. */
+    --ring: oklch(0.644 0.193 253.5);
+
+    --text-secondary: oklch(0.40 0 0);
+    --text-tertiary: oklch(0.556 0 0);
+
     --plate: oklch(1 0 0);
-    --plate-edge: oklch(0.17 0.02 255 / 12%);
+    --plate-edge: oklch(0.145 0 0 / 14%);
 
-    /* Grey builds structure; these carry meaning. Charts read as one ramp of the
-       wall's own hue rather than as five unrelated colours. */
-    --chart-1: oklch(0.72 0.014 255);
-    --chart-2: oklch(0.60 0.014 255);
-    --chart-3: oklch(0.48 0.013 255);
-    --chart-4: oklch(0.37 0.012 255);
-    --chart-5: oklch(0.27 0.010 255);
+    /* The design system's data palette: sky, emerald, sun, iris, cherry. */
+    --chart-1: oklch(0.646 0.135 250.6);
+    --chart-2: oklch(0.641 0.129 165.4);
+    --chart-3: oklch(0.672 0.145 65.6);
+    --chart-4: oklch(0.562 0.150 297.4);
+    --chart-5: oklch(0.575 0.135 30.2);
     --radius: 0.625rem;
-    --sidebar: oklch(0.981 0.003 255);
-    --sidebar-foreground: oklch(0.17 0.008 255);
-    --sidebar-primary: oklch(0.21 0.01 255);
-    --sidebar-primary-foreground: oklch(0.985 0.002 255);
-    --sidebar-accent: oklch(0.945 0.006 255);
-    --sidebar-accent-foreground: oklch(0.21 0.01 255);
-    --sidebar-border: oklch(0.17 0.02 255 / 10%);
-    --sidebar-ring: oklch(0.55 0.02 255);
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.698 0.199 40.5);
+    --sidebar-primary-foreground: oklch(1 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.644 0.193 253.5);
 }
 
 .dark {
-    --background: oklch(0.157 0.006 255);
-    --foreground: oklch(0.97 0.003 255);
-    --card: oklch(0.203 0.007 255);
-    --card-foreground: oklch(0.97 0.003 255);
-    --popover: oklch(0.232 0.008 255);
-    --popover-foreground: oklch(0.97 0.003 255);
-    --primary: oklch(0.93 0.004 255);
-    --primary-foreground: oklch(0.203 0.007 255);
-    --secondary: oklch(0.262 0.008 255);
-    --secondary-foreground: oklch(0.97 0.003 255);
-    --muted: oklch(0.262 0.008 255);
-    --muted-foreground: oklch(0.70 0.012 255);
-    --accent: oklch(0.292 0.009 255);
-    --accent-foreground: oklch(0.97 0.003 255);
-    --destructive: oklch(0.70 0.185 22.2);
-    --border: oklch(1 0 0 / 9%);
-    --input: oklch(1 0 0 / 13%);
-    --ring: oklch(0.58 0.014 255);
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.232 0 0);
+    --popover-foreground: oklch(0.985 0 0);
 
-    --text-secondary: oklch(0.84 0.006 255);
-    --text-tertiary: oklch(0.70 0.012 255);
+    /* Pulled down in chroma: the same orange reads louder on a dark ground. */
+    --primary: oklch(0.680 0.180 40.5);
+    --primary-foreground: oklch(0.145 0 0);
 
-    /* Unchanged from light on purpose — see the note above. */
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.292 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+
+    --destructive: oklch(0.680 0.190 28.6);
+    --success: oklch(0.720 0.155 145.7);
+    --success-foreground: oklch(0.145 0 0);
+
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.660 0.165 253.5);
+
+    --text-secondary: oklch(0.84 0 0);
+    --text-tertiary: oklch(0.708 0 0);
+
     --plate: oklch(1 0 0);
-    --plate-edge: oklch(1 0 0 / 14%);
+    --plate-edge: oklch(1 0 0 / 16%);
 
-    --chart-1: oklch(0.86 0.010 255);
-    --chart-2: oklch(0.72 0.013 255);
-    --chart-3: oklch(0.58 0.014 255);
-    --chart-4: oklch(0.45 0.013 255);
-    --chart-5: oklch(0.34 0.011 255);
-    --sidebar: oklch(0.157 0.006 255);
-    --sidebar-foreground: oklch(0.97 0.003 255);
-    --sidebar-primary: oklch(0.93 0.004 255);
-    --sidebar-primary-foreground: oklch(0.203 0.007 255);
-    --sidebar-accent: oklch(0.292 0.009 255);
-    --sidebar-accent-foreground: oklch(0.97 0.003 255);
-    --sidebar-border: oklch(1 0 0 / 9%);
-    --sidebar-ring: oklch(0.58 0.014 255);
+    --chart-1: oklch(0.700 0.125 250.6);
+    --chart-2: oklch(0.695 0.120 165.4);
+    --chart-3: oklch(0.730 0.135 65.6);
+    --chart-4: oklch(0.640 0.140 297.4);
+    --chart-5: oklch(0.650 0.130 30.2);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.680 0.180 40.5);
+    --sidebar-primary-foreground: oklch(0.145 0 0);
+    --sidebar-accent: oklch(0.292 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.660 0.165 253.5);
 }
 
 @layer base {

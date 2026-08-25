@@ -47,7 +47,7 @@ export function RunProgress({
               key={index}
               className={cn(
                 'size-1.5 rounded-full transition-all duration-300',
-                step === 'correct' && 'bg-foreground',
+                step === 'correct' && 'bg-success',
                 step === 'wrong' && 'bg-destructive',
                 step === 'answered' && 'bg-foreground/35',
                 // The one you are on is the only mark with a ring, so it reads as

@@ -2,19 +2,26 @@
 
 ## The idea
 
-Every colour this product is *about* lives inside the questions. `main` orange,
-`feature-lock` purple, the `mermaid` gradient — those are the answers. So the
-chrome is a **gallery wall**: neutral by decision, not by default, and the
-components are the works hung on it.
+The greys are shadcn's own. The **colour** comes from the Agorapulse design
+system, and only where it means something — every value converted from its real
+`--ref-color-*` hex to oklch, never mixed by hand.
 
-This is why the quiz must never be Agorapulse-branded, and the reason is
-stronger than "avoid confusion": an orange frame around an orange specimen
-destroys the comparison the player is being asked to make.
+| Role | Token | Value |
+| --- | --- | --- |
+| Primary action | `--primary` | orange-100 `#FF6726` |
+| Interaction, focus | `--ring` | electric-blue-100 `#178DFE` |
+| Success, right answer | `--success` | green-100 `#45B854` |
+| Error, wrong answer | `--destructive` | red-100 `#E81313` |
+| Charts | `--chart-1..5` | the DS data palette (sky, emerald, sun, iris, cherry) |
 
-## Direction
+**`--accent` stays grey, and that is the load-bearing decision.** It is what
+shadcn paints hovered and selected surfaces with, including the option toggles.
+On a `which-variant` question comparing a blue button against an orange one, a
+coloured wash under the option the player is hovering is a thumb on the scale.
+The chrome may be branded; nothing touching an option may be.
 
-Cool-neutral, quiet, technical. A field guide, not a game show. The one moment
-allowed to be a payoff is the score at the end of a run.
+For the same reason a verdict is coloured by meaning rather than by the button
+palette: a right answer is green, not the primary orange.
 
 ## The signature: the plate
 
@@ -32,14 +39,14 @@ allowed to be a payoff is the score at the end of a run.
 
 ## Tokens
 
-`app/globals.css`. Hue 255 at very low chroma throughout; never chroma 0, never
-a second hue.
+`app/globals.css`.
 
-- **Elevation:** wall → card → popover, a few percent of lightness apart. You
-  should not see a step; you should only read the stack.
-- **Text, four levels:** `foreground`, `--text-secondary`, `--text-tertiary`,
-  `muted-foreground`. Two levels is not a hierarchy.
-- **Charts** are one ramp of the wall's own hue, not five unrelated colours.
+- **Elevation:** background → card → popover, a few percent of lightness apart.
+  You should not see a step; you should only read the stack.
+- **Text:** `foreground`, `--text-secondary`, `--text-tertiary`. Two levels is
+  not a hierarchy.
+- Adding a colour means adding a token with a stated meaning. A hex in a
+  className is drift.
 
 ## Depth
 
