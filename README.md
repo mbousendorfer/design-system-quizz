@@ -171,11 +171,26 @@ amount of defence for an internal quiz.
 `spot-the-drift` stays on screenshots. The drift *is* the markup, and no rename
 hides an inline `style` attribute.
 
-**The answer key never reaches the browser.** Questions are served through the
-`questions_public` view, which does not carry `correct_option_id` or `explanation`
-at all, and `buildPlayerQuestion` also drops the component name on the two modes
-where naming it is the answer. Answers are judged in `/api/runs/[runId]/answers`
-and nowhere else.
+**The answer key never reaches the browser — but it is in this repository.**
+At runtime, questions are served through the `questions_public` view, which does
+not carry `correct_option_id` or `explanation` at all, and `buildPlayerQuestion`
+also drops the component name on the two modes where naming it is the answer.
+Answers are judged in `/api/runs/[runId]/answers` and nowhere else.
+
+That is a statement about the running app, not about this repository. Since the
+repository is public, three committed files are worth knowing about before you
+rely on the quiz being hard to cheat:
+
+- `content/questions.json` carries `correctOptionId` and the explanation for every
+  published question at the time it was exported;
+- `content/ds-classmap.json` is the map `ds:css` uses to rename classes, so anyone
+  holding it can undo the obfuscation in seconds rather than in an afternoon;
+- `content/ds-catalog.json` and `content/component-descriptions.json` are derived
+  from Agorapulse's design-specs and guidelines.
+
+None of this breaks the server-side guarantees — the clock, the versioning and the
+judging all still hold. It means the honour system is doing more work than the
+architecture is.
 
 **The clock belongs to the server.** `run_items.served_at` is stamped when a
 question is handed over, and elapsed time is measured from it. Re-serving keeps the
