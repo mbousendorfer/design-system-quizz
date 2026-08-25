@@ -52,6 +52,9 @@ jobs:
           # root. Everything that assembles a URL by hand reads this through
           # lib/base-path.ts.
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Busts the ten-minute Pages cache: chunk filenames are stable across
+          # builds, so without this a returning visitor gets the old CSS.
+          NEXT_PUBLIC_DEPLOYMENT_ID: ${{ github.sha }}
           # Publishable by design: what an anonymous visitor may do is decided by
           # the row level security policies on `public_scores`. The secret key
           # must never appear here — it bypasses them, and everything NEXT_PUBLIC_

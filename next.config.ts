@@ -21,9 +21,25 @@ import type { NextConfig } from 'next'
  */
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
+/**
+ * Busts the CDN cache on every deploy.
+ *
+ * Turbopack gives a chunk the same filename across builds even when its
+ * contents change — verified by rebuilding after an edit and diffing the names.
+ * GitHub Pages serves those files with `max-age=600` and offers no way to set a
+ * header, so for ten minutes after a deploy anyone who had already visited gets
+ * the previous CSS against the new HTML. It looks exactly like the deploy
+ * failed, which is how this was found.
+ *
+ * `deploymentId` appends `?dpl=…` to every asset URL, so a new deploy asks for
+ * a URL no cache has seen. The workflow sets it to the commit SHA.
+ */
+const deploymentId = process.env.NEXT_PUBLIC_DEPLOYMENT_ID || undefined
+
 const nextConfig: NextConfig = {
   output: 'export',
   basePath,
+  deploymentId,
   // Every internal link gets a trailing slash, so Pages resolves `/leaderboard`
   // to `/leaderboard/index.html` rather than 404ing on a file it does not have.
   trailingSlash: true,

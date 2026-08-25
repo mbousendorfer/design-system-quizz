@@ -153,6 +153,7 @@ export const copy = {
     columnTeam: 'Team',
     columnScore: 'Best score',
     columnRuns: 'Runs',
+    runsPlayed: (count: number) => `${count} ${count === 1 ? 'run' : 'runs'}`,
     empty: 'No runs at this level yet.',
     emptyHint: 'Be the first to play it.',
   },
