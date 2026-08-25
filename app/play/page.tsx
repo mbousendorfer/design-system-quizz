@@ -27,10 +27,17 @@ export default function PlayPage() {
   const run = useSyncExternalStore(subscribeToRun, loadRun, runOnServer)
 
   useEffect(() => {
-    // Navigating is not state, so this belongs in an effect: there is nothing to
-    // play, and the start screen is where a player can do something about it.
-    if (run === null) router.replace('/')
-  }, [run, router])
+    // Reads storage directly rather than trusting `run` on this pass.
+    //
+    // `useSyncExternalStore` hands back the *server* snapshot on the hydration
+    // render — null, because a prerendered page has no tab to read. Deciding to
+    // redirect from that value sent every player straight back to the start
+    // screen with their run sitting in sessionStorage, untouched.
+    //
+    // `loadRun()` only ever runs on the client, so it answers the question the
+    // redirect is actually asking: is there a run in this tab, or not?
+    if (loadRun() === null) router.replace('/')
+  }, [router])
 
   if (run === null) {
     return (
