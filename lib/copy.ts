@@ -117,7 +117,7 @@ export const copy = {
   results: {
     title: 'Run complete',
     scoreLabel: 'Score',
-    perfect: 'Flawless. Five out of five.',
+    perfect: (total: number) => `Flawless. ${total} out of ${total}.`,
     score: (points: number) => `${points} points`,
     correctCount: (correct: number, total: number) => `${correct} of ${total} correct`,
     versusAverage: (delta: number) =>
@@ -126,6 +126,11 @@ export const copy = {
         : `${Math.abs(delta)} points below the average run`,
     rank: (position: number, difficulty: string) => `#${position} on the ${difficulty} board`,
     playAgain: 'Play again',
+    reviewHint: 'The explanations are the point. Come back to the ones you missed.',
+    theAnswer: 'The answer',
+    yourAnswer: 'You chose',
+    jumpTo: (position: number, correct: boolean) =>
+      `Question ${position}, ${correct ? 'correct' : 'missed'}`,
     reviewTitle: 'What you answered',
     backHome: 'Back to start',
   },

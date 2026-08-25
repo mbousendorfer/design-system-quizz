@@ -116,6 +116,8 @@ export function QuestionOptions({
         <ToggleGroupItem
           key={option.id}
           value={option.id}
+          // Read by the engine to fire the celebration from this row.
+          data-option-id={option.id}
           // An option whose whole content is a screenshot has no accessible name
           // of its own, so it is spelled out here rather than left as an unlabelled
           // button. The number matches the keyboard shortcut that picks it.

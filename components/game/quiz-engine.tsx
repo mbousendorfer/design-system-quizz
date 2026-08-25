@@ -13,6 +13,7 @@ import {
 } from '@/lib/game/local-run'
 import { publishScore } from '@/lib/game/leaderboard'
 import { RunProgress, stepsFor } from '@/components/game/run-progress'
+import { useConfetti } from '@/components/game/confetti'
 import { TimerBar } from '@/components/game/timer-bar'
 import { InfoIcon } from 'lucide-react'
 
@@ -54,6 +55,7 @@ export function QuizEngine({
   const [outcomes, setOutcomes] = useState<Map<number, boolean>>(new Map())
   /** The server's running total, so a resumed run shows a true score. */
   const [runScore, setRunScore] = useState<number | null>(null)
+  const confetti = useConfetti()
 
   // The server's clock, not ours. Everything is judged against `served_at`, so a
   // client whose clock is minutes off must still see an honest countdown.
@@ -116,13 +118,24 @@ export function QuizEngine({
       }
 
       setResult(answered)
+
+      // Fired from the option they clicked, so the celebration comes out of the
+      // thing they did rather than from nowhere in particular.
+      if (answered.correct) {
+        const element = optionId
+          ? document.querySelector<HTMLElement>(`[data-option-id="${optionId}"]`)
+          : null
+        const box = element?.getBoundingClientRect()
+        confetti.fire(box ? { x: box.left + box.width / 2, y: box.top + box.height / 2 } : undefined)
+      }
+
       // Recorded here rather than derived on render: `outcomes` has to survive
       // `advance` clearing the result, which is the whole point of keeping it.
       setOutcomes((current) => new Map(current).set(position, answered.correct))
       setRunScore(answered.runScore)
       setPhase('feedback')
     },
-    [position],
+    [position, confetti],
   )
 
   const advance = useCallback(() => {
