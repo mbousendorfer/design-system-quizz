@@ -2,18 +2,10 @@
 
 import { useState, useSyncExternalStore } from 'react'
 import { useRouter } from 'next/navigation'
-import {
-  FileTextIcon,
-  GitCompareIcon,
-  PaletteIcon,
-  PlayIcon,
-  PuzzleIcon,
-  ScanEyeIcon,
-  ShuffleIcon,
-  TrendingUpIcon,
-} from 'lucide-react'
+import { PlayIcon } from 'lucide-react'
 
-import { ChoiceGroup } from '@/components/game/choice-group'
+import { DifficultyPicker } from '@/components/game/difficulty-picker'
+import { ModePicker } from '@/components/game/mode-picker'
 import { Button } from '@/components/ui/button'
 import {
   Field,
@@ -28,8 +20,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
 import { copy } from '@/lib/copy'
-import { cn } from '@/lib/utils'
-import { DIFFICULTIES, MODES, type RunDifficulty, type RunMode } from '@/lib/difficulty'
+import { type RunDifficulty, type RunMode } from '@/lib/difficulty'
 import { pseudoSchema } from '@/lib/game/contracts'
 import { startRun } from '@/lib/game/local-run'
 import { publishedCount } from '@/lib/game/question-bank'
@@ -42,64 +33,6 @@ import {
 } from '@/lib/game/remembered-player'
 import { TEAMS, type Team } from '@/lib/schema/question'
 
-/**
- * One glyph per mode. Not decoration: five modes named in prose all look the
- * same in a wrapped row of chips, and the icon is what lets you find the one you
- * meant without reading all five.
- */
-const MODE_ICONS = {
-  'name-that-component': ScanEyeIcon,
-  'which-variant': PaletteIcon,
-  'spot-the-drift': GitCompareIcon,
-  'which-component': PuzzleIcon,
-  'name-from-description': FileTextIcon,
-  mixed: ShuffleIcon,
-} as const
-
-const MODE_CHOICES = [...MODES, 'mixed' as const].map((mode) => {
-  const Icon = MODE_ICONS[mode]
-  return {
-    value: mode,
-    label: copy.modes[mode].name,
-    icon: <Icon className="size-3.5 shrink-0" aria-hidden />,
-  }
-})
-
-/**
- * Difficulty is an ordered scale, so it is drawn as one.
- *
- * Three marks filling up says "this is more than that" in a way four words in a
- * row never do — and it does it without colour, which would collide with the
- * green/yellow/red the clock and the verdicts already use for their own meaning.
- */
-function Meter({ level }: { level: number }) {
-  return (
-    <span className="flex items-center gap-0.5" aria-hidden>
-      {[0, 1, 2].map((step) => (
-        <span
-          key={step}
-          className={cn(
-            'w-0.5 rounded-full transition-all',
-            step < level ? 'bg-current' : 'bg-current/25',
-            step === 0 ? 'h-1.5' : step === 1 ? 'h-2.5' : 'h-3.5',
-          )}
-        />
-      ))}
-    </span>
-  )
-}
-
-const DIFFICULTY_LEVEL = { easy: 1, medium: 2, hard: 3, progressive: 3 } as const
-
-const DIFFICULTY_CHOICES = [...DIFFICULTIES, 'progressive' as const].map((difficulty) => ({
-  value: difficulty,
-  label: copy.difficulties[difficulty].name,
-  icon:
-    difficulty === 'progressive' ? (
-      <TrendingUpIcon className="size-3.5 shrink-0" aria-hidden />
-    ) : undefined,
-  meter: difficulty === 'progressive' ? undefined : <Meter level={DIFFICULTY_LEVEL[difficulty]} />,
-}))
 
 export function StartForm() {
   const router = useRouter()
@@ -199,23 +132,19 @@ export function StartForm() {
       <FieldGroup className="flex flex-col gap-6">
         <FieldSet>
           <FieldLegend variant="label">{copy.home.modeLabel}</FieldLegend>
-          <ChoiceGroup
-            label={copy.home.modeLabel}
-            value={mode}
-            onChange={setMode}
-            choices={MODE_CHOICES}
-          />
+          <ModePicker label={copy.home.modeLabel} value={mode} onChange={setMode} />
           <FieldDescription>{copy.modes[mode].help}</FieldDescription>
         </FieldSet>
 
         <FieldSet>
           <FieldLegend variant="label">{copy.home.difficultyLabel}</FieldLegend>
-          <ChoiceGroup
+          <DifficultyPicker
             label={copy.home.difficultyLabel}
             value={difficulty}
             onChange={setDifficulty}
-            choices={DIFFICULTY_CHOICES}
           />
+          {/* Kept alongside the numbers: the terms say what changes, this says
+              why it is harder. */}
           <FieldDescription>{copy.difficulties[difficulty].help}</FieldDescription>
         </FieldSet>
       </FieldGroup>

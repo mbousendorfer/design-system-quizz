@@ -69,7 +69,10 @@ export const copy = {
       short: 'A bit of everything',
       help: 'Questions drawn from every mode.',
     },
-  } satisfies Record<RunMode, { name: string; short: string; help: string }>,
+    /** What is actually in each mode, so a dead end is visible before the click. */
+    count: (n: number) => `${n} question${n === 1 ? '' : 's'}`,
+    noneYet: 'none written yet',
+  },
 
   difficulties: {
     easy: {
@@ -88,7 +91,17 @@ export const copy = {
       name: 'Progressive',
       help: 'Starts easy, ends hard. The best way in.',
     },
-  } satisfies Record<RunDifficulty, { name: string; help: string }>,
+    /**
+     * The terms of the deal, printed on the card so all four can be compared.
+     * Two deliberate lines rather than one that wraps: a single string broke
+     * after a middle dot, which reads as a rendering fault.
+     */
+    terms: (options: number, seconds: number, multiplier: number) => [
+      `${options} options`,
+      `${seconds}s · ×${multiplier}`,
+    ],
+    ladderTerms: (questions: number) => [`${questions} questions`, 'easy → hard'],
+  },
 
   game: {
     questionOf: (position: number, total: number) => `Question ${position} of ${total}`,
