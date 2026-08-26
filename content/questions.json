@@ -7,7 +7,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Action Dropdown",
-      "prompt": "Presents a list of actions the user can take — the menu / overflow \"⋯\" primitive. Don't hand-build a floating menu; this is it.",
+      "prompt": "Presents a list of actions the user can take \u2014 the menu / overflow \"\u22ef\" primitive. Don't hand-build a floating menu; this is it.",
       "options": [
         {
           "id": "a",
@@ -69,11 +69,11 @@
     {
       "id": "41d74bf1-2998-58d7-9165-7a7d22c62801",
       "version": 1,
-      "status": "draft",
+      "status": "published",
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Avatar Group",
-      "prompt": "A stack of overlapping Avatars with an overflow count when the group exceeds its cap — use it whenever several people or orgs share one context (a post's approvers, a team, thread participants).",
+      "prompt": "A stack of overlapping profile pictures with an overflow count once the group exceeds its cap \u2014 for whenever several people or organisations share one context: a post\u2019s approvers, a team, the participants in a thread.",
       "options": [
         {
           "id": "a",
@@ -93,7 +93,7 @@
         }
       ],
       "correctOptionId": "a",
-      "explanation": "",
+      "explanation": "The overflow count is the tell. A single picture is one person and needs no cap; this component exists precisely because a context can hold more people than there is room to draw, and it has to say \"and four more\" rather than silently truncate. Badge is the small dot or count attached to something else \u2014 it flags activity, it does not stand for people.",
       "docUrl": null,
       "imageKey": null,
       "stimulus": null,
@@ -172,7 +172,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Close Button",
-      "prompt": "The dedicated × control that dismisses a container — modals, panels, drawers, dismissible infoboxes/snackbars. Reach for it whenever a surface needs a standard \"close this\" affordance so the glyph, size, and hit area stay identical everywhere.",
+      "prompt": "The dedicated \u00d7 control that dismisses a container \u2014 modals, panels, drawers, dismissible infoboxes/snackbars. Reach for it whenever a surface needs a standard \"close this\" affordance so the glyph, size, and hit area stay identical everywhere.",
       "options": [
         {
           "id": "a",
@@ -271,7 +271,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Ellipsis",
-      "prompt": "For a simple single-line clip, plain CSS truncation is fine — don't pull in the directive.",
+      "prompt": "For a simple single-line clip, plain CSS truncation is fine \u2014 don't pull in the directive.",
       "options": [
         {
           "id": "a",
@@ -304,7 +304,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Filter Chips List",
-      "prompt": "A horizontal row of toggleable chips that filter a list in place — reach for it when the filter set is small, visible at a glance, and worth keeping on screen (source kinds, content types, statuses).",
+      "prompt": "A horizontal row of toggleable chips that filter a list in place \u2014 reach for it when the filter set is small, visible at a glance, and worth keeping on screen (source kinds, content types, statuses).",
       "options": [
         {
           "id": "a",
@@ -337,7 +337,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Filter Dropdown",
-      "prompt": "A compact button that opens a panel of grouped filters — with optional Apply/Clear actions and saved presets.",
+      "prompt": "A compact button that opens a panel of grouped filters \u2014 with optional Apply/Clear actions and saved presets.",
       "options": [
         {
           "id": "a",
@@ -366,11 +366,11 @@
     {
       "id": "b1b21c01-bfcf-5079-9518-3ff61b9b171e",
       "version": 1,
-      "status": "draft",
+      "status": "published",
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Icon Button",
-      "prompt": "A square, icon-only action. Use it for every icon-only action — close (×), kebab (⋯), inline edit, toolbar shortcuts.",
+      "prompt": "A square, icon-only action. Use it for every icon-only action \u2014 close (\u00d7), kebab (\u22ef), inline edit, toolbar shortcuts.",
       "options": [
         {
           "id": "a",
@@ -390,7 +390,7 @@
         }
       ],
       "correctOptionId": "a",
-      "explanation": "",
+      "explanation": "A square action carrying only a glyph, and the rule is that it is used for every such action rather than an ordinary button squeezed down to fit one. Close Button is the near miss: same shape, but reserved for one meaning \u2014 dismissing its container \u2014 so using it for a kebab or an inline edit borrows an affordance that already says something else. Social Button carries a network\u2019s branding and is never icon-only.",
       "docUrl": null,
       "imageKey": null,
       "stimulus": null,
@@ -399,11 +399,11 @@
     {
       "id": "b851e0c0-c79e-5faa-8139-81d9f4f3fe96",
       "version": 1,
-      "status": "draft",
+      "status": "published",
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Infobox",
-      "prompt": "A static callout that highlights a page element and flags something needing attention — errors, notifications, changes, updates. It stays at the top of a content area or on its own in a section, and persists until dismissed. Show at most one at a time in most cases.",
+      "prompt": "A static callout that flags something needing attention on the page \u2014 an error, a change, an update. It sits at the top of a content area or alone in a section, and stays until dismissed. Show at most one at a time.",
       "options": [
         {
           "id": "a",
@@ -423,7 +423,7 @@
         }
       ],
       "correctOptionId": "a",
-      "explanation": "",
+      "explanation": "The distinction is persistence. This describes a condition that is still true, so it stays; a Snackbars Thread reports an event that already happened, so it leaves on its own. That is why this one can carry a title and a button and a toast cannot: something that vanishes after four seconds is no place for an action. A Tooltip needs a pointer to exist at all.",
       "docUrl": null,
       "imageKey": null,
       "stimulus": null,
@@ -436,7 +436,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Link",
-      "prompt": "A text this component. Use it for navigation (to another page, in-app or external) and for inline micro-actions — add / remove / \"see more\".",
+      "prompt": "A text this component. Use it for navigation (to another page, in-app or external) and for inline micro-actions \u2014 add / remove / \"see more\".",
       "options": [
         {
           "id": "a",
@@ -469,7 +469,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Media Display Overlay",
-      "prompt": "A layer shown over a piece of media (image or video) that presents controls, a caption, or actions on top of the visual instead of beside it — use it when the media is the surface and chrome must sit within its frame (a lightbox, a thumbnail's hover actions, a video preview). Not for panels or cards that merely contain a thumbnail — put that chrome in the surrounding layout.",
+      "prompt": "A layer shown over a piece of media (image or video) that presents controls, a caption, or actions on top of the visual instead of beside it \u2014 use it when the media is the surface and chrome must sit within its frame (a lightbox, a thumbnail's hover actions, a video preview). Not for panels or cards that merely contain a thumbnail \u2014 put that chrome in the surrounding layout.",
       "options": [
         {
           "id": "a",
@@ -502,7 +502,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Nav Selector",
-      "prompt": "A structured navigation-and-selection column: a tree of categories → groups → leaves (with per-leaf details and actions) that the user browses and selects from, typically a social-profile / workspace picker in a side rail. Reach for it when selection is over a large, grouped, possibly hierarchical set that persists alongside the content it drives.",
+      "prompt": "A structured navigation-and-selection column: a tree of categories \u2192 groups \u2192 leaves (with per-leaf details and actions) that the user browses and selects from, typically a social-profile / workspace picker in a side rail. Reach for it when selection is over a large, grouped, possibly hierarchical set that persists alongside the content it drives.",
       "options": [
         {
           "id": "a",
@@ -531,11 +531,11 @@
     {
       "id": "8b439f98-6bc8-5438-9311-f96664005576",
       "version": 1,
-      "status": "draft",
+      "status": "published",
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Segmented Control",
-      "prompt": "A compact inline control that flips between 2–4 short, mutually-exclusive views or modes shown side by side, all visible at once (e.g. List / Grid, Guided / Free-form, aspect-ratio presets). Exactly one segment is active.",
+      "prompt": "A compact inline control that flips between 2\u20134 short, mutually-exclusive views or modes shown side by side, all visible at once (e.g. List / Grid, Guided / Free-form, aspect-ratio presets). Exactly one segment is active.",
       "options": [
         {
           "id": "a",
@@ -555,7 +555,7 @@
         }
       ],
       "correctOptionId": "a",
-      "explanation": "",
+      "explanation": "Two to four short, mutually exclusive choices, all visible at once, switching a view in place. Tabs is the one people reach for instead, and the difference is scope: tabs sit above a panel and swap its content, can scroll, and hold more of them. This is a single joined control and stops being readable past four segments. Nav Selector moves you between places rather than between views of one place.",
       "docUrl": null,
       "imageKey": null,
       "stimulus": null,
@@ -568,7 +568,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Select",
-      "prompt": "Pick one or many entries from a set — kept simple and efficient. Three canonical targets: users, network / profiles, and generic items.",
+      "prompt": "Pick one or many entries from a set \u2014 kept simple and efficient. Three canonical targets: users, network / profiles, and generic items.",
       "options": [
         {
           "id": "a",
@@ -597,11 +597,11 @@
     {
       "id": "fb49385b-8180-5952-857d-cdfe3005db50",
       "version": 1,
-      "status": "draft",
+      "status": "published",
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Snackbars Thread",
-      "prompt": "The toast primitive: instant feedback after a user action. It slides in, informs, and disappears — and must not interrupt the user. (Searching \"toast\" leads here.) There is no transient warning (the Warning variant was dropped) — reframe it as Success or Error.",
+      "prompt": "Instant feedback after a user action. It slides in, informs, and disappears on its own \u2014 and must never interrupt what the user is doing.",
       "options": [
         {
           "id": "a",
@@ -621,7 +621,7 @@
         }
       ],
       "correctOptionId": "a",
-      "explanation": "",
+      "explanation": "This is the toast. It is transient by design: it appears, it is read, it leaves, and nothing waits on it. An Infobox is the opposite \u2014 it stays at the top of a content area and persists until dismissed, so it is for a condition rather than for an event. A Tooltip only exists while the pointer is on something, so nobody would ever see a confirmation in one.",
       "docUrl": null,
       "imageKey": null,
       "stimulus": null,
@@ -634,7 +634,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Social Button",
-      "prompt": "A button carrying a social network's branding, for connect / sign-in actions where the network identity matters (Facebook, Instagram, LinkedIn, X, TikTok, YouTube…).",
+      "prompt": "A button carrying a social network's branding, for connect / sign-in actions where the network identity matters (Facebook, Instagram, LinkedIn, X, TikTok, YouTube\u2026).",
       "options": [
         {
           "id": "a",
@@ -700,7 +700,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Status",
-      "prompt": "Shows the this component of the whole component it sits in — connection state, publish state, and so on — set by either the system or a user action.",
+      "prompt": "Shows the this component of the whole component it sits in \u2014 connection state, publish state, and so on \u2014 set by either the system or a user action.",
       "options": [
         {
           "id": "a",
@@ -733,7 +733,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Status Card",
-      "prompt": "A coloured message card that surfaces a state or summary — an icon, a short explanatory line, and an optional link — sitting inline in a layout.",
+      "prompt": "A coloured message card that surfaces a state or summary \u2014 an icon, a short explanatory line, and an optional link \u2014 sitting inline in a layout.",
       "options": [
         {
           "id": "a",
@@ -799,7 +799,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Tabs",
-      "prompt": "Organise related content that sits at the same level of hierarchy, letting the user switch between groups easily. Not for primary navigation — this component switch views within one context, they don't navigate the app.",
+      "prompt": "Organise related content that sits at the same level of hierarchy, letting the user switch between groups easily. Not for primary navigation \u2014 this component switch views within one context, they don't navigate the app.",
       "options": [
         {
           "id": "a",
@@ -832,7 +832,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Tag",
-      "prompt": "Represents an entity — an object or a user — inside another component (lists, multiselects, inline text).",
+      "prompt": "Represents an entity \u2014 an object or a user \u2014 inside another component (lists, multiselects, inline text).",
       "options": [
         {
           "id": "a",
@@ -865,7 +865,7 @@
       "mode": "name-from-description",
       "difficulty": "easy",
       "component": "Tooltip",
-      "prompt": "A small hover hint: a label for an icon button, a \"why is this disabled\" note, or extra context on an option. Common pairings: Icon button (needs a this component label) · Action dropdown (info / disabled this component).",
+      "prompt": "A small hover hint: a label for an icon button, a \"why is this disabled\" note, or extra context on an option. Common pairings: Icon button (needs a this component label) \u00b7 Action dropdown (info / disabled this component).",
       "options": [
         {
           "id": "a",
@@ -898,7 +898,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Action Dropdown",
-      "prompt": "✅ Trigger from an action component with a chevron; red row for destructive actions; explain disabled items on hover. ❌ Hand-rolling a floating menu; two right-side icons on one item; matching trigger width as a default.",
+      "prompt": "\u2705 Trigger from an action component with a chevron; red row for destructive actions; explain disabled items on hover. \u274c Hand-rolling a floating menu; two right-side icons on one item; matching trigger width as a default.",
       "options": [
         {
           "id": "a",
@@ -939,7 +939,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Autocomplete",
-      "prompt": "✅ Use it for large or remote sets where typing beats scrolling; disambiguate look-alikes with a caption.",
+      "prompt": "\u2705 Use it for large or remote sets where typing beats scrolling; disambiguate look-alikes with a caption.",
       "options": [
         {
           "id": "a",
@@ -980,7 +980,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Badge",
-      "prompt": "✅ Orange once per view, caps, short; blue for everything routine. ❌ An orange this component repeated across a view; a this component standing in for a count/state/entity.",
+      "prompt": "\u2705 Orange once per view, caps, short; blue for everything routine. \u274c An orange this component repeated across a view; a this component standing in for a count/state/entity.",
       "options": [
         {
           "id": "a",
@@ -1021,7 +1021,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Counter",
-      "prompt": "✅ Normal this component after a label; notif this component on an icon; orange only when urgent. ❌ A notif this component standing in for a normal one; a this component around a static number inside a sentence.",
+      "prompt": "\u2705 Normal this component after a label; notif this component on an icon; orange only when urgent. \u274c A notif this component standing in for a normal one; a this component around a static number inside a sentence.",
       "options": [
         {
           "id": "a",
@@ -1062,7 +1062,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Datepicker",
-      "prompt": "✅ Match the selector to the surface (input in forms, dropdown in filters, inline when persistent). ❌ Reimplementing the grid or inventing modifier classes outside those in the spec.",
+      "prompt": "\u2705 Match the selector to the surface (input in forms, dropdown in filters, inline when persistent). \u274c Reimplementing the grid or inventing modifier classes outside those in the spec.",
       "options": [
         {
           "id": "a",
@@ -1103,7 +1103,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Ellipsis",
-      "prompt": "✅ Use for element-aware or clickable truncation; surface the hidden text on demand.",
+      "prompt": "\u2705 Use for element-aware or clickable truncation; surface the hidden text on demand.",
       "options": [
         {
           "id": "a",
@@ -1144,7 +1144,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Filter Dropdown",
-      "prompt": "✅ Use for large/grouped/reusable filters; localise via the text inputs; surface locked groups and handle their click outputs. ❌ Force a big grouped taxonomy into always-visible chips; leave a needless Apply button on a trivial one-property filter.",
+      "prompt": "\u2705 Use for large/grouped/reusable filters; localise via the text inputs; surface locked groups and handle their click outputs. \u274c Force a big grouped taxonomy into always-visible chips; leave a needless Apply button on a trivial one-property filter.",
       "options": [
         {
           "id": "a",
@@ -1185,7 +1185,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Icon Button",
-      "prompt": "✅ A tooltip label on every this component; stroke + background when floating over content.",
+      "prompt": "\u2705 A tooltip label on every this component; stroke + background when floating over content.",
       "options": [
         {
           "id": "a",
@@ -1226,7 +1226,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Infobox",
-      "prompt": "❌ Use an this component for transient post-action feedback (that's a Snackbar); build ad-hoc grouped-error boxes out of the standard this component.",
+      "prompt": "\u274c Use an this component for transient post-action feedback (that's a Snackbar); build ad-hoc grouped-error boxes out of the standard this component.",
       "options": [
         {
           "id": "a",
@@ -1267,7 +1267,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Link",
-      "prompt": "✅ Self-explanatory this component text; icon on standalone action this component.",
+      "prompt": "\u2705 Self-explanatory this component text; icon on standalone action this component.",
       "options": [
         {
           "id": "a",
@@ -1308,7 +1308,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Media Display Overlay",
-      "prompt": "✅ Layer controls/caption over the media when the media is the surface; keep the overlay minimal. ❌ Bury the image under heavy chrome; use it as a generic modal or as a container for non-media content.",
+      "prompt": "\u2705 Layer controls/caption over the media when the media is the surface; keep the overlay minimal. \u274c Bury the image under heavy chrome; use it as a generic modal or as a container for non-media content.",
       "options": [
         {
           "id": "a",
@@ -1349,7 +1349,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Menu",
-      "prompt": "❌ Reaching for this component when a DS Action dropdown covers the need; using the deprecated PopMenu.",
+      "prompt": "\u274c Reaching for this component when a DS Action dropdown covers the need; using the deprecated PopMenu.",
       "options": [
         {
           "id": "a",
@@ -1390,7 +1390,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Nav Selector",
-      "prompt": "✅ Use it for grouped/hierarchical persistent selection; drive it through entries + outputs; reuse its parts.",
+      "prompt": "\u2705 Use it for grouped/hierarchical persistent selection; drive it through entries + outputs; reuse its parts.",
       "options": [
         {
           "id": "a",
@@ -1431,7 +1431,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Phone Number Input",
-      "prompt": "✅ Use this component for any phone field so the dial code and number stay in sync and validated.",
+      "prompt": "\u2705 Use this component for any phone field so the dial code and number stay in sync and validated.",
       "options": [
         {
           "id": "a",
@@ -1472,7 +1472,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Snackbars Thread",
-      "prompt": "✅ Use Success and Error only; keep the action label short; let temporary this component self-dismiss after 5s.",
+      "prompt": "\u2705 Use Success and Error only; keep the action label short; let temporary this component self-dismiss after 5s.",
       "options": [
         {
           "id": "a",
@@ -1513,7 +1513,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Split Button",
-      "prompt": "✅ Use when the primary action is the common case and alternatives are secondary. ❌ Use as a generic dropdown trigger with no real primary action.",
+      "prompt": "\u2705 Use when the primary action is the common case and alternatives are secondary. \u274c Use as a generic dropdown trigger with no real primary action.",
       "options": [
         {
           "id": "a",
@@ -1554,7 +1554,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Status",
-      "prompt": "✅ One- or two-word label describing the whole component's state; colour by meaning.",
+      "prompt": "\u2705 One- or two-word label describing the whole component's state; colour by meaning.",
       "options": [
         {
           "id": "a",
@@ -1595,7 +1595,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Status Card",
-      "prompt": "✅ One clear state per card, colour chosen by meaning, at most one resolving link. ❌ A paragraph of copy, multiple competing links, or a colour picked by hue rather than meaning.",
+      "prompt": "\u2705 One clear state per card, colour chosen by meaning, at most one resolving link. \u274c A paragraph of copy, multiple competing links, or a colour picked by hue rather than meaning.",
       "options": [
         {
           "id": "a",
@@ -1636,7 +1636,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Stepper",
-      "prompt": "✅ Use for labeled multi-step flows; reflect real progress in the step states. ❌ Use it for compact, unlabeled progress (use the Dot this component).",
+      "prompt": "\u2705 Use for labeled multi-step flows; reflect real progress in the step states. \u274c Use it for compact, unlabeled progress (use the Dot this component).",
       "options": [
         {
           "id": "a",
@@ -1677,7 +1677,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Tabs",
-      "prompt": "✅ Use for related, same-level content; keep ≤6 this component; keep exactly one active. ❌ Use this component as primary app navigation; overload the bar with many this component or long labels.",
+      "prompt": "\u2705 Use for related, same-level content; keep \u22646 this component; keep exactly one active. \u274c Use this component as primary app navigation; overload the bar with many this component or long labels.",
       "options": [
         {
           "id": "a",
@@ -1718,7 +1718,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Tag",
-      "prompt": "❌ Both an avatar and an icon on one this component; a colour chosen by hue rather than by object type.",
+      "prompt": "\u274c Both an avatar and an icon on one this component; a colour chosen by hue rather than by object type.",
       "options": [
         {
           "id": "a",
@@ -1759,7 +1759,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Textarea",
-      "prompt": "✅ Pick a resize mode on purpose; show the counter when there is a limit. ❌ Leaving resize to chance, or surfacing the limit only once it is exceeded.",
+      "prompt": "\u2705 Pick a resize mode on purpose; show the counter when there is a limit. \u274c Leaving resize to chance, or surfacing the limit only once it is exceeded.",
       "options": [
         {
           "id": "a",
@@ -1800,7 +1800,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Toggle",
-      "prompt": "✅ Use a this component for a setting; keep the ×/check icon so state doesn't rest on color.",
+      "prompt": "\u2705 Use a this component for a setting; keep the \u00d7/check icon so state doesn't rest on color.",
       "options": [
         {
           "id": "a",
@@ -1841,7 +1841,7 @@
       "mode": "name-from-description",
       "difficulty": "hard",
       "component": "Tooltip",
-      "prompt": "✅ Always set a position class; keep the hint concise; use it to label icon-only buttons. ❌ Ship a this component with no position class; put essential information only in a this component.",
+      "prompt": "\u2705 Always set a position class; keep the hint concise; use it to label icon-only buttons. \u274c Ship a this component with no position class; put essential information only in a this component.",
       "options": [
         {
           "id": "a",
@@ -1882,7 +1882,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Action Dropdown",
-      "prompt": "Must be triggered by an action component — a button, icon button, or standalone link — which shows a right chevron when it opens a dropdown. Positioned exactly 4px from the trigger, below it (flips above when there isn't room), aligned to the trigger's left or right edge depending on its position in its parent. Use each option feature sparingly and for its purpose.",
+      "prompt": "Must be triggered by an action component \u2014 a button, icon button, or standalone link \u2014 which shows a right chevron when it opens a dropdown. Positioned exactly 4px from the trigger, below it (flips above when there isn't room), aligned to the trigger's left or right edge depending on its position in its parent. Use each option feature sparingly and for its purpose.",
       "options": [
         {
           "id": "a",
@@ -1956,7 +1956,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Avatar",
-      "prompt": "Fallbacks when a photo is missing, in order: initials → generic person glyph → anonymous mask, on a neutral grey fill. Use the default 40px unless the surrounding layout calls for another step on the ramp.",
+      "prompt": "Fallbacks when a photo is missing, in order: initials \u2192 generic person glyph \u2192 anonymous mask, on a neutral grey fill. Use the default 40px unless the surrounding layout calls for another step on the ramp.",
       "options": [
         {
           "id": "a",
@@ -2030,7 +2030,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Badge",
-      "prompt": "A small pill of text. No min/max width to plan for — it's system-generated, not user text.",
+      "prompt": "A small pill of text. No min/max width to plan for \u2014 it's system-generated, not user text.",
       "options": [
         {
           "id": "a",
@@ -2215,7 +2215,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Close Button",
-      "prompt": "Use it only to dismiss/close the surface it sits in — not as a generic cancel or a destructive delete. One per surface, conventionally top-right; don't pair two close affordances on the same container.",
+      "prompt": "Use it only to dismiss/close the surface it sits in \u2014 not as a generic cancel or a destructive delete. One per surface, conventionally top-right; don't pair two close affordances on the same container.",
       "options": [
         {
           "id": "a",
@@ -2252,7 +2252,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Counter",
-      "prompt": "Reserve orange for counts that genuinely need attention; use blue/grey for neutral counts that simply fit the surrounding UI. Keep the number live — if it never changes, it isn't a this component.",
+      "prompt": "Reserve orange for counts that genuinely need attention; use blue/grey for neutral counts that simply fit the surrounding UI. Keep the number live \u2014 if it never changes, it isn't a this component.",
       "options": [
         {
           "id": "a",
@@ -2289,7 +2289,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Counter",
-      "prompt": "The number, optionally on a coloured background — or bare, when it sits on an icon as a notif this component.",
+      "prompt": "The number, optionally on a coloured background \u2014 or bare, when it sits on an icon as a notif this component.",
       "options": [
         {
           "id": "a",
@@ -2363,7 +2363,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Datepicker",
-      "prompt": "Turn on ranges for analytics/filter contexts where users pick a period, not one day. Compose from the three selectors and CSS-UI classes — never hand-build a calendar grid.",
+      "prompt": "Turn on ranges for analytics/filter contexts where users pick a period, not one day. Compose from the three selectors and CSS-UI classes \u2014 never hand-build a calendar grid.",
       "options": [
         {
           "id": "a",
@@ -2400,7 +2400,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Ellipsis",
-      "prompt": "Use it for token-aware truncation (tags, mentions, mixed inline content) or when you need the \"+N / …\" click-to-expand behaviour.",
+      "prompt": "Use it for token-aware truncation (tags, mentions, mixed inline content) or when you need the \"+N / \u2026\" click-to-expand behaviour.",
       "options": [
         {
           "id": "a",
@@ -2474,7 +2474,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Filter Chips List",
-      "prompt": "Keep the option set short enough to sit on one line — this is a \"show the choices\" control, not a menu. Selection is state, not navigation: toggling a chip refines the visible list, it doesn't route.",
+      "prompt": "Keep the option set short enough to sit on one line \u2014 this is a \"show the choices\" control, not a menu. Selection is state, not navigation: toggling a chip refines the visible list, it doesn't route.",
       "options": [
         {
           "id": "a",
@@ -2659,7 +2659,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Infobox",
-      "prompt": "Format by container width: horizontal when the container is ≥588px (button inline, right) · vertical when <588px, on mobile, or in narrow panels/drawers (button stacked under the text). Stacking: most recent on top; keep the higher-priority one on top; a dismissed this component doesn't return. Grouping the same type by context (e.g.",
+      "prompt": "Format by container width: horizontal when the container is \u2265588px (button inline, right) \u00b7 vertical when <588px, on mobile, or in narrow panels/drawers (button stacked under the text). Stacking: most recent on top; keep the higher-priority one on top; a dismissed this component doesn't return. Grouping the same type by context (e.g.",
       "options": [
         {
           "id": "a",
@@ -2696,7 +2696,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Labels",
-      "prompt": "Let a long row collapse into \"+N more\" rather than wrapping indefinitely; the \"＋\" control adds a new this component.",
+      "prompt": "Let a long row collapse into \"+N more\" rather than wrapping indefinitely; the \"\uff0b\" control adds a new this component.",
       "options": [
         {
           "id": "a",
@@ -2733,7 +2733,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Labels",
-      "prompt": "Single-colour chip. Text max 180px then ellipsis; no min width. Each this component may carry an × to remove it. A row of this component overflows into a \"+N more\" link plus a \"＋\" add control.",
+      "prompt": "Single-colour chip. Text max 180px then ellipsis; no min width. Each this component may carry an \u00d7 to remove it. A row of this component overflows into a \"+N more\" link plus a \"\uff0b\" add control.",
       "options": [
         {
           "id": "a",
@@ -2807,7 +2807,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Media Display Overlay",
-      "prompt": "Reserve it for chrome that genuinely belongs on the media (close, zoom, play, caption) — anything that reads as page layout stays outside the frame. Keep the overlay light so it never obscures the media it describes; let the media remain the focus.",
+      "prompt": "Reserve it for chrome that genuinely belongs on the media (close, zoom, play, caption) \u2014 anything that reads as page layout stays outside the frame. Keep the overlay light so it never obscures the media it describes; let the media remain the focus.",
       "options": [
         {
           "id": "a",
@@ -2918,7 +2918,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Phone Number Input",
-      "prompt": "Let the component own formatting and country/code state — read the two outputs rather than parsing the raw string yourself.",
+      "prompt": "Let the component own formatting and country/code state \u2014 read the two outputs rather than parsing the raw string yourself.",
       "options": [
         {
           "id": "a",
@@ -3029,7 +3029,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Select",
-      "prompt": "A \"＋ Create\" footer opens a modal for input, and should come with search. Use groups (a selectable header this component its children) to differentiate items; 2-line caption items where names collide (prioritized for users/products — pair with the avatar); separators for unnamed groups. Show \"No result found\" when a search misses — offer \"Create\" when the list is empty.",
+      "prompt": "A \"\uff0b Create\" footer opens a modal for input, and should come with search. Use groups (a selectable header this component its children) to differentiate items; 2-line caption items where names collide (prioritized for users/products \u2014 pair with the avatar); separators for unnamed groups. Show \"No result found\" when a search misses \u2014 offer \"Create\" when the list is empty.",
       "options": [
         {
           "id": "a",
@@ -3066,7 +3066,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Select",
-      "prompt": "Option list: avatar + label rows for users/profiles (profiles add a network sub-badge), plain text for generic items. Optional search field, an optional \"＋ Create\" footer, and a \"No result found\" empty state.",
+      "prompt": "Option list: avatar + label rows for users/profiles (profiles add a network sub-badge), plain text for generic items. Optional search field, an optional \"\uff0b Create\" footer, and a \"No result found\" empty state.",
       "options": [
         {
           "id": "a",
@@ -3103,7 +3103,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Snackbars Thread",
-      "prompt": "Timing: temporary this component stay 5 seconds; permanent ones stay until the user acts or closes. Action wording must be very short (\"Undo\", \"Go to post\", \"Cancel\") — and short in translation too. Stacking: top → bottom with 12px gaps; the newest is lowest and on top in z-index; stacks infinitely.",
+      "prompt": "Timing: temporary this component stay 5 seconds; permanent ones stay until the user acts or closes. Action wording must be very short (\"Undo\", \"Go to post\", \"Cancel\") \u2014 and short in translation too. Stacking: top \u2192 bottom with 12px gaps; the newest is lowest and on top in z-index; stacks infinitely.",
       "options": [
         {
           "id": "a",
@@ -3140,7 +3140,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Snackbars Thread",
-      "prompt": "A short message, an optional action button with a very short label, and an optional close ×. Rendered in a container fixed 68px from the top / 32px from the right, at the highest z-index in the app (above the modal backdrop).",
+      "prompt": "A short message, an optional action button with a very short label, and an optional close \u00d7. Rendered in a container fixed 68px from the top / 32px from the right, at the highest z-index in the app (above the modal backdrop).",
       "options": [
         {
           "id": "a",
@@ -3325,7 +3325,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Table",
-      "prompt": "Reach for a this component only when the content is real tabular data — never for page layout.",
+      "prompt": "Reach for a this component only when the content is real tabular data \u2014 never for page layout.",
       "options": [
         {
           "id": "a",
@@ -3362,7 +3362,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Tabs",
-      "prompt": "Keep to ≤6 this component — more adds cognitive load and clutter. Exactly one active at a time (an active this component can be clicked, it just does nothing).",
+      "prompt": "Keep to \u22646 this component \u2014 more adds cognitive load and clutter. Exactly one active at a time (an active this component can be clicked, it just does nothing).",
       "options": [
         {
           "id": "a",
@@ -3473,7 +3473,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Tag",
-      "prompt": "Text is mandatory (a single-character this component is valid), max 180px then ellipsis; no min width. Optional leading avatar or icon (never both); optional trailing × on removable this component.",
+      "prompt": "Text is mandatory (a single-character this component is valid), max 180px then ellipsis; no min width. Optional leading avatar or icon (never both); optional trailing \u00d7 on removable this component.",
       "options": [
         {
           "id": "a",
@@ -3547,7 +3547,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Toggle",
-      "prompt": "A track with a sliding knob that carries a state icon — an × when off, a check when on.",
+      "prompt": "A track with a sliding knob that carries a state icon \u2014 an \u00d7 when off, a check when on.",
       "options": [
         {
           "id": "a",
@@ -3584,7 +3584,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Toggle",
-      "prompt": "Use a this component for an immediate on/off setting, not for choosing among items. The state icon (×/check) carries the meaning, so on/off reads even in the disabled tint.",
+      "prompt": "Use a this component for an immediate on/off setting, not for choosing among items. The state icon (\u00d7/check) carries the meaning, so on/off reads even in the disabled tint.",
       "options": [
         {
           "id": "a",
@@ -3621,7 +3621,7 @@
       "mode": "name-from-description",
       "difficulty": "medium",
       "component": "Tooltip",
-      "prompt": "Set the position class for every this component so it anchors correctly to its trigger. Keep the text short — it's a hint, not documentation.",
+      "prompt": "Set the position class for every this component so it anchors correctly to its trigger. Keep the text short \u2014 it's a hint, not documentation.",
       "options": [
         {
           "id": "a",
@@ -3678,7 +3678,7 @@
         }
       ],
       "correctOptionId": "a",
-      "explanation": "A Badge is the small dot or count that attaches to another element to flag activity. It is read, never clicked. Modal, Paginator and Datepicker are all interactive surfaces in their own right — none of them can sit on the corner of an icon.",
+      "explanation": "A Badge is the small dot or count that attaches to another element to flag activity. It is read, never clicked. Modal, Paginator and Datepicker are all interactive surfaces in their own right \u2014 none of them can sit on the corner of an icon.",
       "docUrl": "https://design.agorapulse.com/?path=/docs/display-badge--docs",
       "imageKey": "cdb5dff7.svg",
       "stimulus": null,
@@ -3781,7 +3781,7 @@
         }
       ],
       "correctOptionId": "b",
-      "explanation": "Two drifts in one on the wrong side. BEM double-dash modifiers do not exist in this design system — modifiers are plain words chained onto the base class, as in `ap-button primary orange`. And the colour is hardcoded instead of coming from `--comp-button-*`, which is exactly what turns a future theme change into a search-and-replace across the whole codebase.",
+      "explanation": "Two drifts in one on the wrong side. BEM double-dash modifiers do not exist in this design system \u2014 modifiers are plain words chained onto the base class, as in `ap-button primary orange`. And the colour is hardcoded instead of coming from `--comp-button-*`, which is exactly what turns a future theme change into a search-and-replace across the whole codebase.",
       "docUrl": "https://design.agorapulse.com/?path=/docs/actions-button--docs",
       "imageKey": null,
       "stimulus": null,
@@ -3806,7 +3806,7 @@
         }
       ],
       "correctOptionId": "b",
-      "explanation": "The wrong one is a Status pill rebuilt by hand: correct today, wrong the moment the green shifts or the radius scale moves, and invisible to anyone auditing the design system. Searching the codebase for \"pill\" and finding nothing is not proof the component is missing — search by intent instead. Both \"state pill\" and \"status label\" lead straight to Status in the component index.",
+      "explanation": "The wrong one is a Status pill rebuilt by hand: correct today, wrong the moment the green shifts or the radius scale moves, and invisible to anyone auditing the design system. Searching the codebase for \"pill\" and finding nothing is not proof the component is missing \u2014 search by intent instead. Both \"state pill\" and \"status label\" lead straight to Status in the component index.",
       "docUrl": "https://design.agorapulse.com/?path=/docs/display-status--docs",
       "imageKey": null,
       "stimulus": null,
@@ -3831,7 +3831,7 @@
         }
       ],
       "correctOptionId": "b",
-      "explanation": "Components in this design system style their direct children — `> input`, `> i`, `> span`. Slipping an extra wrapper in between breaks that selector chain, the input silently loses its styling, and somebody patches it back with custom CSS a week later. There is already a documented wrapper for this: `ap-input-group`. Inventing `input-wrapper` is how a codebase grows a second, undocumented design system.",
+      "explanation": "Components in this design system style their direct children \u2014 `> input`, `> i`, `> span`. Slipping an extra wrapper in between breaks that selector chain, the input silently loses its styling, and somebody patches it back with custom CSS a week later. There is already a documented wrapper for this: `ap-input-group`. Inventing `input-wrapper` is how a codebase grows a second, undocumented design system.",
       "docUrl": null,
       "imageKey": null,
       "stimulus": null,
@@ -3905,7 +3905,7 @@
         }
       ],
       "correctOptionId": "b",
-      "explanation": "Filter Chips List is the row of filters currently applied — both \"active filters\" and \"filter chips\" map onto it in the component index, and it exposes the items and a change output for removal. Tag is the generic removable token underneath, but the list is the documented component and rebuilding it from Tags is drift. Filter Dropdown is where you choose the filters, not where you see them. Labels and Labels Selector are about labels a user assigns to a conversation, which is a different concept that merely looks alike.",
+      "explanation": "Filter Chips List is the row of filters currently applied \u2014 both \"active filters\" and \"filter chips\" map onto it in the component index, and it exposes the items and a change output for removal. Tag is the generic removable token underneath, but the list is the documented component and rebuilding it from Tags is drift. Filter Dropdown is where you choose the filters, not where you see them. Labels and Labels Selector are about labels a user assigns to a conversation, which is a different concept that merely looks alike.",
       "docUrl": "https://design.agorapulse.com/?path=/docs/display-filterchipslist--docs",
       "imageKey": null,
       "stimulus": null,
@@ -3942,7 +3942,7 @@
         }
       ],
       "correctOptionId": "c",
-      "explanation": "Infobox is the one that can do all three: it takes a `title`, an action button with its own click output, and a `closable` flag — and its `type` even includes `feature-lock` for exactly this situation. Notification looks similar but only exposes a `type`: no heading, no button, so it cannot carry the call to action. A snackbar would vanish before the sentence is finished, and a Confirm Modal blocks the work to ask a question nobody asked.",
+      "explanation": "Infobox is the one that can do all three: it takes a `title`, an action button with its own click output, and a `closable` flag \u2014 and its `type` even includes `feature-lock` for exactly this situation. Notification looks similar but only exposes a `type`: no heading, no button, so it cannot carry the call to action. A snackbar would vanish before the sentence is finished, and a Confirm Modal blocks the work to ask a question nobody asked.",
       "docUrl": "https://design.agorapulse.com/?path=/docs/feedback-infobox--docs",
       "imageKey": null,
       "stimulus": null,
@@ -3988,7 +3988,7 @@
       "mode": "which-variant",
       "difficulty": "hard",
       "component": "Button",
-      "prompt": "The Advocacy report is not included in this workspace’s plan. The button should invite an upgrade rather than simply fail. Which variant belongs here?",
+      "prompt": "The Advocacy report is not included in this workspace\u2019s plan. The button should invite an upgrade rather than simply fail. Which variant belongs here?",
       "options": [
         {
           "id": "a",
@@ -4008,7 +4008,7 @@
         }
       ],
       "correctOptionId": "b",
-      "explanation": "The `locked` variant, drawn from the feature-lock purple family, says \"available on another plan\" while staying interactive and leading somewhere. A greyed-out disabled button says \"not now, and there is nothing you can do about it\" — a different message and a dead end. Red is reserved for destructive actions, so it would read as a warning about deleting something.",
+      "explanation": "The `locked` variant, drawn from the feature-lock purple family, says \"available on another plan\" while staying interactive and leading somewhere. A greyed-out disabled button says \"not now, and there is nothing you can do about it\" \u2014 a different message and a dead end. Red is reserved for destructive actions, so it would read as a warning about deleting something.",
       "docUrl": "https://design.agorapulse.com/?path=/docs/actions-button--docs",
       "imageKey": null,
       "stimulus": null,

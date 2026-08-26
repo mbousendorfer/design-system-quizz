@@ -66,8 +66,14 @@ now enforces, and far too quiet for the thing a player is racing.
 
 ## Depth
 
-**Borders and surface shifts only.** No drop shadows anywhere. Borders live at
-9–13% opacity so they disappear until you look for them.
+Borders and surface shifts carry most of it; borders live at 9–13% opacity so
+they disappear until you look for them.
+
+**Cards lift, and only the outermost one.** A shadow in light mode, a hairline of
+light along the top edge in dark, where a shadow barely reads. A nested card gets
+none — there is never an elevation inside an elevation. This started as
+"no shadows anywhere", which was right for a dense tool and too austere for
+something people play.
 
 ## Type
 
@@ -75,7 +81,8 @@ now enforces, and far too quiet for the thing a player is racing.
 - **Every number a person compares or watches change is monospace and
   `tabular-nums`** — scores, ranks, timers, metric tiles, points. Proportional
   digits make a countdown jitter and make a row of tiles read as unrelated facts.
-- Labels above figures: `text-xs font-medium tracking-wide uppercase`.
+- Labels above figures: `text-xs font-medium`. **Never uppercase** — a house
+  rule, and one this codebase broke twice before it stuck.
 
 ## Layout
 
@@ -83,11 +90,20 @@ Two widths, and only two:
 
 - **Reading column** — `max-w-xl` (home), `max-w-2xl` (play), `max-w-3xl`
   (leaderboard). A quiz is a single-focus surface.
-- **Work surface** — `max-w-6xl` (admin). Tables need room.
+- **Work surface** — `max-w-6xl`. Tables need room. (The admin used it; it is
+  gone with the static build, and the leaderboard is the only table left.)
 
 Screens that are a single card — the start screen, the admin login — are
 vertically centred with `min-h-[100svh]`. A lone card pinned to the top of a tall
 window reads as a page that failed to load.
+
+## Pickers say what you are choosing between
+
+A row of chips carrying only names makes you click each one to read a sentence.
+Both pickers are grids of cards carrying the fact that decides it: the difficulty
+cards print options, seconds and multiplier; the mode cards print how many
+questions are in each. A mode with none says so and cannot be chosen —
+`aria-disabled`, not `disabled`, so it stays in the tab order and can say why.
 
 ## Recurring calls
 
@@ -114,12 +130,18 @@ Almost none, deliberately.
   moment that is a payoff rather than a task. Guarded by `matchMedia` on
   `prefers-reduced-motion`, because the animation is in JavaScript and a CSS
   query cannot reach it.
-- No spring, no bounce, no confetti.
+- **Confetti on a right answer**, fired from the option that was clicked, and
+  again on a flawless run. Hand-rolled on a canvas in
+  `components/game/confetti.tsx`: it never blocks a click, it drops its particles
+  and cancels its frame when they leave the viewport rather than idling a rAF
+  loop, and it does nothing at all under reduced motion. A celebration for two
+  out of five would be the app being pleased with itself on your behalf, so it is
+  only for a right answer and a clean sweep.
+- No spring, no bounce.
 
 ## Navigation context
 
-The admin header is the same ground as the canvas with a bottom border — never a
-different colour, which would split the screen into "chrome world" and "content
-world". It is sticky, and the current section is marked (`components/admin/admin-nav.tsx`),
-matched longest-prefix-first: `/admin/questions/import` starts with
-`/admin/questions`, so a plain prefix test lights up both.
+Kept from the admin, which the static build removed, because it is the rule
+rather than the screen: a header is the same ground as the canvas with a bottom
+border — never a different colour, which would split the screen into "chrome
+world" and "content world" — and the current section is always marked.
